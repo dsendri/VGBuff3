@@ -156,7 +156,6 @@ public class CustomList3 extends ArrayAdapter<String>{
 
         // Set statistics and detail
 
-
         if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("CASUAL_ARAL")){
             gameModeView.setText("BATTLE ROYALE");
         } else if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("BLITZ_PVP_RANKED")) {

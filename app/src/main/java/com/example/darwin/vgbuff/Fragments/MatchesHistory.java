@@ -5,10 +5,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +46,7 @@ public class MatchesHistory extends Fragment {
 
     // Initialize List View
     ListView matchListView;
+    FragmentManager fragmentManager;
 
     // Hero fav
     String heroFav;
@@ -170,8 +173,34 @@ public class MatchesHistory extends Fragment {
                                     web[i] = datatoSummaryPage.getString("Player");
 
 
+                                // Set custom adapter view for the list view
                                 CustomList3 adapter = new CustomList3(getActivity(), web, vaingloryHeroAndMatches,heroesDatabase);
                                 matchListView.setAdapter(adapter);
+
+                                // Set on click listener
+                                // Set onclick listener when list view is tapped
+                                matchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                        // Open Fragment HeroesPage and set back button to go to previous fragment
+                                        fragmentManager = getActivity().getSupportFragmentManager();
+
+                                        // Create hero detail page fragment
+                                        Fragment matchDetail = new MatchDetail();
+
+                                        // Create a bundle to send a data
+                                        Bundle dataToMatchDetailPage = new Bundle();
+                                        dataToMatchDetailPage.putInt("position",position);
+                                        dataToMatchDetailPage.putString("raw",vaingloryHeroAndMatches.dataRaw);
+                                        dataToMatchDetailPage.putString("player",vaingloryHeroAndMatches.user);
+                                        dataToMatchDetailPage.putString("server",vaingloryHeroAndMatches.serverLoc);
+                                        matchDetail.setArguments(dataToMatchDetailPage);
+
+                                        // Open Fragment
+                                        fragmentManager.beginTransaction().replace(R.id.content_frame, matchDetail).addToBackStack("tag").commit();
+                                    }
+                                });
                             } else {
 
                                 // remove loading animation
@@ -184,36 +213,6 @@ public class MatchesHistory extends Fragment {
                     });
                 }
             }.start();
-
-
-
-
-//            vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
-//            Log.i("DataFromMain",vaingloryHeroAndMatches.dataRaw);
-//            Log.i("data received",datatoSummaryPage.getString("Player") );
-//
-//            //Create default player
-//            vaingloryHeroAndMatches.setPlayer(datatoSummaryPage.getString("Player"));
-//            vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
-//            vaingloryHeroAndMatches.getMatchesHistory();
-//
-//            if (vaingloryHeroAndMatches.matches.matchID != null) {
-//
-//
-//                String[] web = new String[vaingloryHeroAndMatches.matches.matchID.length];
-//
-//                for (int i = 0; i < vaingloryHeroAndMatches.matches.matchID.length; i++)
-//                    web[i] = datatoSummaryPage.getString("Player");
-//
-//
-//                CustomList3 adapter = new CustomList3(getActivity(), web, vaingloryHeroAndMatches,heroesDatabase);
-//                matchListView.setAdapter(adapter);
-//            } else {
-//                Log.i("Not found","Not found");
-//                Toast.makeText(getActivity().getApplicationContext(),"Player not found",Toast.LENGTH_LONG).show();
-//            }
-
-
 
         }
 
