@@ -165,7 +165,7 @@ public class CustomList3 extends ArrayAdapter<String>{
         }
 
         dateView.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-position]]));
-        kdaView.setText(String.valueOf(vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].kills) +" / "+String.valueOf(vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].deaths)+" / "+String.valueOf(vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].assists));
+        kdaView.setText("K/D/A: "+String.valueOf(vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].kills) +" / "+String.valueOf(vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].deaths)+" / "+String.valueOf(vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].assists));
         if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].win) {
             resultView.setText("Victory");
         } else {

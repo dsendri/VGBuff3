@@ -141,7 +141,7 @@ public class Summary extends Fragment{
 
         // Initialize Roles
         Captains = new String[] {"*adagio*","*ardan*","*catherine*","*flicker*","*fortress*","*lance*","*lyra*","*phinn*"};
-        Junglers = new String[] {"*grumpjaw*","*alpha*","*glaive*","*joule*","*koshka*","*krul*","*ozo*","*petal*","*reim*","*rona*","*taka*"};
+        Junglers = new String[] {"*baptiste*","*grumpjaw*","*alpha*","*glaive*","*joule*","*koshka*","*krul*","*ozo*","*petal*","*reim*","*rona*","*taka*"};
         Carries = new String[] {"*baron*","*blackfeather*","*celeste*","*gwen*","*idris*","*kestrel*","*ringo*","*samuel*","*saw*","*skaarf*","*skye*","*vox*"};
 
         df = DecimalFormat.getInstance();

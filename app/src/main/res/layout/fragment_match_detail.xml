@@ -63,7 +63,8 @@
                     android:gravity="center_vertical"
                     android:text="RANKED"
                     android:textColor="@color/textColor"
-                    android:textSize="13sp" />
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/result"
@@ -75,7 +76,7 @@
                     android:gravity="center_vertical"
                     android:text="HELLO"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/kda"
@@ -248,7 +249,8 @@
                     android:gravity="center_vertical"
                     android:text="RANKED"
                     android:textColor="@color/textColor"
-                    android:textSize="13sp" />
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/result2"
@@ -260,7 +262,7 @@
                     android:gravity="center_vertical"
                     android:text="HELLO"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/kda2"
@@ -433,7 +435,8 @@
                     android:gravity="center_vertical"
                     android:text="RANKED"
                     android:textColor="@color/textColor"
-                    android:textSize="13sp" />
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/result3"
@@ -445,7 +448,7 @@
                     android:gravity="center_vertical"
                     android:text="HELLO"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/kda3"
@@ -631,7 +634,8 @@
                     android:gravity="center_vertical"
                     android:text="RANKED"
                     android:textColor="@color/textColor"
-                    android:textSize="13sp" />
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/result4"
@@ -643,7 +647,7 @@
                     android:gravity="center_vertical"
                     android:text="HELLO"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/kda4"
@@ -809,14 +813,15 @@
                     android:id="@+id/gameMode5"
                     android:layout_width="wrap_content"
                     android:layout_height="22dp"
-                    android:layout_alignTop="@+id/hero5"
+                    android:layout_alignTop="@+id/imageView5"
                     android:layout_marginBottom="2dp"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/hero5"
                     android:gravity="center_vertical"
                     android:text="RANKED"
                     android:textColor="@color/textColor"
-                    android:textSize="13sp" />
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/result5"
@@ -828,7 +833,7 @@
                     android:gravity="center_vertical"
                     android:text="HELLO"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/kda5"
@@ -1001,7 +1006,8 @@
                     android:gravity="center_vertical"
                     android:text="RANKED"
                     android:textColor="@color/textColor"
-                    android:textSize="13sp" />
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/result6"
@@ -1013,7 +1019,7 @@
                     android:gravity="center_vertical"
                     android:text="HELLO"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/kda6"

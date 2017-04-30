@@ -808,7 +808,7 @@
       "desc": "+150 Max Energy\n+2.5 Energy Recharge\n\n(Energy is needed to use your abilities.)"
     },
     {
-      "item": "Eve of Harvest",
+      "item": "Eve Of Harvest",
       "category": "Ability",
       "cost": "2600",
       "desc": "Passive: Your next 600-1200 (level 1-12) points of crystal damage to enemy heroes has +25% lifesteal, recharges over 40 seconds.\n\n+10% Crystal Lifesteal\n+55 Crystal Power\n+250 Max Energy\n+5 Energy Recharge\n\n(Crystal lifesteal heals you for a % of crystal damage dealt.)"
