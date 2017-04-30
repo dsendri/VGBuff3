@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "741173472223",
+    "firebase_url": "https://vg-buff.firebaseio.com",
+    "project_id": "vg-buff",
+    "storage_bucket": "vg-buff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741173472223:android:434f48afe97ace0d",
+        "android_client_info": {
+          "package_name": "com.example.darwin.vgbuff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741173472223-ovopub9qfv191s16kjmbm6h3fbtracf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVdKcpX7Ywydqj3KEDcxt-3SPcllwpgdQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741173472223:android:83d485718bdd8666",
+        "android_client_info": {
+          "package_name": "com.thecustominc.darwin.vgbuff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741173472223-e8a6p2itoppfhdjrf066anlm5asgu2jl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thecustominc.darwin.vgbuff",
+            "certificate_hash": "ce69d0c1fa84c0969d7f9b7dab84731c81f18dc2"
+          }
+        },
+        {
+          "client_id": "741173472223-ovopub9qfv191s16kjmbm6h3fbtracf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVdKcpX7Ywydqj3KEDcxt-3SPcllwpgdQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741173472223-ovopub9qfv191s16kjmbm6h3fbtracf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

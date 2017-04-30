@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_summary"
+            android:icon="@drawable/summary"
+            android:title="Summary" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_match"
+            android:icon="@drawable/history"
+            android:title="Matches" />
+    </group>
+
+    <item android:title="Database">
+        <menu>
+            <item
+                android:id="@+id/nav_heroes"
+                android:icon="@drawable/dragon"
+                android:title="Heroes" />
+            <item
+                android:id="@+id/nav_items"
+                android:icon="@drawable/swrod"
+                android:title="Items" />
+        </menu>
+    </item>
+
+</menu>

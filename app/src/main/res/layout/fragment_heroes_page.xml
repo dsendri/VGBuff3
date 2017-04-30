@@ -1,0 +1,389 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context="com.example.darwin.vgbuff.Fragments.HeroesPage">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent">
+
+            <ImageView
+                android:id="@+id/itemProfileView"
+                android:layout_width="150dp"
+                android:layout_height="224dp"
+                android:layout_margin="10dp"
+                app:srcCompat="@color/colorPrimary" />
+
+            <GridLayout
+                android:id="@+id/heroInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/itemProfileView"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/itemProfileView"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/itemProfileView">
+
+                <TextView
+                    android:id="@+id/heroNameView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/hpView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/regenView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/epView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="2"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/epRegenView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="2"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/wpDmgView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="3"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/atSpdView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="3"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/armorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="4"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/shieldView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="4"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/arView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="5"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/mvSpdView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="10dp"
+                    android:layout_row="5"
+                    android:layout_rowWeight="1"
+                    android:text="TextView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+
+            </GridLayout>
+
+            <RelativeLayout
+                android:id="@+id/ability1View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/heroInfoView"
+                android:layout_alignRight="@+id/heroInfoView"
+                android:layout_alignStart="@+id/itemProfileView"
+                android:layout_below="@+id/itemProfileView"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:id="@+id/ability1ImageView"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/itemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability1ImageView"
+                    android:text="Heroic Perk"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ability1TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/itemName"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability1ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ability2View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/heroInfoView"
+                android:layout_alignRight="@+id/heroInfoView"
+                android:layout_alignStart="@+id/itemProfileView"
+                android:layout_below="@+id/ability1View"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:id="@+id/ability2ImageView"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/heroicPerk2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability2ImageView"
+                    android:text="Slot A"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ability2CDManaView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/heroicPerk2"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability2ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/ability2TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ability2CDManaView"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability2ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ability3View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/heroInfoView"
+                android:layout_alignRight="@+id/heroInfoView"
+                android:layout_alignStart="@+id/itemProfileView"
+                android:layout_below="@+id/ability2View"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:id="@+id/ability3ImageView"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/heroicPerk3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability3ImageView"
+                    android:text="Slot B"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ability3CDManaView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/heroicPerk3"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability3ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/ability3TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ability3CDManaView"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability3ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ability4View"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/heroInfoView"
+                android:layout_alignRight="@+id/heroInfoView"
+                android:layout_alignStart="@+id/itemProfileView"
+                android:layout_below="@+id/ability3View"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:id="@+id/ability4ImageView"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/heroicPerk4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability4ImageView"
+                    android:text="Slot C"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ability4CDManaView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/heroicPerk4"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability4ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/ability4TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ability4CDManaView"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@+id/ability4ImageView"
+                    android:textColor="@color/textColor"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

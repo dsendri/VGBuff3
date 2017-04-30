@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp" >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/hero"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/gameMode"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/hero"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_below="@id/gameMode"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/hero"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:textColor="?android:attr/textColorSecondaryNoDisable"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+    </TableRow>
+</TableLayout>

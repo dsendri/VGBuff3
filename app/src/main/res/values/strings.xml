@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">VG Buff</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="server_prompt">Server</string>
+
+    <string-array name="server_arrays">
+        <item>na</item>
+        <item>eu</item>
+        <item>sa</item>
+        <item>sg</item>
+        <item>ea</item>
+    </string-array>
+
+    <string name="banner_ad_unit_id">ca-app-pub-7644346723158631/2492802105</string>
+
+</resources>
