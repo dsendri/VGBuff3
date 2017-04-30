@@ -1,0 +1,238 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context="com.example.darwin.vgbuff.Fragments.Summary">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/statsLayout"
+        android:layout_alignRight="@+id/statsLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent">
+
+        <Button
+            android:id="@+id/searchPlayerButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/seachText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/seachText"
+            android:layout_marginRight="2dp"
+            android:background="@android:drawable/ic_menu_search" />
+
+        <EditText
+            android:id="@+id/seachText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@+id/searchPlayerButton"
+            android:layout_toRightOf="@+id/serverChooser"
+            android:backgroundTint="@android:color/darker_gray"
+            android:ems="10"
+            android:imeOptions="actionSearch"
+            android:inputType="textPersonName"
+            android:textColor="@color/textColor"
+            android:textColorLink="@color/textColor" />
+
+        <Spinner
+            android:id="@+id/serverChooser"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:entries="@array/server_arrays"
+            android:prompt="@string/server_prompt" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/statsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorAccent">
+
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:fontFamily="cursive"
+            android:text="PLAYER SUMMARY"
+            android:textAlignment="center"
+            android:textColor="@color/textColor"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/userView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/titleView"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="7dp"
+            android:text=""
+            android:textColor="@color/textColor"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/levelView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/userView"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text=""
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/winView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/levelView"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text=""
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+
+        <TextView
+            android:id="@+id/winStreakView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/winView"
+            android:layout_alignStart="@+id/winView"
+            android:layout_below="@+id/winView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text=""
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/goldView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/winStreakView"
+            android:layout_alignStart="@+id/winStreakView"
+            android:layout_below="@+id/winStreakView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text=""
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/totalGamesView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/goldView"
+            android:layout_alignStart="@+id/goldView"
+            android:layout_below="@+id/goldView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:text=""
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/totalXPView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/totalGamesView"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="7dp"
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/favHero"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/userView"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/heroes_adagio_thumb" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:drawable/btn_star_big_off"
+            android:elevation="0dp" />
+
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@+id/saveButton"
+            android:background="@android:drawable/ic_menu_rotate"
+            android:elevation="0dp" />
+
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
+
+
+</RelativeLayout>
