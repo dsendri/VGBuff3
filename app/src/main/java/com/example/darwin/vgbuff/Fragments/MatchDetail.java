@@ -371,6 +371,19 @@ public class MatchDetail extends Fragment {
         final ImageView item5View6 = (ImageView) view.findViewById(R.id.item56);
         final ImageView item6View6 = (ImageView) view.findViewById(R.id.item66);
 
+        // summmary
+        final TextView blueView = (TextView) view.findViewById(R.id.blue);
+        final TextView redView = (TextView) view.findViewById(R.id.red);
+        final TextView resultBlueView = (TextView) view.findViewById(R.id.resultBlue);
+        final TextView resultRedView = (TextView) view.findViewById(R.id.resultRed);
+        final TextView killsBlueView = (TextView) view.findViewById(R.id.killsBlue);
+        final TextView killsRedView = (TextView) view.findViewById(R.id.killsRed);
+        final TextView krakenBlueView = (TextView) view.findViewById(R.id.krakenBlue);
+        final TextView krakenRedView = (TextView) view.findViewById(R.id.krakenRed);
+        final TextView aceBlueView = (TextView) view.findViewById(R.id.aceBlue);
+        final TextView aceRedView = (TextView) view.findViewById(R.id.aceRed);
+        final TextView goldBlueView = (TextView) view.findViewById(R.id.goldBlue);
+        final TextView goldRedView = (TextView) view.findViewById(R.id.goldRed);
         final TextView teamblueView = (TextView) view.findViewById(R.id.teamblue);
         final TextView teamredView = (TextView) view.findViewById(R.id.teamred);
 
@@ -446,6 +459,28 @@ public class MatchDetail extends Fragment {
                                 Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(),"woodcutternoise.ttf");
                                 teamblueView.setTypeface(titleFont);
                                 teamredView.setTypeface(titleFont);
+                                blueView.setTypeface(titleFont);
+                                redView.setTypeface(titleFont);
+                                killsBlueView.setTypeface(titleFont);
+                                killsRedView.setTypeface(titleFont);
+                                resultBlueView.setTypeface(titleFont);
+                                resultRedView.setTypeface(titleFont);
+                                krakenBlueView.setTypeface(titleFont);
+                                krakenRedView.setTypeface(titleFont);
+                                aceBlueView.setTypeface(titleFont);
+                                aceRedView.setTypeface(titleFont);
+                                goldBlueView.setTypeface(titleFont);
+                                goldRedView.setTypeface(titleFont);
+
+                                // set summary
+                                killsBlueView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills1[sortedPos[sortedPos.length-1-matchPos]]));
+                                killsRedView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills2[sortedPos[sortedPos.length-1-matchPos]]));
+                                krakenBlueView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken1[sortedPos[sortedPos.length-1-matchPos]]));
+                                krakenRedView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken2[sortedPos[sortedPos.length-1-matchPos]]));
+                                aceBlueView.setText("ACES: "+String.valueOf(vaingloryHeroAndMatches.matches.ace1[sortedPos[sortedPos.length-1-matchPos]]));
+                                aceRedView.setText("ACES: "+String.valueOf(vaingloryHeroAndMatches.matches.ace2[sortedPos[sortedPos.length-1-matchPos]]));
+                                goldBlueView.setText("GOLD: "+String.valueOf(vaingloryHeroAndMatches.matches.gold1[sortedPos[sortedPos.length-1-matchPos]]));
+                                goldRedView.setText("GOLD: "+String.valueOf(vaingloryHeroAndMatches.matches.gold2[sortedPos[sortedPos.length-1-matchPos]]));
 
                                 // set user name 1
                                 userView.setText(vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);
@@ -458,8 +493,10 @@ public class MatchDetail extends Fragment {
 
                                 if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].win) {
                                     teamblueView.setText("TEAM BLUE: VICTORY");
+                                    resultBlueView.setText("VICTORY");
                                 } else {
                                     teamblueView.setText("TEAM BLUE: DEFEAT");
+                                    resultBlueView.setText("DEFEAT");
                                 }
                                 minionsView.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].minionKills));
                                 krakenView.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].kraken));
@@ -502,8 +539,10 @@ public class MatchDetail extends Fragment {
 
                                 if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].win) {
                                     teamredView.setText("TEAM RED: VICTORY");
+                                    resultRedView.setText("VICTORY");
                                 } else {
                                     teamredView.setText("TEAM RED: DEFEAT");
+                                    resultRedView.setText("DEFEAT");
                                 }
                                 minionsView4.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].minionKills));
                                 krakenView4.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].kraken));

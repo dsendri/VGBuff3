@@ -16,10 +16,216 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <GridLayout
+                android:id="@+id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorAccent"
+                android:columnCount="2"
+                android:rowCount="6">
+
+                <TextView
+                    android:id="@+id/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="0"
+                    android:gravity="center_vertical"
+                    android:text="TEAM BLUE"
+                    android:textColor="@color/BLUE"
+                    android:textIsSelectable="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="0"
+                    android:gravity="center_vertical"
+                    android:text="TEAM RED"
+                    android:textColor="@color/RED"
+                    android:textIsSelectable="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/resultBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="1"
+                    android:gravity="center_vertical"
+                    android:text="DRAW"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/resultRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="1"
+                    android:gravity="center_vertical"
+                    android:text="DRAW"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killsBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="2"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killsRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="2"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/krakenBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="3"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/krakenRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="3"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/aceBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="4"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/aceRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="4"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/goldBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="5"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/goldRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_row="5"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+            </GridLayout>
+
             <TextView
                 android:id="@+id/teamblue"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:layout_below="@+id/summary"
                 android:layout_marginBottom="5dp"
                 android:background="@color/teamblue"
                 android:gravity="center_vertical"
@@ -590,21 +796,25 @@
                 android:id="@+id/teamred"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@+id/layout3"
-                android:layout_marginBottom="5dp"
                 android:background="@color/teamred"
                 android:gravity="center_vertical"
                 android:text="TEAM RED"
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_below="@+id/layout3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp" />
 
             <RelativeLayout
                 android:id="@+id/layout4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/teamred"
-                android:layout_marginBottom="5dp"
                 android:background="@color/teamred">
 
                 <ImageView
@@ -676,11 +886,11 @@
                     android:id="@+id/item14"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="140dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/hero4" />
+                    android:layout_marginLeft="71dp"
+                    android:layout_alignTop="@+id/item24"
+                    android:layout_toRightOf="@+id/gameMode4"
+                    android:layout_toEndOf="@+id/gameMode4"
+                    android:layout_marginStart="71dp" />
 
                 <ImageView
                     android:id="@+id/item24"
@@ -789,8 +999,9 @@
                 android:id="@+id/layout5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/layout4"
-                android:layout_marginBottom="5dp"
                 android:background="@color/teamred">
 
                 <ImageView
