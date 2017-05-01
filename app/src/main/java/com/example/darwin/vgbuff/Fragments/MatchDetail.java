@@ -19,6 +19,9 @@ import android.widget.Toast;
 import com.example.darwin.vgbuff.CustomList3;
 import com.example.darwin.vgbuff.R;
 import com.example.darwin.vgbuff.VaingloryHeroAndMatches;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -256,6 +259,13 @@ public class MatchDetail extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_match_detail, container, false);
+
+        // Initialize admob
+        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-7644346723158631~1016068907");
+
+        AdView mAdView = (AdView) view.findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         // Create loading animation while data is being processed
         final ProgressDialog dialog = new ProgressDialog(getActivity());
