@@ -71,7 +71,7 @@ public class Player {
                     if (playerHeroArr.getJSONObject(i).getJSONObject("relationships").getJSONObject("player").getJSONObject("data").getString("id").equals(playerID)) {
 
                         actor = playerHeroArr.getJSONObject(i).getJSONObject("attributes").getString("actor");
-                        //Log.i("actor", actor);
+                        Log.i("actor", actor);
 
                         switch (actor){
 

@@ -2,6 +2,7 @@ package com.example.darwin.vgbuff.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -437,11 +438,14 @@ public class MatchDetail extends Fragment {
                                 sortedPos = comparator.createIndexArray();
                                 Arrays.sort(sortedPos,comparator);
 
-
                                 //for (int z = 0; z < sortedPos.length ; z++ ) Log.i("sorted", sortedPos[z].toString());
 
                                 pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
+                                // set font
+                                Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(),"woodcutternoise.ttf");
+                                teamblueView.setTypeface(titleFont);
+                                teamredView.setTypeface(titleFont);
 
                                 // set user name 1
                                 userView.setText(vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);

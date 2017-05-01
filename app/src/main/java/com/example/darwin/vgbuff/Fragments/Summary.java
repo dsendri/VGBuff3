@@ -379,9 +379,10 @@ public class Summary extends Fragment{
                     }
 
                     Log.i ("CAP,JUNG,CAR",captain + ","+jungler+","+carry);
-                    if (captain > jungler && captain > carry) tempRole = "CAPTAIN";
-                    else if (jungler > captain && jungler > carry) tempRole = "JUNGLER";
+                    if (captain >= jungler && captain >= carry) tempRole = "CAPTAIN";
+                    else if (jungler >= captain && jungler >= carry) tempRole = "JUNGLER";
                     else tempRole = "CARRY";
+                    Log.i("ROLE",tempRole);
 
                     winsIn30View = winsIn30;
                     lossedIn30View = lossesIn30;
@@ -396,7 +397,7 @@ public class Summary extends Fragment{
 
                 }
 
-
+                Log.i("ROLE",tempRole);
                 role = tempRole;
                 final String heroFav;
 
@@ -918,8 +919,8 @@ public class Summary extends Fragment{
                         }
 
                         Log.i ("CAP,JUNG,CAR",captain + ","+jungler+","+carry);
-                        if (captain > jungler && captain > carry) tempRole = "CAPTAIN";
-                        else if (jungler > captain && jungler > carry) tempRole = "JUNGLER";
+                        if (captain >= jungler && captain >= carry) tempRole = "CAPTAIN";
+                        else if (jungler >= captain && jungler >= carry) tempRole = "JUNGLER";
                         else tempRole = "CARRY";
 
                         winsIn30View = winsIn30;
