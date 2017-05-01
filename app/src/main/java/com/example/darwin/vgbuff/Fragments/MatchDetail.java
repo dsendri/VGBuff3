@@ -483,6 +483,8 @@ public class MatchDetail extends Fragment {
                                 goldRedView.setTypeface(titleFont);
 
                                 // set summary
+                                blueView.setText("TEAM BLUE");
+                                redView.setText("TEAM RED");
                                 killsBlueView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills1[sortedPos[sortedPos.length-1-matchPos]]));
                                 killsRedView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills2[sortedPos[sortedPos.length-1-matchPos]]));
                                 krakenBlueView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken1[sortedPos[sortedPos.length-1-matchPos]]));
