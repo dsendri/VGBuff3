@@ -396,6 +396,7 @@ public class MatchDetail extends Fragment {
         final TextView goldRedView = (TextView) view.findViewById(R.id.goldRed);
         final TextView teamblueView = (TextView) view.findViewById(R.id.teamblue);
         final TextView teamredView = (TextView) view.findViewById(R.id.teamred);
+        final TextView durationView = (TextView) view.findViewById(R.id.matchDetail);
 
         final Bundle dataToMatchDetailPage = this.getArguments();
 
@@ -471,20 +472,29 @@ public class MatchDetail extends Fragment {
                                 teamredView.setTypeface(titleFont);
                                 blueView.setTypeface(titleFont);
                                 redView.setTypeface(titleFont);
-                                killsBlueView.setTypeface(titleFont);
-                                killsRedView.setTypeface(titleFont);
+                                //killsBlueView.setTypeface(titleFont);
+                                //killsRedView.setTypeface(titleFont);
                                 resultBlueView.setTypeface(titleFont);
                                 resultRedView.setTypeface(titleFont);
-                                krakenBlueView.setTypeface(titleFont);
-                                krakenRedView.setTypeface(titleFont);
-                                aceBlueView.setTypeface(titleFont);
-                                aceRedView.setTypeface(titleFont);
-                                goldBlueView.setTypeface(titleFont);
-                                goldRedView.setTypeface(titleFont);
+                                //krakenBlueView.setTypeface(titleFont);
+                                //krakenRedView.setTypeface(titleFont);
+                                //aceBlueView.setTypeface(titleFont);
+                                //aceRedView.setTypeface(titleFont);
+                                //goldBlueView.setTypeface(titleFont);
+                                //goldRedView.setTypeface(titleFont);
+                                durationView.setTypeface(titleFont);
 
-                                // set summary
+                                // Format duration
+                                String seconds;
+                                if ( vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]]%60 < 10)
+                                    seconds = "0" + String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])%60);
+                                else
+                                    seconds = String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])%60);
+
+                                                    // set summary
                                 blueView.setText("TEAM BLUE");
                                 redView.setText("TEAM RED");
+                                durationView.setText("MATCH DETAIL\n"+String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])/60)+":"+seconds);
                                 killsBlueView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills1[sortedPos[sortedPos.length-1-matchPos]]));
                                 killsRedView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills2[sortedPos[sortedPos.length-1-matchPos]]));
                                 krakenBlueView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken1[sortedPos[sortedPos.length-1-matchPos]]));

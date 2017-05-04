@@ -5,8 +5,8 @@
     <color name="colorAccent">#b3040404</color>
     <color name="textColor">#feffffff</color>
     <color name="barColor">#f109090a</color>
-    <color name="teamblue">#3d0f1cf9</color>
-    <color name="teamred">#56fd0008</color>
+    <color name="teamblue">#510f1cf9</color>
+    <color name="teamred">#5afd0008</color>
     <color name="RED">#fd0008</color>
     <color name="BLUE">#0f1cf9</color>
 </resources>

@@ -10,7 +10,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent">
 
 
         <ScrollView
@@ -18,22 +19,55 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/adView2"
-            android:layout_marginBottom="5dp"
-            android:background="@color/colorAccent">
+            android:layout_marginBottom="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <GridLayout
-                    android:id="@+id/summary"
+                    android:id="@+id/title2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorAccent"
+                    android:columnCount="1"
+                    android:rowCount="1">
+
+                    <TextView
+                        android:id="@+id/matchDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_row="0"
+                        android:gravity="center_vertical"
+                        android:text="MATCH DETAIL"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColor"
+                        android:textIsSelectable="true"
+                        android:textSize="24sp" />
+
+                </GridLayout>
+
+
+                <GridLayout
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/title2"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/colorAccent"
                     android:columnCount="2"
-                    android:rowCount="6">
+                    android:rowCount="1">
 
                     <TextView
                         android:id="@+id/blue"
@@ -46,10 +80,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_row="0"
                         android:gravity="center_vertical"
-                        android:textColor="@color/BLUE"
-                        android:textIsSelectable="true"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/textColor"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/red"
@@ -59,13 +91,28 @@
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="0dp"
                         android:layout_row="0"
                         android:gravity="center_vertical"
-                        android:textColor="@color/RED"
-                        android:textIsSelectable="true"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/textColor"
+                        android:textSize="22sp" />
+
+
+                </GridLayout>
+
+                <GridLayout
+                    android:id="@+id/summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/title"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/colorAccent"
+                    android:columnCount="2"
+                    android:rowCount="6">
+
 
                     <TextView
                         android:id="@+id/resultBlue"
@@ -76,6 +123,7 @@
                         android:layout_gravity="fill"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
                         android:layout_row="1"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
@@ -91,6 +139,7 @@
                         android:layout_gravity="fill"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
                         android:layout_row="1"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
@@ -110,7 +159,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/killsRed"
@@ -125,7 +174,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/krakenBlue"
@@ -140,7 +189,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/krakenRed"
@@ -155,7 +204,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/aceBlue"
@@ -170,7 +219,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/aceRed"
@@ -185,7 +234,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/goldBlue"
@@ -200,7 +249,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/goldRed"
@@ -215,7 +264,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </GridLayout>
 
                 <TextView
@@ -224,6 +273,8 @@
                     android:layout_height="30dp"
                     android:layout_below="@+id/summary"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamblue"
                     android:gravity="center_vertical"
                     android:text="TEAM BLUE"
@@ -237,20 +288,22 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/teamblue"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamblue">
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/hero"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
@@ -264,7 +317,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/hero"
                         android:gravity="center_vertical"
-                        android:text="RANKED"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
@@ -277,7 +329,6 @@
                         android:layout_alignStart="@+id/gameMode"
                         android:layout_below="@+id/gameMode"
                         android:gravity="center_vertical"
-                        android:text="HELLO"
                         android:textColor="@color/textColor"
                         android:textSize="14sp" />
 
@@ -285,11 +336,9 @@
                         android:id="@+id/kda"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@+id/hero"
+                        android:layout_below="@+id/result"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/hero"
-                        android:text="123"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -300,7 +349,6 @@
                         android:layout_alignRight="@+id/item6"
                         android:layout_below="@+id/item6"
                         android:layout_marginTop="5dp"
-                        android:text="date"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="10sp" />
 
@@ -308,11 +356,9 @@
                         android:id="@+id/item1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="140dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/hero" />
+                        android:layout_toLeftOf="@+id/item2" />
 
                     <ImageView
                         android:id="@+id/item2"
@@ -321,16 +367,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item1" />
+                        android:layout_toLeftOf="@+id/item3" />
 
                     <ImageView
                         android:id="@+id/item3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item2" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/item4"
@@ -357,7 +403,7 @@
                         android:layout_alignLeft="@+id/item3"
                         android:layout_gravity="end"
                         android:layout_marginBottom="0dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
@@ -381,7 +427,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -394,7 +439,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -407,7 +451,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -423,20 +466,22 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/layout1"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamblue">
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/hero2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
@@ -450,7 +495,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/hero2"
                         android:gravity="center_vertical"
-                        android:text="RANKED"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
@@ -463,7 +507,6 @@
                         android:layout_alignStart="@+id/gameMode2"
                         android:layout_below="@+id/gameMode2"
                         android:gravity="center_vertical"
-                        android:text="HELLO"
                         android:textColor="@color/textColor"
                         android:textSize="14sp" />
 
@@ -471,11 +514,9 @@
                         android:id="@+id/kda2"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@+id/hero2"
+                        android:layout_below="@+id/result2"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/hero2"
-                        android:text="123"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -486,7 +527,6 @@
                         android:layout_alignRight="@+id/item62"
                         android:layout_below="@+id/item62"
                         android:layout_marginTop="5dp"
-                        android:text="date"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="10sp" />
 
@@ -494,11 +534,9 @@
                         android:id="@+id/item12"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="140dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/hero2" />
+                        android:layout_toLeftOf="@+id/item22" />
 
                     <ImageView
                         android:id="@+id/item22"
@@ -507,16 +545,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item12" />
+                        android:layout_toLeftOf="@+id/item32" />
 
                     <ImageView
                         android:id="@+id/item32"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item22" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/item42"
@@ -543,7 +581,7 @@
                         android:layout_alignLeft="@+id/item32"
                         android:layout_gravity="end"
                         android:layout_marginBottom="0dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
@@ -554,7 +592,7 @@
                         android:layout_alignRight="@+id/item32"
                         android:layout_below="@+id/hero2"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:columnCount="3">
 
 
@@ -567,7 +605,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -580,7 +617,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -593,7 +629,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -609,20 +644,22 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/layout2"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamblue">
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/hero3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
@@ -636,7 +673,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/hero3"
                         android:gravity="center_vertical"
-                        android:text="RANKED"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
@@ -649,7 +685,6 @@
                         android:layout_alignStart="@+id/gameMode3"
                         android:layout_below="@+id/gameMode3"
                         android:gravity="center_vertical"
-                        android:text="HELLO"
                         android:textColor="@color/textColor"
                         android:textSize="14sp" />
 
@@ -657,11 +692,9 @@
                         android:id="@+id/kda3"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@+id/hero3"
+                        android:layout_below="@+id/result3"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/hero3"
-                        android:text="123"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -672,7 +705,6 @@
                         android:layout_alignRight="@+id/item63"
                         android:layout_below="@+id/item63"
                         android:layout_marginTop="5dp"
-                        android:text="date"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="10sp" />
 
@@ -680,11 +712,9 @@
                         android:id="@+id/item13"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="140dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/hero3" />
+                        android:layout_toLeftOf="@+id/item23" />
 
                     <ImageView
                         android:id="@+id/item23"
@@ -693,16 +723,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item13" />
+                        android:layout_toLeftOf="@+id/item33" />
 
                     <ImageView
                         android:id="@+id/item33"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item23" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/item43"
@@ -729,7 +759,7 @@
                         android:layout_alignLeft="@+id/item33"
                         android:layout_gravity="end"
                         android:layout_marginBottom="0dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
@@ -740,7 +770,7 @@
                         android:layout_alignRight="@+id/item33"
                         android:layout_below="@+id/hero3"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:columnCount="3">
 
 
@@ -753,7 +783,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -766,7 +795,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -779,7 +807,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -797,35 +824,40 @@
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/layout3"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamred"
                     android:gravity="center_vertical"
                     android:text="TEAM RED"
                     android:textAlignment="center"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:id="@+id/layout4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
+                    android:layout_alignLeft="@+id/teamred"
+                    android:layout_alignStart="@+id/teamred"
                     android:layout_below="@+id/teamred"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/teamred">
+                    android:layout_marginRight="10dp"
+                    android:background="@color/teamred"
+                    android:textAlignment="center">
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/hero4"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
@@ -839,7 +871,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/hero4"
                         android:gravity="center_vertical"
-                        android:text="RANKED"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
@@ -852,7 +883,6 @@
                         android:layout_alignStart="@+id/gameMode4"
                         android:layout_below="@+id/gameMode4"
                         android:gravity="center_vertical"
-                        android:text="HELLO"
                         android:textColor="@color/textColor"
                         android:textSize="14sp" />
 
@@ -860,11 +890,9 @@
                         android:id="@+id/kda4"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@+id/hero4"
+                        android:layout_below="@+id/result4"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/hero4"
-                        android:text="123"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -875,7 +903,6 @@
                         android:layout_alignRight="@+id/item64"
                         android:layout_below="@+id/item64"
                         android:layout_marginTop="5dp"
-                        android:text="date"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="10sp" />
 
@@ -883,11 +910,9 @@
                         android:id="@+id/item14"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_alignTop="@+id/item24"
-                        android:layout_marginLeft="71dp"
-                        android:layout_marginStart="71dp"
-                        android:layout_toEndOf="@+id/gameMode4"
-                        android:layout_toRightOf="@+id/gameMode4" />
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toLeftOf="@+id/item24" />
 
                     <ImageView
                         android:id="@+id/item24"
@@ -896,16 +921,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item14" />
+                        android:layout_toLeftOf="@+id/item34" />
 
                     <ImageView
                         android:id="@+id/item34"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item24" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/item44"
@@ -932,7 +957,7 @@
                         android:layout_alignLeft="@+id/item34"
                         android:layout_gravity="end"
                         android:layout_marginBottom="0dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
@@ -943,7 +968,7 @@
                         android:layout_alignRight="@+id/item34"
                         android:layout_below="@+id/hero4"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:columnCount="3">
 
 
@@ -956,7 +981,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -969,7 +993,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -982,7 +1005,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1000,20 +1022,22 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/layout4"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamred">
 
                     <ImageView
                         android:id="@+id/imageView5"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/hero5"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
@@ -1022,12 +1046,11 @@
                         android:id="@+id/gameMode5"
                         android:layout_width="wrap_content"
                         android:layout_height="22dp"
-                        android:layout_alignTop="@+id/imageView5"
+                        android:layout_alignTop="@+id/hero5"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/hero5"
                         android:gravity="center_vertical"
-                        android:text="RANKED"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
@@ -1040,7 +1063,6 @@
                         android:layout_alignStart="@+id/gameMode5"
                         android:layout_below="@+id/gameMode5"
                         android:gravity="center_vertical"
-                        android:text="HELLO"
                         android:textColor="@color/textColor"
                         android:textSize="14sp" />
 
@@ -1048,11 +1070,9 @@
                         android:id="@+id/kda5"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@+id/hero5"
+                        android:layout_below="@+id/result5"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/hero5"
-                        android:text="123"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -1063,7 +1083,6 @@
                         android:layout_alignRight="@+id/item65"
                         android:layout_below="@+id/item65"
                         android:layout_marginTop="5dp"
-                        android:text="date"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="10sp" />
 
@@ -1071,11 +1090,9 @@
                         android:id="@+id/item15"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="140dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/hero5" />
+                        android:layout_toLeftOf="@+id/item25" />
 
                     <ImageView
                         android:id="@+id/item25"
@@ -1084,16 +1101,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item15" />
+                        android:layout_toLeftOf="@+id/item35" />
 
                     <ImageView
                         android:id="@+id/item35"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item25" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/item45"
@@ -1102,7 +1119,8 @@
                         android:layout_alignLeft="@+id/item15"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="50dp" />
+                        android:layout_marginTop="50dp"
+                        android:textAlignment="center" />
 
                     <ImageView
                         android:id="@+id/item55"
@@ -1120,7 +1138,7 @@
                         android:layout_alignLeft="@+id/item35"
                         android:layout_gravity="end"
                         android:layout_marginBottom="0dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
@@ -1131,7 +1149,7 @@
                         android:layout_alignRight="@+id/item35"
                         android:layout_below="@+id/hero5"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:columnCount="3">
 
 
@@ -1144,7 +1162,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1157,7 +1174,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1170,7 +1186,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1186,20 +1201,22 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/layout5"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/teamred">
 
                     <ImageView
                         android:id="@+id/imageView6"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/hero6"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp" />
@@ -1213,7 +1230,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/hero6"
                         android:gravity="center_vertical"
-                        android:text="RANKED"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
@@ -1226,7 +1242,6 @@
                         android:layout_alignStart="@+id/gameMode6"
                         android:layout_below="@+id/gameMode6"
                         android:gravity="center_vertical"
-                        android:text="HELLO"
                         android:textColor="@color/textColor"
                         android:textSize="14sp" />
 
@@ -1234,11 +1249,9 @@
                         android:id="@+id/kda6"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_alignBottom="@+id/hero6"
+                        android:layout_below="@+id/result6"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/hero6"
-                        android:text="123"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -1249,7 +1262,6 @@
                         android:layout_alignRight="@+id/item66"
                         android:layout_below="@+id/item66"
                         android:layout_marginTop="5dp"
-                        android:text="date"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="10sp" />
 
@@ -1257,11 +1269,9 @@
                         android:id="@+id/item16"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="140dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/hero6" />
+                        android:layout_toLeftOf="@+id/item26" />
 
                     <ImageView
                         android:id="@+id/item26"
@@ -1270,16 +1280,16 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item16" />
+                        android:layout_toLeftOf="@+id/item36" />
 
                     <ImageView
                         android:id="@+id/item36"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/item26" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/item46"
@@ -1306,7 +1316,7 @@
                         android:layout_alignLeft="@+id/item36"
                         android:layout_gravity="end"
                         android:layout_marginBottom="0dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
@@ -1317,7 +1327,7 @@
                         android:layout_alignRight="@+id/item36"
                         android:layout_below="@+id/hero6"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:columnCount="3">
 
 
@@ -1330,7 +1340,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1343,7 +1352,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1356,7 +1364,6 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="10dp"
                             android:layout_row="0"
-                            android:text="123"
                             android:textColor="?android:attr/textColorSecondaryNoDisable"
                             android:textSize="15sp" />
 
@@ -1371,12 +1378,12 @@
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView2"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"></com.google.android.gms.ads.AdView>
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
 
