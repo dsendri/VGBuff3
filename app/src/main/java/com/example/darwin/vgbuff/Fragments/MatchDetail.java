@@ -1,10 +1,18 @@
 package com.example.darwin.vgbuff.Fragments;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.Log;
@@ -12,7 +20,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +32,13 @@ import com.example.darwin.vgbuff.VaingloryHeroAndMatches;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.common.SignInButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -57,6 +69,42 @@ public class MatchDetail extends Fragment {
 
     // Variable
     View view;
+    ScrollView detailView;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 2909: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("Permission", "Granted");
+                    if (detailView != null) {
+
+                        Log.i("width",String.valueOf(detailView.getWidth()));
+                        Log.i("length",String.valueOf(detailView.getHeight()));
+
+                        Bitmap image = Bitmap.createBitmap(detailView.getChildAt(0).getWidth(),
+                                detailView.getChildAt(0).getHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas b = new Canvas(image);
+                        detailView.draw(b);
+
+                        String pathofBmp = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), image,"match detail", null);
+                        Uri bmpUri = Uri.parse(pathofBmp);
+
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        sendIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                        sendIntent.setType("image/png");
+                        startActivity(Intent.createChooser(sendIntent,"Send to:"));
+                    }
+                } else {
+                    Log.e("Permission", "Denied");
+                    Toast.makeText(getActivity().getApplicationContext(),"Access Denied",Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
 
     private OnFragmentInteractionListener mListener;
 
@@ -259,6 +307,7 @@ public class MatchDetail extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_match_detail, container, false);
+        detailView = (ScrollView) view.findViewById(R.id.detail);
 
         // Initialize admob
         MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-7644346723158631~1016068907");
@@ -400,6 +449,10 @@ public class MatchDetail extends Fragment {
 
         final Bundle dataToMatchDetailPage = this.getArguments();
 
+        // shareButton Init
+        final Button shareButton = (Button) view.findViewById(R.id.shareButton);
+
+
         final String heroesDatabase = loadJSONFromAsset();
 
         // Initialize match history
@@ -422,11 +475,29 @@ public class MatchDetail extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+
                             if (vaingloryHeroAndMatches.matches.matchID != null) {
 
                                 // remove loading animation
                                 dialog.dismiss();
                                 Log.i("user name",dataToMatchDetailPage.getString("player"));
+
+                                // sharebutton onclick listener
+                                shareButton.setOnClickListener(new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                            if (!Settings.System.canWrite(getContext())) {
+                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                        Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
+                                            }
+                                        }
+                                    }
+                                });
+
 
                                 Integer[] sortedPos;
                                 Date[] datePlayed;
