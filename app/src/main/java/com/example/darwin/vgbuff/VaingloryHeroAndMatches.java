@@ -15,7 +15,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by darwin on 3/30/2017.
@@ -38,8 +43,13 @@ public class VaingloryHeroAndMatches {
 
     // Raw Data from player API Call
     public String dataRaw;
+    public String tempRaw1;
+    public String tempRaw2;
+    public String tempRaw3;
 
     public VaingloryHeroAndMatches.DownloadTask2 task;
+    public VaingloryHeroAndMatches.DownloadTask2 task2;
+    public VaingloryHeroAndMatches.DownloadTask2 task3;
 
     // Set userName
     public void setPlayer(String player) {
@@ -59,6 +69,7 @@ public class VaingloryHeroAndMatches {
     // Loading Animation
     ProgressDialog progDailog;
     Context mcontext;
+    Activity activity;
 
     public void setContext (Context context) { mcontext = context; }
 
@@ -68,6 +79,10 @@ public class VaingloryHeroAndMatches {
     public void getRawData(){
 
         task = new VaingloryHeroAndMatches.DownloadTask2();
+        task2 = new VaingloryHeroAndMatches.DownloadTask2();
+        task3 = new VaingloryHeroAndMatches.DownloadTask2();
+
+        activity = (Activity) mcontext;
 
         // Get current date and date 30 days ago
         Calendar c = Calendar.getInstance();
@@ -76,7 +91,7 @@ public class VaingloryHeroAndMatches {
 
         // Set the date to appropirate format for the http request get call
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = df.format(c.getTime());
+        final String formattedDate = df.format(c.getTime());
 
         Log.i("url","https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user);
 
@@ -84,13 +99,49 @@ public class VaingloryHeroAndMatches {
         try {
 
             // Get history matches for the last 30 days
-            dataRaw = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
+            //dataRaw = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
+
+            tempRaw1 = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
+            tempRaw2 = task2.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=50&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
+            tempRaw3 = task3.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=100&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
+
+                Log.i("TempRaw", tempRaw1);
+                Pattern dataPattern = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
+                Matcher dataMatch = dataPattern.matcher(tempRaw1);
+
+                Pattern includedPattern = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]][}]");
+                Matcher includedMatch = includedPattern.matcher(tempRaw1);
+
+                Log.i("TempRaw", tempRaw2);
+                Pattern dataPattern2 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
+                Matcher dataMatch2 = dataPattern2.matcher(tempRaw2);
+
+                Pattern includedPattern2 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]][}]");
+                Matcher includedMatch2 = includedPattern2.matcher(tempRaw2);
+
+                Log.i("TempRaw", tempRaw3);
+                Pattern dataPattern3 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
+                Matcher dataMatch3 = dataPattern3.matcher(tempRaw3);
+
+                Pattern includedPattern3 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]][}]");
+                Matcher includedMatch3 = includedPattern3.matcher(tempRaw3);
+
+                includedMatch.find();
+                dataMatch.find();
+                includedMatch2.find();
+                dataMatch2.find();
+                includedMatch3.find();
+                dataMatch3.find();
 
 
 
-            // Test Data
-            //dataRaw = task.execute("https://api.dc01.gamelockerapp.com/shards/sg/matches/6210fb0a-1359-11e7-9722-02ff607182ab").get();
 
+            Log.i("data",dataMatch.group(1));
+            Log.i("included",includedMatch.group(1));
+            //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
+            dataRaw = "{\"data\":["+dataMatch.group(1)+"}}},"+dataMatch2.group(1)+"}}},"+dataMatch3.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}},"+includedMatch2.group(1)+"}}},"+includedMatch3.group(1)+"}}}]}";
+            Log.i("RawMOD",dataRaw);
+            //dataRaw = tempRaw1;
             Log.i("User",user);
 
         } catch (InterruptedException e) {
@@ -98,6 +149,10 @@ public class VaingloryHeroAndMatches {
             e.printStackTrace();
 
         } catch (ExecutionException e) {
+
+            e.printStackTrace();
+
+        } catch (Exception e) {
 
             e.printStackTrace();
 
@@ -140,7 +195,7 @@ public class VaingloryHeroAndMatches {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //progDailog = new ProgressDialog(mcontext);
+            //progDailog = new ProgressDialog(activity);
             //progDailog.setMessage("Loading...");
             //progDailog.setIndeterminate(false);
             //progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
