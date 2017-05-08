@@ -25,13 +25,14 @@ import com.example.darwin.vgbuff.Fragments.ItemPage;
 import com.example.darwin.vgbuff.Fragments.Items;
 import com.example.darwin.vgbuff.Fragments.MatchDetail;
 import com.example.darwin.vgbuff.Fragments.MatchesHistory;
+import com.example.darwin.vgbuff.Fragments.News;
 import com.example.darwin.vgbuff.Fragments.Summary;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Summary.OnFragmentInteractionListener, Heroes.OnFragmentInteractionListener, Items.OnFragmentInteractionListener, HeroesPage.OnFragmentInteractionListener, ItemPage.OnFragmentInteractionListener, MatchesHistory.OnFragmentInteractionListener, MatchDetail.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Summary.OnFragmentInteractionListener, Heroes.OnFragmentInteractionListener, Items.OnFragmentInteractionListener, HeroesPage.OnFragmentInteractionListener, ItemPage.OnFragmentInteractionListener, MatchesHistory.OnFragmentInteractionListener, MatchDetail.OnFragmentInteractionListener, News.OnFragmentInteractionListener {
 
     // This is a fragment manager to control main menu fragments
     FragmentManager fragmentManager;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     Summary summary;
     Heroes heroes;
     Items items;
+    News news;
     MatchesHistory history;
 
     NavigationView navigationView;
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity
         heroes = new Heroes();
         items = new Items();
         history = new MatchesHistory();
+        news = new News();
 
 
         // Create a bundle to send a Raw Data, player and server
@@ -185,6 +188,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_match) {
 
             fragmentManager.beginTransaction().replace(R.id.content_frame, history).commit();
+
+        } else if (id == R.id.nav_news) {
+
+            fragmentManager.beginTransaction().replace(R.id.content_frame, news).commit();
 
         }
 
