@@ -101,6 +101,7 @@ public class VaingloryHeroAndMatches {
             // Get history matches for the last 30 days
             //dataRaw = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
 
+
             tempRaw1 = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             tempRaw2 = task2.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=50&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             tempRaw3 = task3.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=100&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
@@ -142,6 +143,8 @@ public class VaingloryHeroAndMatches {
             dataRaw = "{\"data\":["+dataMatch.group(1)+"}}},"+dataMatch2.group(1)+"}}},"+dataMatch3.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}},"+includedMatch2.group(1)+"}}},"+includedMatch3.group(1)+"}}}]}";
             Log.i("RawMOD",dataRaw);
             //dataRaw = tempRaw1;
+
+
             Log.i("User",user);
 
         } catch (InterruptedException e) {

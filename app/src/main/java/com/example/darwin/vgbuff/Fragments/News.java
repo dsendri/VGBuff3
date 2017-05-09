@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.darwin.vgbuff.R;
 
@@ -73,6 +74,7 @@ public class News extends Fragment {
 
         // Find webview
         WebView news = (WebView) view.findViewById(R.id.news);
+        news.setWebViewClient(new WebViewClient());
         WebSettings webSettings = news.getSettings();
         webSettings.setJavaScriptEnabled(true);
         news.loadUrl("http://www.vainglorygame.com/news/");
