@@ -134,15 +134,15 @@ public class VaingloryHeroAndMatches {
             Matcher includedMatch3 = includedPattern3.matcher(tempRaw3);
 
             // Find the regex
-            includedMatch.find();
-            dataMatch.find();
-            includedMatch2.find();
-            dataMatch2.find();
-            includedMatch3.find();
-            dataMatch3.find();
+            //includedMatch.find();
+            //dataMatch.find();
+            //includedMatch2.find();
+            //dataMatch2.find();
+            //includedMatch3.find();
+            //dataMatch3.find();
 
             // If there is no internet, set it to Failed
-            if ((tempRaw1.equals("Failed") || tempRaw2.equals("Failed") || tempRaw3.equals("Failed"))) {
+            if ((tempRaw1.equals("Failed") || tempRaw2.equals("Failed") || tempRaw3.equals("Failed") || !includedMatch.find() || !dataMatch.find() || !includedMatch2.find() || !dataMatch2.find() || !includedMatch3.find() || !dataMatch3.find()) ) {
 
                 dataRaw = "Failed";
                 Log.i("RawMOD", dataRaw);
