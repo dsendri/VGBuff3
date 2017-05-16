@@ -13,7 +13,14 @@
         <item
             android:id="@+id/nav_match"
             android:icon="@drawable/history"
-            android:title="Matches" />
+            android:title="All Matches" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_ranked_match"
+            android:icon="@drawable/historyranked"
+            android:title="Ranked Matches" />
     </group>
 
     <item android:title="Database">
@@ -32,5 +39,6 @@
                 android:title="Items" />
         </menu>
     </item>
+
 
 </menu>

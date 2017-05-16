@@ -38,7 +38,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/hero"
                 android:gravity="center_vertical"
-                android:text="RANKED"
                 android:textColor="@color/textColor"
                 android:textSize="13sp" />
 
@@ -130,8 +129,7 @@
                 android:layout_alignLeft="@+id/item3"
                 android:layout_marginBottom="0dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="50dp"
-                android:textAlignment="textEnd" />
+                android:layout_marginTop="50dp" />
 
             <GridLayout
                 android:layout_width="match_parent"

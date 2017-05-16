@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,6 +98,7 @@ public class Summary extends Fragment{
     NumberFormat df;
     Button saveButton;
     Button refreshButton;
+    Button infoButton;
 
     String[] Junglers;
     String[] Carries;
@@ -565,6 +567,9 @@ public class Summary extends Fragment{
                             lifeTimeGoldView.setText(Html.fromHtml("<font color='" + colorFont + "'>WIN PERCENTAGE   </font>   "));
                             totalXPView.setText(Html.fromHtml("<font color='" + colorFont + "'>ROLE   </font>   "));
                             mListener.onDataPass("", "", "","");
+
+                            Toast.makeText(getActivity().getApplicationContext(),"Check Your Username (Case-sensitive) And Region\nCheck Your Internet Connection",Toast.LENGTH_LONG).show();
+
                         }
 
 
@@ -702,6 +707,21 @@ public class Summary extends Fragment{
 
             }
         });
+
+        infoButton = (Button) view.findViewById(R.id.infoButton);
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getActivity().getApplicationContext(),"Username is Case-sensitive\nServer List:\n- na = North America\n" +
+                        "- eu = Europe\n" +
+                        "- sa = South America\n" +
+                        "- ea = East Asia\n" +
+                        "- sg = South East Asia",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
 
 
         // Get data from the main page
@@ -1104,6 +1124,8 @@ public class Summary extends Fragment{
                                 lifeTimeGoldView.setText(Html.fromHtml("<font color='" + colorFont + "'>WIN PERCENTAGE   </font>   "));
                                 totalXPView.setText(Html.fromHtml("<font color='" + colorFont + "'>ROLE   </font>   "));
                                 mListener.onDataPass("", "", "","");
+
+                                Toast.makeText(getActivity().getApplicationContext(),"Check Your Username (Case-sensitive) And Region\nCheck Your Internet Connection",Toast.LENGTH_LONG).show();
                             }
 
 

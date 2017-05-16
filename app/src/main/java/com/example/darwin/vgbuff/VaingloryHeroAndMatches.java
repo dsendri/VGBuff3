@@ -95,55 +95,72 @@ public class VaingloryHeroAndMatches {
 
         Log.i("url","https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user);
 
+        tempRaw1 = "";
+        tempRaw2 = "";
+        tempRaw3 = "";
 
         try {
 
             // Get history matches for the last 30 days
+
             //dataRaw = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
+            //Log.i("RawMOD", dataRaw);
 
-
+            // Get history matches for the last 30 days 150 matches
             tempRaw1 = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             tempRaw2 = task2.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=50&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             tempRaw3 = task3.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=100&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
 
-                Log.i("TempRaw", tempRaw1);
-                Pattern dataPattern = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
-                Matcher dataMatch = dataPattern.matcher(tempRaw1);
+            // Get the match data & include
+            Log.i("TempRaw", tempRaw1);
+            Pattern dataPattern = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
+            Matcher dataMatch = dataPattern.matcher(tempRaw1);
 
-                Pattern includedPattern = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]][}]");
-                Matcher includedMatch = includedPattern.matcher(tempRaw1);
+            Pattern includedPattern = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]],");
+            Matcher includedMatch = includedPattern.matcher(tempRaw1);
 
-                Log.i("TempRaw", tempRaw2);
-                Pattern dataPattern2 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
-                Matcher dataMatch2 = dataPattern2.matcher(tempRaw2);
+            Log.i("TempRaw", tempRaw2);
+            Pattern dataPattern2 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
+            Matcher dataMatch2 = dataPattern2.matcher(tempRaw2);
 
-                Pattern includedPattern2 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]][}]");
-                Matcher includedMatch2 = includedPattern2.matcher(tempRaw2);
+            Pattern includedPattern2 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]],");
+            Matcher includedMatch2 = includedPattern2.matcher(tempRaw2);
 
-                Log.i("TempRaw", tempRaw3);
-                Pattern dataPattern3 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
-                Matcher dataMatch3 = dataPattern3.matcher(tempRaw3);
+            Log.i("TempRaw", tempRaw3);
+            Pattern dataPattern3 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
+            Matcher dataMatch3 = dataPattern3.matcher(tempRaw3);
 
-                Pattern includedPattern3 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]][}]");
-                Matcher includedMatch3 = includedPattern3.matcher(tempRaw3);
+            Pattern includedPattern3 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]],");
+            Matcher includedMatch3 = includedPattern3.matcher(tempRaw3);
 
-                includedMatch.find();
-                dataMatch.find();
-                includedMatch2.find();
-                dataMatch2.find();
-                includedMatch3.find();
-                dataMatch3.find();
+            // Find the regex
+            includedMatch.find();
+            dataMatch.find();
+            includedMatch2.find();
+            dataMatch2.find();
+            includedMatch3.find();
+            dataMatch3.find();
 
+            // If there is no internet, set it to Failed
+            if ((tempRaw1.equals("Failed") || tempRaw2.equals("Failed") || tempRaw3.equals("Failed"))) {
 
+                dataRaw = "Failed";
+                Log.i("RawMOD", dataRaw);
 
+            } else {
 
-            Log.i("data",dataMatch.group(1));
-            Log.i("included",includedMatch.group(1));
-            //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
-            dataRaw = "{\"data\":["+dataMatch.group(1)+"}}},"+dataMatch2.group(1)+"}}},"+dataMatch3.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}},"+includedMatch2.group(1)+"}}},"+includedMatch3.group(1)+"}}}]}";
-            Log.i("RawMOD",dataRaw);
-            //dataRaw = tempRaw1;
+                Log.i("data", dataMatch.group(1));
+                Log.i("included", includedMatch.group(1));
+                Log.i("data2", dataMatch2.group(1));
+                Log.i("included2", includedMatch2.group(1));
+                Log.i("data3", dataMatch3.group(1));
+                Log.i("included3", includedMatch3.group(1));
 
+                //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
+                dataRaw = "{\"data\":[" + dataMatch.group(1) + "}}}," + dataMatch2.group(1) + "}}}," + dataMatch3.group(1) + "}}}],\"included\":[" + includedMatch.group(1) + "}}}," + includedMatch2.group(1) + "}}}," + includedMatch3.group(1) + "}}}]}";
+                Log.i("RawMOD", dataRaw);
+
+            }
 
             Log.i("User",user);
 
@@ -188,6 +205,17 @@ public class VaingloryHeroAndMatches {
 
     }
 
+    // Method to get matches history for the last 30 days
+    public void getMatchesHistoryRanked(){
+
+        // Initialize match history
+        matches = new Match();
+        //Log.i("BEFORE MATCH",user);
+        matches.getMatchesDetailType(user,dataRaw,"RANKED");
+
+
+    }
+
     // Background Thread
     // This Method downloads necessary page from the server
     // It reads url string,
@@ -211,7 +239,7 @@ public class VaingloryHeroAndMatches {
         protected void onPostExecute(String unused) {
             super.onPostExecute(unused);
             //progDailog.dismiss();
-            Log.i("On ppost execute","On post execute");
+            Log.i("On post execute","On post execute");
         }
 
         @Override
