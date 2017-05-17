@@ -470,7 +470,13 @@ public class MatchDetail extends Fragment {
 
                     //Create default player
                     vaingloryHeroAndMatches.setPlayer(dataToMatchDetailPage.getString("player"));
-                    vaingloryHeroAndMatches.getMatchesHistory();
+
+                    String mode = dataToMatchDetailPage.getString("mode");
+
+                    if (mode.equals("ALL"))
+                        vaingloryHeroAndMatches.getMatchesHistory();
+                    else if (mode.equals("RANKED"))
+                        vaingloryHeroAndMatches.getMatchesHistoryRanked();
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

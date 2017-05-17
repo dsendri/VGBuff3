@@ -195,6 +195,7 @@ public class RankedHistory extends Fragment {
                                         dataToMatchDetailPage.putString("raw",vaingloryHeroAndMatches.dataRaw);
                                         dataToMatchDetailPage.putString("player",vaingloryHeroAndMatches.user);
                                         dataToMatchDetailPage.putString("server",vaingloryHeroAndMatches.serverLoc);
+                                        dataToMatchDetailPage.putString("mode","RANKED");
                                         matchDetail.setArguments(dataToMatchDetailPage);
 
                                         // Open Fragment
