@@ -112,45 +112,74 @@ public class VaingloryHeroAndMatches {
             tempRaw3 = task3.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=100&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
 
             // Get the match data & include
-            Log.i("TempRaw", tempRaw1);
+            Log.i("TempRaw1", tempRaw1);
             Pattern dataPattern = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
             Matcher dataMatch = dataPattern.matcher(tempRaw1);
 
             Pattern includedPattern = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]],");
             Matcher includedMatch = includedPattern.matcher(tempRaw1);
 
-            Log.i("TempRaw", tempRaw2);
+            Log.i("TempRaw2", tempRaw2);
             Pattern dataPattern2 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
             Matcher dataMatch2 = dataPattern2.matcher(tempRaw2);
 
             Pattern includedPattern2 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]],");
             Matcher includedMatch2 = includedPattern2.matcher(tempRaw2);
 
-            Log.i("TempRaw", tempRaw3);
+            Log.i("TempRaw3", tempRaw3);
             Pattern dataPattern3 = Pattern.compile("[{]\"data\":\\[(.*?)[}][}][}][]],");
             Matcher dataMatch3 = dataPattern3.matcher(tempRaw3);
 
             Pattern includedPattern3 = Pattern.compile("\"included\":\\[(.*?)[}][}][}][]],");
             Matcher includedMatch3 = includedPattern3.matcher(tempRaw3);
 
+            boolean includeMatchBool = includedMatch.find();
+            boolean includeMatchBool2 = includedMatch2.find();
+            boolean includeMatchBool3 = includedMatch3.find();
+            boolean dataMatchBool = dataMatch.find();
+            boolean dataMatchBool2 = dataMatch2.find();
+            boolean dataMatchBool3 = dataMatch3.find();
+
             // If there is no internet, set it to Failed
-            if ((tempRaw1.equals("Failed") || tempRaw2.equals("Failed") || tempRaw3.equals("Failed") || !includedMatch.find() || !dataMatch.find() || !includedMatch2.find() || !dataMatch2.find() || !includedMatch3.find() || !dataMatch3.find()) ) {
+            if ((!includeMatchBool && !dataMatchBool && !includeMatchBool2 && !dataMatchBool2 && !includeMatchBool3 && !dataMatchBool3) ) {
 
                 dataRaw = "Failed";
                 Log.i("RawMOD", dataRaw);
 
             } else {
 
-                Log.i("data", dataMatch.group(1));
-                Log.i("included", includedMatch.group(1));
-                Log.i("data2", dataMatch2.group(1));
-                Log.i("included2", includedMatch2.group(1));
-                Log.i("data3", dataMatch3.group(1));
-                Log.i("included3", includedMatch3.group(1));
+                if (includeMatchBool && dataMatchBool && includeMatchBool2 && dataMatchBool2 && includeMatchBool3 && dataMatchBool3){
+                    Log.i("data", dataMatch.group(1));
+                    Log.i("included", includedMatch.group(1));
+                    Log.i("data2", dataMatch2.group(1));
+                    Log.i("included2", includedMatch2.group(1));
+                    Log.i("data3", dataMatch3.group(1));
+                    Log.i("included3", includedMatch3.group(1));
 
-                //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
-                dataRaw = "{\"data\":[" + dataMatch.group(1) + "}}}," + dataMatch2.group(1) + "}}}," + dataMatch3.group(1) + "}}}],\"included\":[" + includedMatch.group(1) + "}}}," + includedMatch2.group(1) + "}}}," + includedMatch3.group(1) + "}}}]}";
-                Log.i("RawMOD", dataRaw);
+                    //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
+                    dataRaw = "{\"data\":[" + dataMatch.group(1) + "}}}," + dataMatch2.group(1) + "}}}," + dataMatch3.group(1) + "}}}],\"included\":[" + includedMatch.group(1) + "}}}," + includedMatch2.group(1) + "}}}," + includedMatch3.group(1) + "}}}]}";
+                    Log.i("RawMOD", dataRaw);
+
+                } else if (includeMatchBool && dataMatchBool && includeMatchBool2 && dataMatchBool2){
+                    Log.i("data", dataMatch.group(1));
+                    Log.i("included", includedMatch.group(1));
+                    Log.i("data2", dataMatch2.group(1));
+                    Log.i("included2", includedMatch2.group(1));
+
+
+                    //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
+                    dataRaw = "{\"data\":[" + dataMatch.group(1) + "}}}," + dataMatch2.group(1) + "}}}],\"included\":[" + includedMatch.group(1) + "}}}," + includedMatch2.group(1) + "}}}]}";
+                    Log.i("RawMOD", dataRaw);
+
+                } else if (includeMatchBool && dataMatchBool){
+                    Log.i("data", dataMatch.group(1));
+                    Log.i("included", includedMatch.group(1));
+
+                    //dataRaw = "{\"data\":["+dataMatch.group(1)+"}}}],\"included\":["+includedMatch.group(1)+"}}}]}";
+                    dataRaw = "{\"data\":[" + dataMatch.group(1) + "}}}],\"included\":[" + includedMatch.group(1) + "}}}]}";
+                    Log.i("RawMOD", dataRaw);
+                }
+
 
             }
 
