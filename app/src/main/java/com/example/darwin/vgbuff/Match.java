@@ -514,6 +514,7 @@ public class Match {
                 }
             }
 
+            /*
             Log.i("Match ID",matchID[0]);
             Log.i("date",rawCreatedAt[0]);
             Log.i("duration", String.valueOf(duration[0]));
@@ -545,7 +546,7 @@ public class Match {
             Log.i("Win",Boolean.toString(resultMatch2[0]));
 
             Log.i("My Player",myPlayer[5].userName);
-            Log.i("My Hero",myParticipant[5].actor);
+            Log.i("My Hero",myParticipant[5].actor);*/
 
         } catch (JSONException e) {
             e.printStackTrace();
