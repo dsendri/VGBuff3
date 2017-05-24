@@ -339,12 +339,11 @@ public class Summary extends Fragment{
                     } else if (skillTier / 3 == 9) {
 
                         final String colorTier;
-
                         if (skillTier % 3 == 0) colorTier = bronze;
                         else if (skillTier % 3 == 1) colorTier = silver;
                         else colorTier = gold;
 
-                        ranked = "<font color='" + colorTier + "'VAINGLORIOUS</font>   ";
+                        ranked = "<font color='" + colorTier + "'>VAINGLORIOUS</font>   ";
                     } else {
 
                         final String colorTier;
@@ -902,7 +901,7 @@ public class Summary extends Fragment{
                             else if (skillTier % 3 == 1) colorTier = silver;
                             else colorTier = gold;
 
-                            ranked = "<font color='" + colorTier + "'VAINGLORIOUS</font>   ";
+                            ranked = "<font color='" + colorTier + "'>VAINGLORIOUS</font>   ";
                         } else {
 
                             final String colorTier;

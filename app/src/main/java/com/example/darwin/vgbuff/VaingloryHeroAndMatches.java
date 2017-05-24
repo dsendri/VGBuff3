@@ -93,8 +93,6 @@ public class VaingloryHeroAndMatches {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         final String formattedDate = df.format(c.getTime());
 
-        Log.i("url","https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user);
-
         tempRaw1 = "";
         tempRaw2 = "";
         tempRaw3 = "";

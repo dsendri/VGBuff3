@@ -550,6 +550,8 @@ public class Match {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
@@ -923,6 +925,8 @@ public class Match {
 //            Log.i("My Hero",myParticipant[5].actor);
 
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
