@@ -126,6 +126,7 @@ public class RankedHistory extends Fragment {
             @Override
             public void run() {
                 dialog.setMessage("Loading...");
+                dialog.setCanceledOnTouchOutside(false);
                 if(!dialog.isShowing()){
                     dialog.show();
                 }
