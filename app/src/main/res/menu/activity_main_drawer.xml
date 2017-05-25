@@ -23,6 +23,13 @@
             android:title="Ranked Matches" />
     </group>
 
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_hero_stats"
+            android:icon="@drawable/linechart"
+            android:title="Heroes Stats" />
+    </group>
+
     <item android:title="Database">
         <menu>
             <item

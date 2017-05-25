@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.darwin.vgbuff.Fragments.Heroes;
 import com.example.darwin.vgbuff.Fragments.HeroesPage;
+import com.example.darwin.vgbuff.Fragments.HeroesStats;
 import com.example.darwin.vgbuff.Fragments.ItemPage;
 import com.example.darwin.vgbuff.Fragments.Items;
 import com.example.darwin.vgbuff.Fragments.MatchDetail;
@@ -33,7 +34,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Summary.OnFragmentInteractionListener, Heroes.OnFragmentInteractionListener, Items.OnFragmentInteractionListener, HeroesPage.OnFragmentInteractionListener, ItemPage.OnFragmentInteractionListener, MatchesHistory.OnFragmentInteractionListener, MatchDetail.OnFragmentInteractionListener, News.OnFragmentInteractionListener, RankedHistory.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HeroesStats.OnFragmentInteractionListener, Summary.OnFragmentInteractionListener, Heroes.OnFragmentInteractionListener, Items.OnFragmentInteractionListener, HeroesPage.OnFragmentInteractionListener, ItemPage.OnFragmentInteractionListener, MatchesHistory.OnFragmentInteractionListener, MatchDetail.OnFragmentInteractionListener, News.OnFragmentInteractionListener, RankedHistory.OnFragmentInteractionListener {
 
     // This is a fragment manager to control main menu fragments
     FragmentManager fragmentManager;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     News news;
     MatchesHistory history;
     RankedHistory rankedHistory;
+    HeroesStats heroesStats;
 
     NavigationView navigationView;
     ImageView heroFaveView;
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         history = new MatchesHistory();
         news = new News();
         rankedHistory = new RankedHistory();
-
+        heroesStats = new HeroesStats();
 
         // Create a bundle to send a Raw Data, player and server
         datatoSummaryPage = new Bundle();
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity
         summary.setArguments(datatoSummaryPage);
         history.setArguments(datatoSummaryPage);
         rankedHistory.setArguments(datatoSummaryPage);
+        heroesStats.setArguments(datatoSummaryPage);
 
         navigationView.getHeaderView(0).findViewById(R.id.userNameNav);
 
@@ -200,6 +203,10 @@ public class MainActivity extends AppCompatActivity
         }  else if (id == R.id.nav_ranked_match) {
 
             fragmentManager.beginTransaction().replace(R.id.content_frame, rankedHistory).commit();
+
+        }  else if (id == R.id.nav_hero_stats) {
+
+            fragmentManager.beginTransaction().replace(R.id.content_frame, heroesStats).commit();
 
         }
 
