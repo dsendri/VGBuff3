@@ -135,14 +135,14 @@ public class HeroesStats extends Fragment {
         // Find heroesListView
         heroesStatsListView = (ListView) view.findViewById(R.id.heroesListView);
 
+        //Create array of heroes
+        final String heroesDatabase = loadJSONFromAsset();
+
         // Initialize match history
         vaingloryHeroAndMatches = new VaingloryHeroAndMatches();
 
         // Get data from the main page
         final Bundle datatoSummaryPage = this.getArguments();
-
-        //Create array of heroes
-        final String heroesDatabase = loadJSONFromAsset();
 
         //Data to be passed on
 
@@ -160,6 +160,7 @@ public class HeroesStats extends Fragment {
             e.printStackTrace();
         }
 
+        // Initiliaze array and set it to 0
         final Integer[] totalGamesHeroes = new Integer[heroesJsonArrTemp.length()];
         final Integer[] totalWinsHeroes = new Integer[heroesJsonArrTemp.length()];
         final Integer[] totalKills = new Integer[heroesJsonArrTemp.length()];
@@ -171,6 +172,7 @@ public class HeroesStats extends Fragment {
         final Integer[] mostKillsTemp = new Integer[heroesJsonArrTemp.length()];
         final Integer[] mostDeathsTemp = new Integer[heroesJsonArrTemp.length()];
         final Integer[] mostAssistsTemp = new Integer[heroesJsonArrTemp.length()];
+
         Arrays.fill(totalGamesHeroes,0);
         Arrays.fill(totalWinsHeroes,0);
         Arrays.fill(totalKills,0);
@@ -189,6 +191,8 @@ public class HeroesStats extends Fragment {
             new Thread() {
 
                 public void run() {
+
+                    // Get data from the main activity
                     vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
                     Log.i("DataFromMain", vaingloryHeroAndMatches.dataRaw);
                     Log.i("data received", datatoSummaryPage.getString("Player"));
@@ -198,200 +202,210 @@ public class HeroesStats extends Fragment {
                     vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
                     vaingloryHeroAndMatches.getMatchesHistory();
 
-                    final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
+                    if (vaingloryHeroAndMatches.matches.matchID != null) {
 
-                    for (int i = 0; i < totalgames; i++){
+                        // Find the total games played for the last 30 days capped for 150 games
+                        final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
 
-                        String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
-                        //Log.i("actor", actor);
+                        // Check record for each hero stats
+                        for (int i = 0; i < totalgames; i++) {
 
-                        int location;
+                            String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
+                            //Log.i("actor", actor);
 
-                        switch (actor){
+                            int location;
 
-                            case "*Adagio*":
+                            switch (actor) {
 
-                                location = 0;
+                                case "*Adagio*":
 
-                                break;
-                            case "*Alpha*":
+                                    location = 0;
 
-                                location = 1;
+                                    break;
+                                case "*Alpha*":
 
-                                break;
-                            case "*Ardan*":
+                                    location = 1;
 
-                                location = 2;
+                                    break;
+                                case "*Ardan*":
 
-                                break;
-                            case "*Baptiste":
+                                    location = 2;
 
-                                location = 3;
+                                    break;
+                                case "*Baptiste":
 
-                                break;
-                            case "*Baron*":
+                                    location = 3;
 
-                                location = 4;
+                                    break;
+                                case "*Baron*":
 
-                                break;
-                            case "*Blackfeather*":
+                                    location = 4;
 
-                                location = 5;
+                                    break;
+                                case "*Blackfeather*":
 
-                                break;
-                            case "*Catherine*":
+                                    location = 5;
 
-                                location = 6;
+                                    break;
+                                case "*Catherine*":
 
-                                break;
-                            case "*Celeste*":
+                                    location = 6;
 
-                                location = 7;
+                                    break;
+                                case "*Celeste*":
 
-                                break;
-                            case "*Flicker*":
+                                    location = 7;
 
-                                location = 8;
+                                    break;
+                                case "*Flicker*":
 
-                                break;
-                            case "*Fortress*":
+                                    location = 8;
 
-                                location = 9;
+                                    break;
+                                case "*Fortress*":
 
-                                break;
-                            case "*Glaive*":
+                                    location = 9;
 
-                                location = 10;
+                                    break;
+                                case "*Glaive*":
 
-                                break;
-                            case "*Grumpjaw*":
+                                    location = 10;
 
-                                location = 11;
+                                    break;
+                                case "*Grumpjaw*":
 
-                                break;
-                            case "*Gwen*":
+                                    location = 11;
 
-                                location = 12;
+                                    break;
+                                case "*Gwen*":
 
-                                break;
-                            case "*Idris*":
+                                    location = 12;
 
-                                location = 13;
+                                    break;
+                                case "*Idris*":
 
-                                break;
-                            case "*Joule*":
+                                    location = 13;
 
-                                location = 14;
+                                    break;
+                                case "*Joule*":
 
-                                break;
-                            case "*Kestrel*":
+                                    location = 14;
 
-                                location = 15;
+                                    break;
+                                case "*Kestrel*":
 
-                                break;
-                            case "*Koshka*":
+                                    location = 15;
 
-                                location = 16;
+                                    break;
+                                case "*Koshka*":
 
-                                break;
-                            case "*Krul*":
+                                    location = 16;
 
-                                location = 17;
+                                    break;
+                                case "*Krul*":
 
-                                break;
-                            case "*Lance*":
+                                    location = 17;
 
-                                location = 18;
+                                    break;
+                                case "*Lance*":
 
-                                break;
-                            case "*Lyra*":
+                                    location = 18;
 
-                                location = 19;
+                                    break;
+                                case "*Lyra*":
 
-                                break;
-                            case "*Ozo*":
+                                    location = 19;
 
-                                location = 20;
+                                    break;
+                                case "*Ozo*":
 
-                                break;
-                            case "*Petal*":
+                                    location = 20;
 
-                                location = 21;
+                                    break;
+                                case "*Petal*":
 
-                                break;
-                            case "*Phinn*":
+                                    location = 21;
 
-                                location = 22;
+                                    break;
+                                case "*Phinn*":
 
-                                break;
-                            case "*Reim*":
+                                    location = 22;
 
-                                location = 23;
+                                    break;
+                                case "*Reim*":
 
-                                break;
-                            case "*Ringo*":
+                                    location = 23;
 
-                                location = 24;
+                                    break;
+                                case "*Ringo*":
 
-                                break;
-                            case "*Rona*":
+                                    location = 24;
 
-                                location = 25;
+                                    break;
+                                case "*Rona*":
 
-                                break;
-                            case "*Samuel*":
+                                    location = 25;
 
-                                location = 26;
+                                    break;
+                                case "*Samuel*":
 
-                                break;
-                            case "*SAW*":
+                                    location = 26;
 
-                                location = 27;
+                                    break;
+                                case "*SAW*":
 
-                                break;
-                            case "*Skaarf*":
+                                    location = 27;
 
-                                location = 28;
+                                    break;
+                                case "*Skaarf*":
 
-                                break;
-                            case "*Skye*":
+                                    location = 28;
 
-                                location = 29;
+                                    break;
+                                case "*Skye*":
 
-                                break;
-                            case "*Taka*":
+                                    location = 29;
 
-                                location = 30;
+                                    break;
+                                case "*Taka*":
 
-                                break;
-                            default:
+                                    location = 30;
 
-                                location = 31;
+                                    break;
+                                default:
 
-                                break;
+                                    location = 31;
+
+                                    break;
+                            }
+
+                            // Get the total wins for each hero
+                            if (vaingloryHeroAndMatches.matches.myParticipant[i].win)
+                                totalWinsHeroes[location]++;
+
+                            // Get total KDA for each hero to calculate avg
+                            totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                            totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                            totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+
+                            // Find the max of KDA
+                            mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                            if (mostKillsTemp[location] >= mostKills[location])
+                                mostKills[location] = mostKillsTemp[location];
+
+                            mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+                            if (mostDeathsTemp[location] >= mostDeaths[location])
+                                mostDeaths[location] = mostDeathsTemp[location];
+
+                            mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                            if (mostAssistsTemp[location] >= mostAssists[location])
+                                mostAssists[location] = mostAssistsTemp[location];
+
+                            // Find the total games played for each hero
+                            totalGamesHeroes[location]++;
+
                         }
-
-                        if (vaingloryHeroAndMatches.matches.myParticipant[i].win) totalWinsHeroes[location]++;
-                        totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
-                        totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
-                        totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
-
-                        mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
-                        if (mostKillsTemp[location] >= mostKills[location])
-                            mostKills[location] = mostKillsTemp[location];
-
-                        mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
-                        if (mostDeathsTemp[location] >= mostDeaths[location])
-                            mostDeaths[location] = mostDeathsTemp[location];
-
-                        mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
-                        if (mostAssistsTemp[location] >= mostAssists[location])
-                            mostAssists[location] = mostAssistsTemp[location];
-
-                        totalGamesHeroes[location]++;
-
                     }
-
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

@@ -56,17 +56,17 @@ public class CustomList5 extends ArrayAdapter<String>{
         String[] Junglers = new String[] {"baptiste","grumpjaw","alpha","glaive","joule","koshka","krul","ozo","petal","reim","rona","taka"};
         String[] Carries = new String[] {"baron","blackfeather","celeste","gwen","idris","kestrel","ringo","samuel","saw","skaarf","skye","vox"};
 
+        // Initialze Views
         TextView txtTitle = (TextView) rowView.findViewById(R.id.gameMode);
-
         ImageView imageView = (ImageView) rowView.findViewById(R.id.hero);
         ImageView roleView = (ImageView) rowView.findViewById(R.id.item3);
-
         TextView result = (TextView) rowView.findViewById(R.id.result);
         TextView avgKDA = (TextView) rowView.findViewById(R.id.kda);
         TextView mostKillsView = (TextView) rowView.findViewById(R.id.mostKill);
         TextView mostDeathsView = (TextView) rowView.findViewById(R.id.mostDeaths);
         TextView mostAssistsView = (TextView) rowView.findViewById(R.id.mostAssist);
 
+        // Initialize decimal format
         NumberFormat df = DecimalFormat.getInstance();
         df.setMinimumFractionDigits(2);
         df.setMaximumFractionDigits(1);
@@ -74,6 +74,8 @@ public class CustomList5 extends ArrayAdapter<String>{
 
         String tempResult;
         String tempKDA;
+
+        // Output for the result and KDA
         if (totalGames[position] == 0) {
             tempResult = "% Win : 0% (0/0)";
             tempKDA = "Avg K/D/A : 0/0/0";
@@ -82,6 +84,7 @@ public class CustomList5 extends ArrayAdapter<String>{
             tempKDA = "Avg K/D/A : "+ df.format((double) totalKills[position]/(totalGames[position]))+"/"+df.format((double) totalDeaths[position]/(totalGames[position]))+"/"+df.format((double) totalAssists[position]/(totalGames[position]));
         }
 
+        // Show role for each hero
         if (Arrays.asList(Captains).contains(web[position].toLowerCase())) {
             roleView.setImageResource(R.drawable.captain_small);
         }
@@ -92,6 +95,7 @@ public class CustomList5 extends ArrayAdapter<String>{
             roleView.setImageResource(R.drawable.carry_small);
         }
 
+        // Show record and all data
         String tempMostKills = "Most Kills: "+ String.valueOf(mostKills[position]);
         mostKillsView.setText(tempMostKills);
 
