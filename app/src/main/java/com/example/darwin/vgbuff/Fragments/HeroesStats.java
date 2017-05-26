@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -81,10 +84,17 @@ public class HeroesStats extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.activity_drawer_heroes_stats, menu);
     }
 
     // Read Json Database
@@ -111,6 +121,379 @@ public class HeroesStats extends Fragment {
         }
         return json;
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        final int sortedChoice;
+
+        // handle item selection to choose the sorted technic
+        int id = item.getItemId();
+
+        // Open a coresponding fragment whenever a menu is tapped
+        if (id == R.id.nav_most_played) {
+
+            sortedChoice = 1;;
+
+        } else if (id == R.id.nav_most_win) {
+
+            sortedChoice = 2;
+
+        } else if (id == R.id.nav_general) {
+
+            sortedChoice = 0;
+
+        } else if (id == R.id.nav_percent) {
+
+            sortedChoice = 3;
+
+        } else {
+
+            sortedChoice = 0;
+        }
+
+        // Create loading animation while data is being processed
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dialog.setMessage("Loading...");
+                dialog.setCanceledOnTouchOutside(false);
+                if(!dialog.isShowing()){
+                    dialog.show();
+                }
+            }
+        });
+
+        // Find heroesListView
+        heroesStatsListView = (ListView) view.findViewById(R.id.heroesListView);
+
+        //Create array of heroes
+        final String heroesDatabase = loadJSONFromAsset();
+
+        // Initialize match history
+        vaingloryHeroAndMatches = new VaingloryHeroAndMatches();
+
+        // Get data from the main page
+        final Bundle datatoSummaryPage = this.getArguments();
+
+        //Data to be passed on
+
+        // Open hero data base
+        JSONObject vgDatabaseTemp = null;
+        JSONArray heroesJsonArrTemp = null;
+        try {
+
+            vgDatabaseTemp = new JSONObject(heroesDatabase);
+
+            // Get heroes data and create JSON array of it
+            heroesJsonArrTemp = new JSONArray(vgDatabaseTemp.getString("heroes"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Initiliaze array and set it to 0
+        final Integer[] totalGamesHeroes = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] totalWinsHeroes = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] totalKills = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] totalDeaths = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] totalAssists = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] mostKills = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] mostDeaths = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] mostAssists = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] mostKillsTemp = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] mostDeathsTemp = new Integer[heroesJsonArrTemp.length()];
+        final Integer[] mostAssistsTemp = new Integer[heroesJsonArrTemp.length()];
+
+        Arrays.fill(totalGamesHeroes,0);
+        Arrays.fill(totalWinsHeroes,0);
+        Arrays.fill(totalKills,0);
+        Arrays.fill(totalDeaths,0);
+        Arrays.fill(totalAssists,0);
+        Arrays.fill(mostKills,0);
+        Arrays.fill(mostDeaths,0);
+        Arrays.fill(mostAssists,0);
+        Arrays.fill(mostKillsTemp,0);
+        Arrays.fill(mostDeathsTemp,0);
+        Arrays.fill(mostAssistsTemp,0);
+
+        // Check if there is data, and get the position of the hero inside the JSON file
+        if (datatoSummaryPage != null) {
+
+            new Thread() {
+
+                public void run() {
+
+                    // Get data from the main activity
+                    vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
+                    Log.i("DataFromMain", vaingloryHeroAndMatches.dataRaw);
+                    Log.i("data received", datatoSummaryPage.getString("Player"));
+
+                    //Create default player
+                    vaingloryHeroAndMatches.setPlayer(datatoSummaryPage.getString("Player"));
+                    vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
+                    vaingloryHeroAndMatches.getMatchesHistory();
+
+                    if (vaingloryHeroAndMatches.matches.matchID != null) {
+
+                        // Find the total games played for the last 30 days capped for 150 games
+                        final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
+
+                        // Check record for each hero stats
+                        for (int i = 0; i < totalgames; i++) {
+
+                            String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
+                            //Log.i("actor", actor);
+
+                            int location;
+
+                            switch (actor) {
+
+                                case "*Adagio*":
+
+                                    location = 0;
+
+                                    break;
+                                case "*Alpha*":
+
+                                    location = 1;
+
+                                    break;
+                                case "*Ardan*":
+
+                                    location = 2;
+
+                                    break;
+                                case "*Baptiste":
+
+                                    location = 3;
+
+                                    break;
+                                case "*Baron*":
+
+                                    location = 4;
+
+                                    break;
+                                case "*Blackfeather*":
+
+                                    location = 5;
+
+                                    break;
+                                case "*Catherine*":
+
+                                    location = 6;
+
+                                    break;
+                                case "*Celeste*":
+
+                                    location = 7;
+
+                                    break;
+                                case "*Flicker*":
+
+                                    location = 8;
+
+                                    break;
+                                case "*Fortress*":
+
+                                    location = 9;
+
+                                    break;
+                                case "*Glaive*":
+
+                                    location = 10;
+
+                                    break;
+                                case "*Grumpjaw*":
+
+                                    location = 11;
+
+                                    break;
+                                case "*Gwen*":
+
+                                    location = 12;
+
+                                    break;
+                                case "*Idris*":
+
+                                    location = 13;
+
+                                    break;
+                                case "*Joule*":
+
+                                    location = 14;
+
+                                    break;
+                                case "*Kestrel*":
+
+                                    location = 15;
+
+                                    break;
+                                case "*Koshka*":
+
+                                    location = 16;
+
+                                    break;
+                                case "*Krul*":
+
+                                    location = 17;
+
+                                    break;
+                                case "*Lance*":
+
+                                    location = 18;
+
+                                    break;
+                                case "*Lyra*":
+
+                                    location = 19;
+
+                                    break;
+                                case "*Ozo*":
+
+                                    location = 20;
+
+                                    break;
+                                case "*Petal*":
+
+                                    location = 21;
+
+                                    break;
+                                case "*Phinn*":
+
+                                    location = 22;
+
+                                    break;
+                                case "*Reim*":
+
+                                    location = 23;
+
+                                    break;
+                                case "*Ringo*":
+
+                                    location = 24;
+
+                                    break;
+                                case "*Rona*":
+
+                                    location = 25;
+
+                                    break;
+                                case "*Samuel*":
+
+                                    location = 26;
+
+                                    break;
+                                case "*SAW*":
+
+                                    location = 27;
+
+                                    break;
+                                case "*Skaarf*":
+
+                                    location = 28;
+
+                                    break;
+                                case "*Skye*":
+
+                                    location = 29;
+
+                                    break;
+                                case "*Taka*":
+
+                                    location = 30;
+
+                                    break;
+                                default:
+
+                                    location = 31;
+
+                                    break;
+                            }
+
+                            // Get the total wins for each hero
+                            if (vaingloryHeroAndMatches.matches.myParticipant[i].win)
+                                totalWinsHeroes[location]++;
+
+                            // Get total KDA for each hero to calculate avg
+                            totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                            totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                            totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+
+                            // Find the max of KDA
+                            mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                            if (mostKillsTemp[location] >= mostKills[location])
+                                mostKills[location] = mostKillsTemp[location];
+
+                            mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+                            if (mostDeathsTemp[location] >= mostDeaths[location])
+                                mostDeaths[location] = mostDeathsTemp[location];
+
+                            mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                            if (mostAssistsTemp[location] >= mostAssists[location])
+                                mostAssists[location] = mostAssistsTemp[location];
+
+                            // Find the total games played for each hero
+                            totalGamesHeroes[location]++;
+
+                        }
+                    }
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (vaingloryHeroAndMatches.matches.matchID != null) {
+
+                                // remove loading animation
+                                dialog.dismiss();
+
+                                try {
+
+                                    // Open hero data base
+                                    JSONObject vgDatabase = new JSONObject(heroesDatabase);
+
+                                    // Get heroes data and create JSON array of it
+                                    JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
+                                    heroes = new String[heroesJsonArr.length()];
+                                    heroesImage = new Integer[heroesJsonArr.length()];
+
+                                    // Get id of the hero's image thumbnail
+                                    for (int i = 0; i < heroesJsonArr.length(); i++) {
+                                        heroes[i] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        Log.i("hero", heroesJsonArr.getJSONObject(i).getString("hero"));
+                                        heroesImage[i] = getResources().getIdentifier("heroes_" + (heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
+                                    }
+
+                                    // Create custom list layout for the listView
+                                    CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists,sortedChoice);
+
+                                    // Attach the custom list layout to the listview
+                                    heroesStatsListView.setAdapter(adapter);
+
+                                } catch (JSONException e) {
+
+                                    e.printStackTrace();
+
+                                }
+
+
+                            } else {
+
+                                // remove loading animation
+                                dialog.dismiss();
+
+                                Log.i("Not found", "Not found");
+                                Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
+            }.start();
+        }
+
+        return true;
     }
 
     @Override
@@ -433,7 +816,7 @@ public class HeroesStats extends Fragment {
                                     }
 
                                     // Create custom list layout for the listView
-                                    CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists);
+                                    CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists,0);
 
                                     // Attach the custom list layout to the listview
                                     heroesStatsListView.setAdapter(adapter);
