@@ -14,6 +14,9 @@ import android.util.Log;
 import android.util.StringBuilderPrinter;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -54,6 +57,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.TimeZone;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -125,6 +130,36 @@ public class Summary extends Fragment{
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.activity_drawer_summary, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // handle item selection to choose the sorted technic
+        int id = item.getItemId();
+
+        // Open a coresponding fragment whenever a menu is tapped
+        if (id == R.id.fav_user) {
+
+            //Create default player
+            SharedPreferences prefs = getActivity().getSharedPreferences("Favorite Player", MODE_PRIVATE);
+
+            String name = prefs.getString("name", "No name defined");//"No name defined" is the default value.
+            String server = prefs.getString("server", "sg"); //0 is the default value.
+
+            Log.i("name", name);
+            Log.i("server", server);
+
+            showPlayerSummaryMatch(server,name);
+
+        }
+        return true;
     }
 
     @Override
@@ -613,6 +648,8 @@ public class Summary extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_summary, container, false);
+
+        setHasOptionsMenu(true);
 
         // Initialize admob
         MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-7644346723158631~1016068907");
@@ -1186,6 +1223,7 @@ public class Summary extends Fragment{
         // Send data to main activity
         void onDataPass(String hero, String server, String username,String raw);
     }
+
 
 }
 

@@ -318,7 +318,7 @@
                     <TextView
                         android:id="@+id/gameMode"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_alignTop="@+id/hero"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -326,18 +326,18 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/result"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/gameMode"
                         android:layout_alignStart="@+id/gameMode"
                         android:layout_below="@+id/gameMode"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/kda"
@@ -496,7 +496,7 @@
                     <TextView
                         android:id="@+id/gameMode2"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_alignTop="@+id/hero2"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -504,18 +504,18 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/result2"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/gameMode2"
                         android:layout_alignStart="@+id/gameMode2"
                         android:layout_below="@+id/gameMode2"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/kda2"
@@ -675,7 +675,7 @@
                     <TextView
                         android:id="@+id/gameMode3"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_alignTop="@+id/hero3"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -683,18 +683,18 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/result3"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/gameMode3"
                         android:layout_alignStart="@+id/gameMode3"
                         android:layout_below="@+id/gameMode3"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/kda3"
@@ -873,7 +873,7 @@
                     <TextView
                         android:id="@+id/gameMode4"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_alignTop="@+id/hero4"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -881,18 +881,18 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/result4"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/gameMode4"
                         android:layout_alignStart="@+id/gameMode4"
                         android:layout_below="@+id/gameMode4"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/kda4"
@@ -1053,7 +1053,7 @@
                     <TextView
                         android:id="@+id/gameMode5"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_alignTop="@+id/hero5"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -1061,18 +1061,18 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/result5"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/gameMode5"
                         android:layout_alignStart="@+id/gameMode5"
                         android:layout_below="@+id/gameMode5"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/kda5"
@@ -1232,7 +1232,7 @@
                     <TextView
                         android:id="@+id/gameMode6"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
+                        android:layout_height="30dp"
                         android:layout_alignTop="@+id/hero6"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -1240,18 +1240,18 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="14sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/result6"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignLeft="@+id/gameMode6"
                         android:layout_alignStart="@+id/gameMode6"
                         android:layout_below="@+id/gameMode6"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/kda6"

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,6 +71,7 @@ public class MatchDetail extends Fragment {
     // Variable
     View view;
     ScrollView detailView;
+    Integer[] sortedPos;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -302,6 +304,59 @@ public class MatchDetail extends Fragment {
         }
     }
 
+    // Send user data to Summary Fragment
+    public void sendDataToSummary(String server, String user){
+        // Create a bundle to send a Raw Data, player and server
+        final Bundle datatoSummaryPage = new Bundle();
+
+        // Create loading animation while data is being processed
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dialog.setMessage("Loading...");
+                dialog.setCanceledOnTouchOutside(false);
+                if(!dialog.isShowing()){
+                    dialog.show();
+                }
+            }
+        });
+
+        final String tempUser = user;
+        final String tempServer = server;
+        final String dataRawSend;
+        final String userSend;
+        final String serverLocSend;
+        final Summary summary = new Summary();
+
+        new Thread (){
+
+            public void run() {
+
+                final VaingloryHeroAndMatches vaingloryHeroAndMatches = new VaingloryHeroAndMatches();
+                vaingloryHeroAndMatches.setPlayer(tempUser);
+                vaingloryHeroAndMatches.setServerLoc(tempServer);
+                vaingloryHeroAndMatches.getRawData();;
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        // remove loading animation
+                        dialog.dismiss();
+                        datatoSummaryPage.putString("Raw",vaingloryHeroAndMatches.dataRaw);
+                        datatoSummaryPage.putString("Player",vaingloryHeroAndMatches.user);
+                        datatoSummaryPage.putString("Server",vaingloryHeroAndMatches.serverLoc);
+                        summary.setArguments(datatoSummaryPage);
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, summary).commit();
+
+                    }
+                });
+            }
+        }.start();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -471,6 +526,7 @@ public class MatchDetail extends Fragment {
 
                     //Create default player
                     vaingloryHeroAndMatches.setPlayer(dataToMatchDetailPage.getString("player"));
+                    vaingloryHeroAndMatches.setServerLoc(dataToMatchDetailPage.getString("server"));
 
                     String mode = dataToMatchDetailPage.getString("mode");
 
@@ -506,7 +562,6 @@ public class MatchDetail extends Fragment {
                                 });
 
 
-                                Integer[] sortedPos;
                                 Date[] datePlayed;
                                 DateFormat pf;
 
@@ -1527,6 +1582,66 @@ public class MatchDetail extends Fragment {
                                 Log.i("Not found","Not found");
                                 Toast.makeText(getActivity().getApplicationContext(),"Player not found",Toast.LENGTH_LONG).show();
                             }
+
+                            // User On Click Action
+                            userView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                }
+                            });
+
+                            // User On Click Action
+                            userView2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player12[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                }
+                            });
+
+                            // User On Click Action
+                            userView3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player13[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                }
+                            });
+
+                            // User On Click Action
+                            userView4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player21[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                }
+                            });
+
+                            // User On Click Action
+                            userView5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player22[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                }
+                            });
+
+                            // User On Click Action
+                            userView6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player23[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                }
+                            });
                         }
                     });
                 }
