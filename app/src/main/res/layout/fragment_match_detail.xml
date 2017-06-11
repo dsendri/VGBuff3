@@ -33,7 +33,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/colorAccent"
-                    android:columnCount="1"
+                    android:columnCount="3"
                     android:rowCount="1">
 
                     <Button
@@ -41,13 +41,23 @@
                         android:layout_width="30dp"
                         android:layout_height="40dp"
                         android:layout_margin="10dp"
+                        android:layout_column="0"
                         android:background="@android:drawable/ic_menu_share" />
+
+                    <Button
+                        android:id="@+id/detailButton"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_column="2"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:drawable/ic_menu_info_details" />
 
                     <TextView
                         android:id="@+id/matchDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
-                        android:layout_column="0"
+                        android:layout_column="1"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
                         android:layout_marginBottom="2dp"
@@ -318,7 +328,7 @@
                     <TextView
                         android:id="@+id/gameMode"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignTop="@+id/hero"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -326,7 +336,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/result"
@@ -414,14 +424,25 @@
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
+                    <Button
+                        android:id="@+id/searchButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignLeft="@id/imageView"
+                        android:layout_below="@+id/hero"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:drawable/ic_menu_zoom" />
+
                     <GridLayout
+                        android:id="@+id/grid"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignLeft="@+id/imageView"
+                        android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item3"
                         android:layout_below="@+id/hero"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/searchButton"
                         android:columnCount="3">
 
 
@@ -496,7 +517,7 @@
                     <TextView
                         android:id="@+id/gameMode2"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignTop="@+id/hero2"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -504,7 +525,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/result2"
@@ -592,14 +613,25 @@
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
+                    <Button
+                        android:id="@+id/searchButton2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignLeft="@id/imageView2"
+                        android:layout_below="@+id/hero2"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:drawable/ic_menu_zoom" />
+
                     <GridLayout
+                        android:id="@+id/grid2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignLeft="@+id/imageView2"
+                        android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item32"
                         android:layout_below="@+id/hero2"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/searchButton2"
                         android:columnCount="3">
 
 
@@ -649,12 +681,10 @@
                     android:id="@+id/layout3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/teamblue"
                     android:layout_below="@+id/layout2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/teamblue">
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true">
 
                     <ImageView
                         android:id="@+id/imageView3"
@@ -675,7 +705,7 @@
                     <TextView
                         android:id="@+id/gameMode3"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignTop="@+id/hero3"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -683,7 +713,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/result3"
@@ -771,14 +801,25 @@
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
+                    <Button
+                        android:id="@+id/searchButton3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignLeft="@id/imageView3"
+                        android:layout_below="@+id/hero3"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:drawable/ic_menu_zoom" />
+
                     <GridLayout
+                        android:id="@+id/grid3"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignLeft="@+id/imageView3"
+                        android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item33"
                         android:layout_below="@+id/hero3"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/searchButton3"
                         android:columnCount="3">
 
 
@@ -846,11 +887,12 @@
                     android:id="@+id/layout4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/teamred"
                     android:layout_alignLeft="@+id/teamred"
+                    android:layout_alignRight="@+id/teamred"
                     android:layout_alignStart="@+id/teamred"
                     android:layout_below="@+id/teamred"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginRight="10dp"
                     android:background="@color/teamred"
                     android:textAlignment="center">
 
@@ -873,7 +915,7 @@
                     <TextView
                         android:id="@+id/gameMode4"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignTop="@+id/hero4"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -881,7 +923,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/result4"
@@ -940,13 +982,17 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="10dp" />
 
+
                     <ImageView
                         android:id="@+id/item44"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_above="@+id/gridLayout"
                         android:layout_alignLeft="@+id/item14"
-                        android:layout_alignStart="@+id/item14" />
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="50dp"
+                        android:textAlignment="center" />
+
 
                     <ImageView
                         android:id="@+id/item54"
@@ -968,15 +1014,25 @@
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
+                    <Button
+                        android:id="@+id/searchButton4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignLeft="@id/imageView4"
+                        android:layout_below="@+id/hero4"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:drawable/ic_menu_zoom" />
+
                     <GridLayout
-                        android:id="@+id/gridLayout"
+                        android:id="@+id/grid4"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignLeft="@+id/imageView4"
+                        android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item34"
                         android:layout_below="@+id/hero4"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/searchButton4"
                         android:columnCount="3">
 
 
@@ -1026,12 +1082,12 @@
                     android:id="@+id/layout5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
+                    android:layout_alignEnd="@+id/layout4"
+                    android:layout_alignLeft="@+id/layout4"
+                    android:layout_alignRight="@+id/layout4"
+                    android:layout_alignStart="@+id/layout4"
                     android:layout_below="@+id/layout4"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:background="@color/teamred">
 
                     <ImageView
@@ -1053,7 +1109,7 @@
                     <TextView
                         android:id="@+id/gameMode5"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignTop="@+id/hero5"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -1061,7 +1117,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/result5"
@@ -1150,14 +1206,25 @@
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
+                    <Button
+                        android:id="@+id/searchButton5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignLeft="@id/imageView5"
+                        android:layout_below="@+id/hero5"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:drawable/ic_menu_zoom" />
+
                     <GridLayout
+                        android:id="@+id/grid5"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignLeft="@+id/imageView5"
+                        android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item35"
                         android:layout_below="@+id/hero5"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/searchButton5"
                         android:columnCount="3">
 
 
@@ -1232,7 +1299,7 @@
                     <TextView
                         android:id="@+id/gameMode6"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:layout_alignTop="@+id/hero6"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
@@ -1240,7 +1307,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/result6"
@@ -1328,14 +1395,25 @@
                         android:layout_marginTop="50dp"
                         android:textAlignment="textEnd" />
 
+                    <Button
+                        android:id="@+id/searchButton6"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignLeft="@id/imageView6"
+                        android:layout_below="@+id/hero6"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:drawable/ic_menu_zoom" />
+
                     <GridLayout
+                        android:id="@+id/grid6"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignLeft="@+id/imageView6"
+                        android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item36"
                         android:layout_below="@+id/hero6"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/searchButton6"
                         android:columnCount="3">
 
 

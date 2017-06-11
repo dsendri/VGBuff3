@@ -29,12 +29,13 @@ import com.example.darwin.vgbuff.Fragments.MatchesHistory;
 import com.example.darwin.vgbuff.Fragments.News;
 import com.example.darwin.vgbuff.Fragments.RankedHistory;
 import com.example.darwin.vgbuff.Fragments.Summary;
+import com.example.darwin.vgbuff.Fragments.TelemetryFragment;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HeroesStats.OnFragmentInteractionListener, Summary.OnFragmentInteractionListener, Heroes.OnFragmentInteractionListener, Items.OnFragmentInteractionListener, HeroesPage.OnFragmentInteractionListener, ItemPage.OnFragmentInteractionListener, MatchesHistory.OnFragmentInteractionListener, MatchDetail.OnFragmentInteractionListener, News.OnFragmentInteractionListener, RankedHistory.OnFragmentInteractionListener {
+        implements TelemetryFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, HeroesStats.OnFragmentInteractionListener, Summary.OnFragmentInteractionListener, Heroes.OnFragmentInteractionListener, Items.OnFragmentInteractionListener, HeroesPage.OnFragmentInteractionListener, ItemPage.OnFragmentInteractionListener, MatchesHistory.OnFragmentInteractionListener, MatchDetail.OnFragmentInteractionListener, News.OnFragmentInteractionListener, RankedHistory.OnFragmentInteractionListener {
 
     // This is a fragment manager to control main menu fragments
     FragmentManager fragmentManager;

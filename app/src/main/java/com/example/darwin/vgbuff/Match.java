@@ -80,6 +80,10 @@ public class Match {
     public String[] rawGameMode;
     public String[] endGameReason;
     public String[] matchID;
+    ArrayList<String> telemetryID;
+    ArrayList<String> telemtryURL;
+    public String[] matchAssetTelemetryID;
+    public String[] matchAssetTelemetryURL;
 
     // Team stats 1
     public String[] rosterID1;
@@ -251,6 +255,13 @@ public class Match {
             parti23 = new Participant[matchTypeCount];
             myPlayer = new UserPlayer[matchTypeCount];
             myParticipant = new Participant[matchTypeCount];
+            telemetryID = new ArrayList<String>();
+            telemtryURL = new ArrayList<String>();
+            matchAssetTelemetryID = new String[matchTypeCount];
+            matchAssetTelemetryURL = new String[matchTypeCount];
+
+
+
 
             userArr = new ArrayList<UserPlayer>();
             participantArr = new ArrayList<Participant>();
@@ -278,6 +289,28 @@ public class Match {
 
                     }
                 } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+
+            // Get Asset
+            for ( i = 0; i < includedArr.length(); i++ ){
+
+                try {
+                    if (includedArr.getJSONObject(i).getString("type").equals("asset")){
+
+                        // get telemetry ID
+                        telemetryID.add(includedArr.getJSONObject(i).getString("id"));
+
+                        // get telemetry URL
+                        telemtryURL.add(includedArr.getJSONObject(i).getJSONObject("attributes").getString("URL"));
+
+                        //Log.i("telemetry ID",telemetryID[i]);
+                        //Log.i("telemetry URL",telemtryURL[i]);
+
+                    }
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
@@ -385,6 +418,15 @@ public class Match {
                 duration[i] = matchesArr.getJSONObject(pos.get(i)).getJSONObject("attributes").getInt("duration");
                 rawGameMode[i] = matchesArr.getJSONObject(pos.get(i)).getJSONObject("attributes").getString("gameMode");
                 endGameReason[i] = matchesArr.getJSONObject(pos.get(i)).getJSONObject("attributes").getJSONObject("stats").getString("endGameReason");
+
+                // Find related Asset URL
+                JSONArray assetArray = new JSONArray(matchesArr.getJSONObject(i).getJSONObject("relationships").getJSONObject("assets").getString("data"));
+                matchAssetTelemetryID[i] = assetArray.getJSONObject(0).getString("id");
+
+                for (int j = 0; j < telemetryID.size(); j++){
+
+                    if (telemetryID.get(j).equals(matchAssetTelemetryID[i])) matchAssetTelemetryURL[i] = telemtryURL.get(j);
+                }
 
                 // Get array for roster
                 JSONArray rostersInTheMatch = new JSONArray(matchesArr.getJSONObject(pos.get(i)).getJSONObject("relationships").getJSONObject("rosters").getString("data"));
@@ -628,6 +670,11 @@ public class Match {
             parti23 = new Participant[matchesArr.length()];
             myPlayer = new UserPlayer[matchesArr.length()];
             myParticipant = new Participant[matchesArr.length()];
+            telemetryID = new ArrayList<String>();
+            telemtryURL = new ArrayList<String>();
+            matchAssetTelemetryID = new String[matchesArr.length()];
+            matchAssetTelemetryURL = new String[matchesArr.length()];
+
 
             userArr = new ArrayList<UserPlayer>();
             participantArr = new ArrayList<Participant>();
@@ -655,6 +702,28 @@ public class Match {
 
                     }
                 } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+
+            // Get Asset
+            for ( i = 0; i < includedArr.length(); i++ ){
+
+                try {
+                    if (includedArr.getJSONObject(i).getString("type").equals("asset")){
+
+                        // get telemetry ID
+                        telemetryID.add(includedArr.getJSONObject(i).getString("id"));
+
+                        // get telemetry URL
+                        telemtryURL.add(includedArr.getJSONObject(i).getJSONObject("attributes").getString("URL"));
+
+                        //Log.i("telemetry ID",telemetryID[i]);
+                        //Log.i("telemetry URL",telemtryURL[i]);
+
+                    }
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
@@ -762,6 +831,15 @@ public class Match {
                 duration[i] = matchesArr.getJSONObject(i).getJSONObject("attributes").getInt("duration");
                 rawGameMode[i] = matchesArr.getJSONObject(i).getJSONObject("attributes").getString("gameMode");
                 endGameReason[i] = matchesArr.getJSONObject(i).getJSONObject("attributes").getJSONObject("stats").getString("endGameReason");
+
+                // Find related Asset URL
+                JSONArray assetArray = new JSONArray(matchesArr.getJSONObject(i).getJSONObject("relationships").getJSONObject("assets").getString("data"));
+                matchAssetTelemetryID[i] = assetArray.getJSONObject(0).getString("id");
+
+                for (int j = 0; j < telemetryID.size(); j++){
+
+                    if (telemetryID.get(j).equals(matchAssetTelemetryID[i])) matchAssetTelemetryURL[i] = telemtryURL.get(j);
+                }
 
                 // Get array for roster
                 JSONArray rostersInTheMatch = new JSONArray(matchesArr.getJSONObject(i).getJSONObject("relationships").getJSONObject("rosters").getString("data"));

@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.darwin.vgbuff.CustomList3;
 import com.example.darwin.vgbuff.R;
+import com.example.darwin.vgbuff.Telemetry;
 import com.example.darwin.vgbuff.VaingloryHeroAndMatches;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -591,7 +592,7 @@ public class MatchDetail extends Fragment {
                                 //for (int z = 0; z < sortedPos.length ; z++ ) Log.i("unsorted", sortedPos[z].toString());
 
                                 // Sort the date and get the indices
-                                MatchDetail.ArrayIndexComparator comparator = new MatchDetail.ArrayIndexComparator(datePlayed);
+                                ArrayIndexComparator comparator = new ArrayIndexComparator(datePlayed);
                                 sortedPos = comparator.createIndexArray();
                                 Arrays.sort(sortedPos,comparator);
 
@@ -1584,7 +1585,15 @@ public class MatchDetail extends Fragment {
                             }
 
                             // User On Click Action
-                            userView.setOnClickListener(new View.OnClickListener() {
+
+                            Button searchButton = (Button) view.findViewById(R.id.searchButton);
+                            Button searchButton2 = (Button) view.findViewById(R.id.searchButton2);
+                            Button searchButton3 = (Button) view.findViewById(R.id.searchButton3);
+                            Button searchButton4 = (Button) view.findViewById(R.id.searchButton4);
+                            Button searchButton5 = (Button) view.findViewById(R.id.searchButton5);
+                            Button searchButton6 = (Button) view.findViewById(R.id.searchButton6);
+
+                            searchButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
@@ -1594,7 +1603,7 @@ public class MatchDetail extends Fragment {
                             });
 
                             // User On Click Action
-                            userView2.setOnClickListener(new View.OnClickListener() {
+                            searchButton2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
@@ -1604,7 +1613,7 @@ public class MatchDetail extends Fragment {
                             });
 
                             // User On Click Action
-                            userView3.setOnClickListener(new View.OnClickListener() {
+                            searchButton3.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
@@ -1614,7 +1623,7 @@ public class MatchDetail extends Fragment {
                             });
 
                             // User On Click Action
-                            userView4.setOnClickListener(new View.OnClickListener() {
+                            searchButton4.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
@@ -1624,7 +1633,7 @@ public class MatchDetail extends Fragment {
                             });
 
                             // User On Click Action
-                            userView5.setOnClickListener(new View.OnClickListener() {
+                            searchButton5.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
@@ -1634,13 +1643,34 @@ public class MatchDetail extends Fragment {
                             });
 
                             // User On Click Action
-                            userView6.setOnClickListener(new View.OnClickListener() {
+                            searchButton6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
                                     sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player23[sortedPos[sortedPos.length-1-matchPos]].userName);
 
                                 }
+                            });
+
+                            // Print telemetry
+                            Log.i("Asset ID",vaingloryHeroAndMatches.matches.matchAssetTelemetryID[sortedPos[sortedPos.length-1-matchPos]]);
+                            Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
+
+                            Button telemetryButton = (Button) view.findViewById(R.id.detailButton);
+                            telemetryButton.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View v) {
+
+                                    FragmentManager fragmentManager;
+                                    Bundle dataToDetail = new Bundle();
+                                    dataToDetail.putString("URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
+                                    TelemetryFragment telemetryFragment = new TelemetryFragment();
+                                    telemetryFragment.setArguments(dataToDetail);
+                                    fragmentManager = getActivity().getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().replace(R.id.content_frame, telemetryFragment).commit();
+                                }
+
                             });
                         }
                     });
