@@ -113,6 +113,7 @@ public class TelemetryFragment extends Fragment {
                     String url = dataToDetail.getString("URL");
                     Log.i("url",url);
                     telemetry.getRawTelemetryData(url);
+                    telemetry.formatRawDataToArrayEvent();
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
