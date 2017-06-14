@@ -33,18 +33,18 @@ public class Telemetry {
 
 
     // Class for dealing damage status
-    class DealDamage {
+    public class DealDamage {
 
         //{ "time": "2017-06-13T12:47:58+0000", "type": "DealDamage", "payload": { "Team": "Left", "Actor": "*Joule*", "Target": "*Krul*", "Source": "Ability__Joule__A", "Damage": 295, "Delt":  162, "IsHero": 1, "TargetIsHero": 1 } },
 
-        Date time;
-        String eventType;
-        String team;
-        String actor;
-        String target;
-        int damageDealt;
-        int isHero;
-        int targetIsHero;
+        public Date time;
+        public String eventType;
+        public String team;
+        public String actor;
+        public String target;
+        public int damageDealt;
+        public int isHero;
+        public int targetIsHero;
 
         void formatTime (String rawTime) {
 
@@ -66,15 +66,17 @@ public class Telemetry {
 
     }
 
-    class UserInfo {
+    public class UserInfo {
 
         //{ "time": "2017-06-13T12:35:08+0000", "type": "HeroSelect", "payload": { "Hero": "*Ardan*", "Team": "2", "Player": "aa701f3e-7f39-11e6-9681-06eb725f8a76", "Handle": "VATANA2" } }
-        Date time;
-        String eventType;
-        String team;
-        String actor;
-        String user;
-        String id;
+        public Date time;
+        public String eventType;
+        public String team;
+        public String actor;
+        public String user;
+        public String id;
+        public int damage;
+        public int towerDamage;
 
         void setTeam(int teamInt){
 
@@ -104,15 +106,15 @@ public class Telemetry {
 
     //{ "time": "2017-06-13T12:48:10+0000", "type": "KillActor", "payload": { "Team": "Left", "Actor": "*Adagio*", "Killed": "*VainTurret*", "KilledTeam": "Right", "Gold": "100", "IsHero": 1, "TargetIsHero": 0, "Position": [ 75.48, 0.00, 11.96 ] } },
 
-    class KillActor {
+    public class KillActor {
 
-        Date time;
-        String eventType;
-        String team;
-        String actor;
-        String target;
-        int isHero;
-        int targetIsHero;
+        public Date time;
+        public String eventType;
+        public String team;
+        public String actor;
+        public String target;
+        public int isHero;
+        public int targetIsHero;
 
         void formatTime (String rawTime) {
 
@@ -143,10 +145,18 @@ public class Telemetry {
 
     // damageDealt Event
     public ArrayList<DealDamage> damageDealtArray;
+
     // UserInfo
     public ArrayList<UserInfo> userInfoArray;
+
     // KilledEvent
     public ArrayList<KillActor> killedEvents;
+
+    // UserInfoBlue
+    public ArrayList<UserInfo> userInfoArrayBlue;
+
+    // UserInfoRed
+    public ArrayList<UserInfo> userInfoArrayRed;
 
     public void getRawTelemetryData(String url) {
 
@@ -172,6 +182,8 @@ public class Telemetry {
         damageDealtArray = new ArrayList<DealDamage>();
         userInfoArray = new ArrayList<UserInfo>();
         killedEvents = new ArrayList<KillActor>();
+        userInfoArrayBlue = new ArrayList<UserInfo>();
+        userInfoArrayRed = new ArrayList<UserInfo>();
 
         try {
 
@@ -239,6 +251,8 @@ public class Telemetry {
                     temp.setTeam(payload.getInt("Team"));
                     temp.id = payload.getString("Player");
                     temp.user = payload.getString("Handle");
+                    temp.damage = 0;
+                    temp.towerDamage = 0;
 
                     // print log
                     DateFormat pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -249,6 +263,9 @@ public class Telemetry {
 
                     // add to array
                     userInfoArray.add(temp);
+
+                    if (temp.team.equals("Left")) userInfoArrayBlue.add(temp);
+                    if (temp.team.equals("Right")) userInfoArrayRed.add(temp);
                 }
 
                 // If type of event is "KillActor"
@@ -284,6 +301,62 @@ public class Telemetry {
 
                 }
             }
+
+            for (int i = 0; i < damageDealtArray.size(); i++ ){
+
+                /*
+                public Date time;
+                public String eventType;
+                public String team;
+                public String actor;
+                public String target;
+                public int damageDealt;
+                public int isHero;
+                public int targetIsHero;*/
+
+                if (damageDealtArray.get(i).team.equals("Left"))
+
+                {
+
+                    for (int j = 0; j < userInfoArrayBlue.size(); j++){
+
+                        if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && damageDealtArray.get(i).targetIsHero == 1) {
+                            userInfoArrayBlue.get(j).damage = userInfoArrayBlue.get(j).damage + damageDealtArray.get(i).damageDealt;
+                        } else if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*"))) {
+                            userInfoArrayBlue.get(j).towerDamage = userInfoArrayBlue.get(j).towerDamage + damageDealtArray.get(i).damageDealt;
+                        }
+
+
+                    }
+
+                } else if (damageDealtArray.get(i).team.equals("Right"))
+
+                {
+                    for (int j = 0; j < userInfoArrayRed.size(); j++){
+
+                        if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && damageDealtArray.get(i).targetIsHero == 1) {
+                            userInfoArrayRed.get(j).damage = userInfoArrayRed.get(j).damage + damageDealtArray.get(i).damageDealt;
+                        } else if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*"))) {
+                            userInfoArrayRed.get(j).towerDamage = userInfoArrayRed.get(j).towerDamage + damageDealtArray.get(i).damageDealt;
+                        }
+
+                    }
+                }
+
+            }
+
+            Log.i("hero",userInfoArrayBlue.get(0).actor);
+            Log.i("damage1",String.valueOf(userInfoArrayBlue.get(0).damage));
+            Log.i("hero",userInfoArrayBlue.get(1).actor);
+            Log.i("damag2",String.valueOf(userInfoArrayBlue.get(1).damage));
+            Log.i("hero",userInfoArrayBlue.get(2).actor);
+            Log.i("damag3",String.valueOf(userInfoArrayBlue.get(2).damage));
+            Log.i("hero",userInfoArrayRed.get(0).actor);
+            Log.i("damag4",String.valueOf(userInfoArrayRed.get(0).damage));
+            Log.i("hero",userInfoArrayRed.get(1).actor);
+            Log.i("damag5",String.valueOf(userInfoArrayRed.get(1).damage));
+            Log.i("hero",userInfoArrayRed.get(2).actor);
+            Log.i("damag6",String.valueOf(userInfoArrayRed.get(2).damage));
 
 
         } catch (JSONException e) {

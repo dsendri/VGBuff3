@@ -22,7 +22,7 @@
                 android:layout_marginTop="10dp" />
 
             <ImageView
-                android:id="@+id/hero"
+                android:id="@+id/heroImage1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginBottom="10dp"
@@ -30,37 +30,37 @@
                 android:layout_marginTop="10dp" />
 
             <TextView
-                android:id="@+id/gameMode"
+                android:id="@+id/userName1"
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
-                android:layout_alignTop="@+id/hero"
+                android:layout_alignTop="@+id/heroImage1"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/hero"
+                android:layout_toRightOf="@id/heroImage1"
                 android:gravity="center_vertical"
                 android:textColor="@color/textColor"
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/result"
+                android:id="@+id/totalDamage1"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center_vertical"
                 android:text="HELLO"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
-                android:layout_below="@+id/gameMode"
-                android:layout_alignLeft="@+id/gameMode"
-                android:layout_alignStart="@+id/gameMode" />
+                android:layout_below="@+id/userName1"
+                android:layout_alignLeft="@+id/userName1"
+                android:layout_alignStart="@+id/userName1" />
 
             <TextView
                 android:id="@+id/kda"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_alignBottom="@+id/hero"
+                android:layout_alignBottom="@+id/heroImage1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/hero"
+                android:layout_toRightOf="@id/heroImage1"
                 android:text="123"
                 android:textColor="?android:attr/textColorSecondaryNoDisable"
                 android:textSize="17sp" />
@@ -84,7 +84,7 @@
                 android:layout_marginLeft="140dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/hero" />
+                android:layout_toRightOf="@+id/heroImage1" />
 
             <ImageView
                 android:id="@+id/item2"
@@ -139,7 +139,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:columnCount="3"
-                android:layout_below="@+id/hero">
+                android:layout_below="@+id/heroImage1">
 
 
                 <TextView

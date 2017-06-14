@@ -32,10 +32,10 @@ public class CustomList2 extends ArrayAdapter<String>{
 
         View rowView= inflater.inflate(R.layout.list_view_image2, null, true);
 
-        TextView txtTitle = (TextView) rowView.findViewById(R.id.gameMode);
+        TextView txtTitle = (TextView) rowView.findViewById(R.id.userName1);
         TextView txtTitle2 = (TextView) rowView.findViewById(R.id.txt2);
 
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.hero);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.heroImage1);
         txtTitle.setText(web[position]);
         txtTitle2.setText(web2[position]);
         imageView.setImageResource(imageId[position]);

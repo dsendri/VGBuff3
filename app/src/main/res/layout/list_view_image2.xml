@@ -13,16 +13,16 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/hero"
+                android:id="@+id/heroImage1"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
 
             <TextView
-                android:id="@+id/gameMode"
+                android:id="@+id/userName1"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/hero"
+                android:layout_toRightOf="@id/heroImage1"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
@@ -33,9 +33,9 @@
                 android:id="@+id/txt2"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_below="@id/gameMode"
+                android:layout_below="@id/userName1"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/hero"
+                android:layout_toRightOf="@id/heroImage1"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:textColor="?android:attr/textColorSecondaryNoDisable"

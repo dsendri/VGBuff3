@@ -11,11 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.darwin.vgbuff.R;
 import com.example.darwin.vgbuff.Telemetry;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,9 +46,11 @@ public class TelemetryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    // Variables
     View view;
     String url;
     Telemetry telemetry;
+    JSONArray heroesJsonArr;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -69,6 +80,32 @@ public class TelemetryFragment extends Fragment {
         return fragment;
     }
 
+    // Read Json Database
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+
+            InputStream is = getActivity().getAssets().open("vainglory_database.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +120,9 @@ public class TelemetryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_telemetry, container, false);
-        telemetry = new Telemetry();
 
-        final EditText raw = (EditText) view.findViewById(R.id.RawData);
+        // Initialize telemetry
+        telemetry = new Telemetry();
 
         // Get data from the main page
         final Bundle dataToDetail = this.getArguments();
@@ -110,10 +147,29 @@ public class TelemetryFragment extends Fragment {
             new Thread(){
                 public void run() {
 
-                    String url = dataToDetail.getString("URL");
+                    url = dataToDetail.getString("URL");
                     Log.i("url",url);
+
                     telemetry.getRawTelemetryData(url);
                     telemetry.formatRawDataToArrayEvent();
+
+                    // Get database
+                    String heroesDatabase = loadJSONFromAsset();
+
+                    JSONObject vgDatabase = null;
+
+                    try {
+
+                        // Create jsonobject from database
+                        vgDatabase = new JSONObject(heroesDatabase);
+
+                        // Get heroes data and create JSON array of it
+                        heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -122,7 +178,93 @@ public class TelemetryFragment extends Fragment {
                             // remove loading animation
                             dialog.dismiss();
                             Log.i("raw",telemetry.rawTelemetryData);
-                            raw.setText(telemetry.rawTelemetryData);
+
+                            // Initialize UI Elements
+                            ImageView heroImage1 = (ImageView) view.findViewById(R.id.heroImage1);
+                            TextView user1 = (TextView) view.findViewById(R.id.userName1);
+                            TextView totalDamage1 = (TextView) view.findViewById(R.id.totalDamage1);
+                            ImageView enemy1 = (ImageView) view.findViewById(R.id.enemy1);
+                            ImageView enemy2 = (ImageView) view.findViewById(R.id.enemy2);
+                            ImageView enemy3 = (ImageView) view.findViewById(R.id.enemy3);
+
+                            String[] heroes = new String[6];
+                            Integer[] heroesImage = new Integer[6];
+
+                            Log.i("hero",telemetry.userInfoArrayBlue.get(0).actor.substring(1,telemetry.userInfoArrayBlue.get(0).actor.length()-1));
+                            Log.i("hero1",telemetry.userInfoArrayBlue.get(1).actor.substring(1,telemetry.userInfoArrayBlue.get(1).actor.length()-1));
+                            Log.i("hero2",telemetry.userInfoArrayBlue.get(2).actor.substring(1,telemetry.userInfoArrayBlue.get(2).actor.length()-1));
+                            Log.i("hero3",telemetry.userInfoArrayRed.get(0).actor.substring(1,telemetry.userInfoArrayRed.get(0).actor.length()-1));
+                            Log.i("hero4",telemetry.userInfoArrayRed.get(1).actor.substring(1,telemetry.userInfoArrayRed.get(1).actor.length()-1));
+                            Log.i("hero5",telemetry.userInfoArrayRed.get(2).actor.substring(1,telemetry.userInfoArrayRed.get(2).actor.length()-1));
+
+                            try {
+
+                                // Set hero image
+                                for (int i = 0; i<heroesJsonArr.length();i++){
+
+                                    // Find hero
+                                    if (telemetry.userInfoArrayBlue.get(0).actor.substring(1,telemetry.userInfoArrayBlue.get(0).actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))){
+
+                                        heroes[0] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        heroesImage[0] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+
+                                    }
+
+                                    // Find hero
+                                    if (telemetry.userInfoArrayBlue.get(1).actor.substring(1,telemetry.userInfoArrayBlue.get(1).actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))){
+
+                                        heroes[1] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        heroesImage[1] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+
+                                    }
+
+                                    // Find hero
+                                    if (telemetry.userInfoArrayBlue.get(2).actor.substring(1,telemetry.userInfoArrayBlue.get(2).actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))){
+
+                                        heroes[2] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        heroesImage[2] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+
+                                    }
+
+                                    // Find hero
+                                    if (telemetry.userInfoArrayRed.get(0).actor.substring(1,telemetry.userInfoArrayRed.get(0).actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))){
+
+                                        heroes[3] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        heroesImage[3] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+
+                                    }
+
+                                    // Find hero
+                                    if (telemetry.userInfoArrayRed.get(1).actor.substring(1,telemetry.userInfoArrayRed.get(1).actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))){
+
+                                        heroes[4] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        heroesImage[4] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+
+                                    }
+
+                                    // Find hero
+                                    if (telemetry.userInfoArrayRed.get(2).actor.substring(1,telemetry.userInfoArrayRed.get(2).actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))){
+
+                                        heroes[5] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                        heroesImage[5] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+
+                                    }
+                                    //Log.i("hero",heroesJsonArr.getJSONObject(i).getString("hero"));
+
+
+
+                                }
+                            }   catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            // Set team blue hero 1 info
+                            heroImage1.setImageResource(heroesImage[0]);
+                            enemy1.setImageResource(heroesImage[3]);
+                            enemy2.setImageResource(heroesImage[4]);
+                            enemy3.setImageResource(heroesImage[5]);
+                            user1.setText(telemetry.userInfoArrayBlue.get(0).user);
+
 
 
                         }

@@ -138,15 +138,15 @@ public class CustomList3 extends ArrayAdapter<String>{
 
         View rowView = inflater.inflate(R.layout.list_view_image3, null, true);
 
-        TextView gameModeView = (TextView) rowView.findViewById(R.id.gameMode);
+        TextView gameModeView = (TextView) rowView.findViewById(R.id.userName1);
         TextView kdaView = (TextView) rowView.findViewById(R.id.kda);
-        TextView resultView = (TextView) rowView.findViewById(R.id.result);
+        TextView resultView = (TextView) rowView.findViewById(R.id.totalDamage1);
         TextView minionsView = (TextView) rowView.findViewById(R.id.minions);
         TextView krakenView = (TextView) rowView.findViewById(R.id.kraken);
         TextView turretView = (TextView) rowView.findViewById(R.id.turret);
         TextView dateView = (TextView) rowView.findViewById(R.id.time);
 
-        ImageView heroView = (ImageView) rowView.findViewById(R.id.hero);
+        ImageView heroView = (ImageView) rowView.findViewById(R.id.heroImage1);
         ImageView item1View = (ImageView) rowView.findViewById(R.id.item1);
         ImageView item2View = (ImageView) rowView.findViewById(R.id.item2);
         ImageView item3View = (ImageView) rowView.findViewById(R.id.item3);

@@ -30,9 +30,9 @@ public class CustomList extends ArrayAdapter<String>{
 
         View rowView= inflater.inflate(R.layout.list_view_image, null, true);
 
-        TextView txtTitle = (TextView) rowView.findViewById(R.id.gameMode);
+        TextView txtTitle = (TextView) rowView.findViewById(R.id.userName1);
 
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.hero);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.heroImage1);
         txtTitle.setText(web[position]);
         imageView.setImageResource(imageId[position]);
         return rowView;

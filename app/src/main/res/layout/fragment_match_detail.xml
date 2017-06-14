@@ -318,7 +318,7 @@
                         android:layout_marginTop="10dp" />
 
                     <ImageView
-                        android:id="@+id/hero"
+                        android:id="@+id/heroImage1"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
@@ -326,25 +326,25 @@
                         android:layout_marginTop="10dp" />
 
                     <TextView
-                        android:id="@+id/gameMode"
+                        android:id="@+id/userName1"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
-                        android:layout_alignTop="@+id/hero"
+                        android:layout_alignTop="@+id/heroImage1"
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/hero"
+                        android:layout_toRightOf="@id/heroImage1"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textIsSelectable="true"
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/result"
+                        android:id="@+id/totalDamage1"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
-                        android:layout_alignLeft="@+id/gameMode"
-                        android:layout_alignStart="@+id/gameMode"
-                        android:layout_below="@+id/gameMode"
+                        android:layout_alignLeft="@+id/userName1"
+                        android:layout_alignStart="@+id/userName1"
+                        android:layout_below="@+id/userName1"
                         android:gravity="center_vertical"
                         android:textColor="@color/textColor"
                         android:textSize="12sp" />
@@ -353,9 +353,9 @@
                         android:id="@+id/kda"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_below="@+id/result"
+                        android:layout_below="@+id/totalDamage1"
                         android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/hero"
+                        android:layout_toRightOf="@id/heroImage1"
                         android:textColor="?android:attr/textColorSecondaryNoDisable"
                         android:textSize="17sp" />
 
@@ -429,7 +429,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignLeft="@id/imageView"
-                        android:layout_below="@+id/hero"
+                        android:layout_below="@+id/heroImage1"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="15dp"
                         android:background="@android:drawable/ic_menu_zoom" />
@@ -439,7 +439,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignRight="@+id/item3"
-                        android:layout_below="@+id/hero"
+                        android:layout_below="@+id/heroImage1"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="15dp"
                         android:layout_toRightOf="@id/searchButton"

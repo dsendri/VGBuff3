@@ -20,27 +20,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.darwin.vgbuff.CustomList3;
 import com.example.darwin.vgbuff.R;
-import com.example.darwin.vgbuff.Telemetry;
 import com.example.darwin.vgbuff.VaingloryHeroAndMatches;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.common.SignInButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -386,15 +381,15 @@ public class MatchDetail extends Fragment {
         });
 
         // player 1
-        final TextView userView = (TextView) view.findViewById(R.id.gameMode);
+        final TextView userView = (TextView) view.findViewById(R.id.userName1);
         final TextView kdaView = (TextView) view.findViewById(R.id.kda);
-        final TextView resultView = (TextView) view.findViewById(R.id.result);
+        final TextView resultView = (TextView) view.findViewById(R.id.totalDamage1);
         final TextView minionsView = (TextView) view.findViewById(R.id.minions);
         final TextView krakenView = (TextView) view.findViewById(R.id.kraken);
         final TextView turretView = (TextView) view.findViewById(R.id.turret);
         final TextView dateView = (TextView) view.findViewById(R.id.time);
 
-        final ImageView heroView = (ImageView) view.findViewById(R.id.hero);
+        final ImageView heroView = (ImageView) view.findViewById(R.id.heroImage1);
         final ImageView item1View = (ImageView) view.findViewById(R.id.item1);
         final ImageView item2View = (ImageView) view.findViewById(R.id.item2);
         final ImageView item3View = (ImageView) view.findViewById(R.id.item3);

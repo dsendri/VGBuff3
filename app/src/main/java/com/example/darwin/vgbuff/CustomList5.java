@@ -11,10 +11,8 @@ import android.widget.TextView;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Date;
 
 public class CustomList5 extends ArrayAdapter<String>{
 
@@ -134,10 +132,10 @@ public class CustomList5 extends ArrayAdapter<String>{
         String[] Carries = new String[] {"baron","blackfeather","celeste","gwen","idris","kestrel","ringo","samuel","saw","skaarf","skye","vox"};
 
         // Initialze Views
-        TextView txtTitle = (TextView) rowView.findViewById(R.id.gameMode);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.hero);
+        TextView txtTitle = (TextView) rowView.findViewById(R.id.userName1);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.heroImage1);
         ImageView roleView = (ImageView) rowView.findViewById(R.id.item3);
-        TextView result = (TextView) rowView.findViewById(R.id.result);
+        TextView result = (TextView) rowView.findViewById(R.id.totalDamage1);
         TextView avgKDA = (TextView) rowView.findViewById(R.id.kda);
         TextView mostKillsView = (TextView) rowView.findViewById(R.id.mostKill);
         TextView mostDeathsView = (TextView) rowView.findViewById(R.id.mostDeaths);
