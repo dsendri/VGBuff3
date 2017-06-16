@@ -84,9 +84,9 @@ public class VaingloryHeroAndMatches {
 
         activity = (Activity) mcontext;
 
-        // Get current date and date 30 days ago
+        // Get current date and date 28 days ago
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, -30);
+        c.add(Calendar.DATE, -28);
         System.out.println("Current time => " + c.getTime());
 
         // Set the date to appropirate format for the http request get call
@@ -99,12 +99,12 @@ public class VaingloryHeroAndMatches {
 
         try {
 
-            // Get history matches for the last 30 days
+            // Get history matches for the last 28 days
 
             //dataRaw = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             //Log.i("RawMOD", dataRaw);
 
-            // Get history matches for the last 30 days 150 matches
+            // Get history matches for the last 28 days 150 matches
             tempRaw1 = task.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             tempRaw2 = task2.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=50&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();
             tempRaw3 = task3.execute("https://api.dc01.gamelockerapp.com/shards/"+serverLoc+"/matches?page[offset]=100&page[limit]=50&sort=-createdAt&filter[createdAt-start]="+formattedDate+"T00:00:00Z&filter[playerNames]="+user).get();

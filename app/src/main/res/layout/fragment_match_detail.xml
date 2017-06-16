@@ -51,7 +51,8 @@
                         android:layout_column="2"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
-                        android:background="@android:drawable/ic_menu_info_details" />
+                        android:background="@android:drawable/ic_menu_info_details"
+                        android:visibility="invisible" />
 
                     <TextView
                         android:id="@+id/matchDetail"
@@ -684,6 +685,9 @@
                     android:background="@color/teamblue"
                     android:layout_below="@+id/layout2"
                     android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_alignParentEnd="true">
 
                     <ImageView
