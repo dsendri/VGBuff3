@@ -30,8 +30,10 @@ import com.example.darwin.vgbuff.Fragments.News;
 import com.example.darwin.vgbuff.Fragments.RankedHistory;
 import com.example.darwin.vgbuff.Fragments.Summary;
 import com.example.darwin.vgbuff.Fragments.TelemetryFragment;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity
@@ -56,6 +58,10 @@ public class MainActivity extends AppCompatActivity
     ImageView heroFaveView;
     TextView userNameNavView;
 
+    //Interestial Ads
+    public InterstitialAd mInterstitialAd;
+
+
     // Doesn't save state when pausing app
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -68,6 +74,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
 
         // set default hero picture as Adagio
         heroFav = "Adagio";
@@ -222,6 +241,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onAdsListener() {
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
+    }
+
+    @Override
     public void onDataPass(String hero, String server, String username,String raw) {
 
         if (hero != "") {
@@ -255,6 +283,7 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
 
 
 }

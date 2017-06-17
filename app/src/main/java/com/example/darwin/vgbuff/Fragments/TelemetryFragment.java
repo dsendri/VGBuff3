@@ -120,6 +120,7 @@ public class TelemetryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_telemetry, container, false);
+        mListener.onAdsListener();
 
         // Initialize telemetry
         telemetry = new Telemetry();
@@ -440,5 +441,7 @@ public class TelemetryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
+        void onAdsListener();
     }
 }
