@@ -8,8 +8,8 @@ android {
         applicationId 'com.thecustominc.darwin.vgbuff'
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 16
-        versionName "1.2.2 "
+        versionCode 18
+        versionName "1.2.3 "
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

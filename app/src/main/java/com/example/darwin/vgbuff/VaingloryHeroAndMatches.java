@@ -86,7 +86,7 @@ public class VaingloryHeroAndMatches {
 
         // Get current date and date 28 days ago
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, -28);
+        c.add(Calendar.DATE, -27);
         System.out.println("Current time => " + c.getTime());
 
         // Set the date to appropirate format for the http request get call

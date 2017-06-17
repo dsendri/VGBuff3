@@ -177,7 +177,7 @@ public class Summary extends Fragment{
         vaingloryHeroAndMatches = new VaingloryHeroAndMatches();
 
         // Initialize Roles
-        Captains = new String[] {"*adagio*","*ardan*","*catherine*","*flicker*","*fortress*","*lance*","*lyra*","*phinn*"};
+        Captains = new String[] {"*adagio*","*ardan*","*catherine*","*flicker*","*fortress*","*lance*","*lyra*","*phinn*","*grace*"};
         Junglers = new String[] {"*baptiste*","*grumpjaw*","*alpha*","*glaive*","*joule*","*koshka*","*krul*","*ozo*","*petal*","*reim*","*rona*","*taka*"};
         Carries = new String[] {"*baron*","*blackfeather*","*celeste*","*gwen*","*idris*","*kestrel*","*ringo*","*samuel*","*saw*","*skaarf*","*skye*","*vox*"};
 
@@ -485,82 +485,86 @@ public class Summary extends Fragment{
 
                         break;
                     case 11:
-                        heroFav = "Grumpjaw";
+                        heroFav = "Grace";
 
                         break;
                     case 12:
-                        heroFav = "Gwen";
+                        heroFav = "Grumpjaw";
 
                         break;
                     case 13:
-                        heroFav = "Idris";
+                        heroFav = "Gwen";
 
                         break;
                     case 14:
-                        heroFav = "Joule";
+                        heroFav = "Idris";
 
                         break;
                     case 15:
-                        heroFav = "Kestrel";
+                        heroFav = "Joule";
 
                         break;
                     case 16:
-                        heroFav = "Koshka";
+                        heroFav = "Kestrel";
 
                         break;
                     case 17:
-                        heroFav = "Krul";
+                        heroFav = "Koshka";
 
                         break;
                     case 18:
-                        heroFav = "Lance";
+                        heroFav = "Krul";
 
                         break;
                     case 19:
-                        heroFav = "Lyra";
+                        heroFav = "Lance";
 
                         break;
                     case 20:
-                        heroFav = "Ozo";
+                        heroFav = "Lyra";
 
                         break;
                     case 21:
-                        heroFav = "Petal";
+                        heroFav = "Ozo";
 
                         break;
                     case 22:
-                        heroFav = "Phinn";
+                        heroFav = "Petal";
 
                         break;
                     case 23:
-                        heroFav = "Reim";
+                        heroFav = "Phinn";
 
                         break;
                     case 24:
-                        heroFav = "Ringo";
+                        heroFav = "Reim";
 
                         break;
                     case 25:
-                        heroFav = "Rona";
+                        heroFav = "Ringo";
 
                         break;
                     case 26:
-                        heroFav = "Samuel";
+                        heroFav = "Rona";
 
                         break;
                     case 27:
-                        heroFav = "SAW";
+                        heroFav = "Samuel";
 
                         break;
                     case 28:
-                        heroFav = "Skaarf";
+                        heroFav = "SAW";
 
                         break;
                     case 29:
-                        heroFav = "Skye";
+                        heroFav = "Skaarf";
 
                         break;
                     case 30:
+                        heroFav = "Skye";
+
+                        break;
+                    case 31:
                         heroFav = "Taka";
 
                         break;
@@ -587,7 +591,7 @@ public class Summary extends Fragment{
                             lifeTimeGoldView.setText(Html.fromHtml("<font color='" + colorFont + "'>WIN PERCENTAGE   </font>   " + df.format((double) winsIn30View/(lossedIn30View+winsIn30View)*100) + "%"));
                             totalXPView.setText(Html.fromHtml("<font color='" + colorFont + "'>ROLE   </font>   " + role));
 
-                            //Log.i("Hero Favorite",heroFav);
+                            Log.i("Hero Favorite",heroFav);
                             mListener.onDataPass(heroFav, vaingloryHeroAndMatches.serverLoc, vaingloryHeroAndMatches.user  ,vaingloryHeroAndMatches.dataRaw);
                             int imageId = getResources().getIdentifier("heroes_" + heroFav.toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
                             heroFavView.setImageResource(imageId);
@@ -1045,82 +1049,86 @@ public class Summary extends Fragment{
 
                             break;
                         case 11:
-                            heroFav = "Grumpjaw";
+                            heroFav = "Grace";
 
                             break;
                         case 12:
-                            heroFav = "Gwen";
+                            heroFav = "Grumpjaw";
 
                             break;
                         case 13:
-                            heroFav = "Idris";
+                            heroFav = "Gwen";
 
                             break;
                         case 14:
-                            heroFav = "Joule";
+                            heroFav = "Idris";
 
                             break;
                         case 15:
-                            heroFav = "Kestrel";
+                            heroFav = "Joule";
 
                             break;
                         case 16:
-                            heroFav = "Koshka";
+                            heroFav = "Kestrel";
 
                             break;
                         case 17:
-                            heroFav = "Krul";
+                            heroFav = "Koshka";
 
                             break;
                         case 18:
-                            heroFav = "Lance";
+                            heroFav = "Krul";
 
                             break;
                         case 19:
-                            heroFav = "Lyra";
+                            heroFav = "Lance";
 
                             break;
                         case 20:
-                            heroFav = "Ozo";
+                            heroFav = "Lyra";
 
                             break;
                         case 21:
-                            heroFav = "Petal";
+                            heroFav = "Ozo";
 
                             break;
                         case 22:
-                            heroFav = "Phinn";
+                            heroFav = "Petal";
 
                             break;
                         case 23:
-                            heroFav = "Reim";
+                            heroFav = "Phinn";
 
                             break;
                         case 24:
-                            heroFav = "Ringo";
+                            heroFav = "Reim";
 
                             break;
                         case 25:
-                            heroFav = "Rona";
+                            heroFav = "Ringo";
 
                             break;
                         case 26:
-                            heroFav = "Samuel";
+                            heroFav = "Rona";
 
                             break;
                         case 27:
-                            heroFav = "SAW";
+                            heroFav = "Samuel";
 
                             break;
                         case 28:
-                            heroFav = "Skaarf";
+                            heroFav = "SAW";
 
                             break;
                         case 29:
-                            heroFav = "Skye";
+                            heroFav = "Skaarf";
 
                             break;
                         case 30:
+                            heroFav = "Skye";
+
+                            break;
+                        case 31:
                             heroFav = "Taka";
 
                             break;
@@ -1147,7 +1155,7 @@ public class Summary extends Fragment{
                                 lifeTimeGoldView.setText(Html.fromHtml("<font color='" + colorFont + "'>WIN PERCENTAGE   </font>   " + df.format((double) winsIn30View/(lossedIn30View+winsIn30View)*100) + "%"));
                                 totalXPView.setText(Html.fromHtml("<font color='" + colorFont + "'>ROLE   </font>   " + role));
 
-                                //Log.i("Hero Favorite",heroFav);
+                                Log.i("Hero Favorite",heroFav);
                                 mListener.onDataPass(heroFav, vaingloryHeroAndMatches.serverLoc, vaingloryHeroAndMatches.user  ,vaingloryHeroAndMatches.dataRaw);
                                 int imageId = getResources().getIdentifier("heroes_" + heroFav.toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
                                 heroFavView.setImageResource(imageId);

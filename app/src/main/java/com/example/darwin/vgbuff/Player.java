@@ -40,7 +40,7 @@ public class Player {
     JSONObject playerStats;
 
     // HeroPlayed
-    public int[] heroPlayed = new int[32];
+    public int[] heroPlayed = new int[33];
 
     // Get number of hero played in the last 30 days
     void getNumberOfHeroPlayed(){
@@ -108,68 +108,71 @@ public class Player {
                             case "*Glaive*":
                                 heroPlayed[10]++;
                                 break;
-                            case "*Grumpjaw*":
-                                heroPlayed[11]++;
-                                break;
-                            case "*Gwen*":
+                            case "*Grace*":
                                 heroPlayed[12]++;
                                 break;
-                            case "*Idris*":
+                            case "*Grumpjaw*":
                                 heroPlayed[13]++;
                                 break;
-                            case "*Joule*":
+                            case "*Gwen*":
                                 heroPlayed[14]++;
                                 break;
-                            case "*Kestrel*":
+                            case "*Idris*":
+                                heroPlayed[14]++;
+                                break;
+                            case "*Joule*":
                                 heroPlayed[15]++;
                                 break;
-                            case "*Koshka*":
+                            case "*Kestrel*":
                                 heroPlayed[16]++;
                                 break;
-                            case "*Krul*":
+                            case "*Koshka*":
                                 heroPlayed[17]++;
                                 break;
-                            case "*Lance*":
+                            case "*Krul*":
                                 heroPlayed[18]++;
                                 break;
-                            case "*Lyra*":
+                            case "*Lance*":
                                 heroPlayed[19]++;
                                 break;
-                            case "*Ozo*":
+                            case "*Lyra*":
                                 heroPlayed[20]++;
                                 break;
-                            case "*Petal*":
+                            case "*Ozo*":
                                 heroPlayed[21]++;
                                 break;
-                            case "*Phinn*":
+                            case "*Petal*":
                                 heroPlayed[22]++;
                                 break;
-                            case "*Reim*":
+                            case "*Phinn*":
                                 heroPlayed[23]++;
                                 break;
-                            case "*Ringo*":
+                            case "*Reim*":
                                 heroPlayed[24]++;
                                 break;
-                            case "*Rona*":
+                            case "*Ringo*":
                                 heroPlayed[25]++;
                                 break;
-                            case "*Samuel*":
+                            case "*Rona*":
                                 heroPlayed[26]++;
                                 break;
-                            case "*SAW*":
+                            case "*Samuel*":
                                 heroPlayed[27]++;
                                 break;
-                            case "*Skaarf*":
+                            case "*SAW*":
                                 heroPlayed[28]++;
                                 break;
-                            case "*Skye*":
+                            case "*Skaarf*":
                                 heroPlayed[29]++;
                                 break;
-                            case "*Taka*":
+                            case "*Skye*":
                                 heroPlayed[30]++;
                                 break;
-                            default:
+                            case "*Taka*":
                                 heroPlayed[31]++;
+                                break;
+                            default:
+                                heroPlayed[32]++;
                                 break;
                         }
 
