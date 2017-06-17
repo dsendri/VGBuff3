@@ -77,6 +77,7 @@ public class Telemetry {
         public String id;
         public int damage;
         public int towerDamage;
+        public int[] killedEnemy;
 
         void setTeam(int teamInt){
 
@@ -302,24 +303,26 @@ public class Telemetry {
                 }
             }
 
+            // Set array for total enemy team number
+            for (int i = 0; i < userInfoArrayBlue.size(); i++){
+
+                userInfoArrayBlue.get(i).killedEnemy = new int[userInfoArrayBlue.size()];
+                userInfoArrayRed.get(i).killedEnemy = new int[userInfoArrayBlue.size()];
+
+            }
+
+            // Find the total damage for each player
             for (int i = 0; i < damageDealtArray.size(); i++ ){
 
-                /*
-                public Date time;
-                public String eventType;
-                public String team;
-                public String actor;
-                public String target;
-                public int damageDealt;
-                public int isHero;
-                public int targetIsHero;*/
-
+                // Check the team
                 if (damageDealtArray.get(i).team.equals("Left"))
 
                 {
 
+                    // Check for each player damage
                     for (int j = 0; j < userInfoArrayBlue.size(); j++){
 
+                        //Log.i("target",damageDealtArray.get(i).target);
                         if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && damageDealtArray.get(i).targetIsHero == 1) {
                             userInfoArrayBlue.get(j).damage = userInfoArrayBlue.get(j).damage + damageDealtArray.get(i).damageDealt;
                         } else if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*"))) {
@@ -334,10 +337,52 @@ public class Telemetry {
                 {
                     for (int j = 0; j < userInfoArrayRed.size(); j++){
 
+                        //Log.i("target",damageDealtArray.get(i).target);
                         if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && damageDealtArray.get(i).targetIsHero == 1) {
                             userInfoArrayRed.get(j).damage = userInfoArrayRed.get(j).damage + damageDealtArray.get(i).damageDealt;
                         } else if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*"))) {
                             userInfoArrayRed.get(j).towerDamage = userInfoArrayRed.get(j).towerDamage + damageDealtArray.get(i).damageDealt;
+                        }
+
+                    }
+                }
+
+            }
+
+            // Find the breakdown of hero killed
+            for (int i = 0; i <killedEvents.size(); i++){
+
+                //{ "time": "2017-06-13T12:48:10+0000", "type": "KillActor", "payload": { "Team": "Left", "Actor": "*Adagio*", "Killed": "*VainTurret*", "KilledTeam": "Right", "Gold": "100", "IsHero": 1, "TargetIsHero": 0, "Position": [ 75.48, 0.00, 11.96 ] } },
+
+                // Check the team
+                if (killedEvents.get(i).team.equals("Left"))
+
+                {
+
+                    // Check which hero got killed by a player
+                    for (int j = 0; j < userInfoArrayBlue.size(); j++){
+
+                        if (killedEvents.get(i).actor.equals(userInfoArrayBlue.get(j).actor)){
+
+                            if (killedEvents.get(i).target.equals(userInfoArrayRed.get(0).actor)) userInfoArrayBlue.get(j).killedEnemy[0]++;
+                            else if (killedEvents.get(i).target.equals(userInfoArrayRed.get(1).actor)) userInfoArrayBlue.get(j).killedEnemy[1]++;
+                            else if (killedEvents.get(i).target.equals(userInfoArrayRed.get(2).actor)) userInfoArrayBlue.get(j).killedEnemy[2]++;
+
+                        }
+
+                    }
+
+                } else if (killedEvents.get(i).team.equals("Right"))
+
+                {
+                    for (int j = 0; j < userInfoArrayRed.size(); j++){
+
+                        if (killedEvents.get(i).actor.equals(userInfoArrayRed.get(j).actor)){
+
+                            if (killedEvents.get(i).target.equals(userInfoArrayBlue.get(0).actor)) userInfoArrayRed.get(j).killedEnemy[0]++;
+                            else if (killedEvents.get(i).target.equals(userInfoArrayBlue.get(1).actor)) userInfoArrayRed.get(j).killedEnemy[1]++;
+                            else if (killedEvents.get(i).target.equals(userInfoArrayBlue.get(2).actor)) userInfoArrayRed.get(j).killedEnemy[2]++;
+
                         }
 
                     }

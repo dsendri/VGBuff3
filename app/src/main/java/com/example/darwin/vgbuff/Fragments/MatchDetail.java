@@ -1651,7 +1651,7 @@ public class MatchDetail extends Fragment {
                             Log.i("Asset ID",vaingloryHeroAndMatches.matches.matchAssetTelemetryID[sortedPos[sortedPos.length-1-matchPos]]);
                             Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
 
-/*
+
                             Button telemetryButton = (Button) view.findViewById(R.id.detailButton);
                             telemetryButton.setOnClickListener(new View.OnClickListener() {
 
@@ -1667,7 +1667,7 @@ public class MatchDetail extends Fragment {
                                     fragmentManager.beginTransaction().replace(R.id.content_frame, telemetryFragment).commit();
                                 }
 
-                            });*/
+                            });
                         }
                     });
                 }

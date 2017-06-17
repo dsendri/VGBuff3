@@ -92,7 +92,7 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/textColor"
                     android:textIsSelectable="true"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/totalDamage1"
@@ -101,17 +101,30 @@
                     android:layout_alignLeft="@+id/userName1"
                     android:layout_alignStart="@+id/userName1"
                     android:layout_below="@+id/userName1"
+                    android:layout_marginBottom="2dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/textColor"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/buildingDamage1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName1"
+                    android:layout_alignStart="@+id/userName1"
+                    android:layout_below="@+id/totalDamage1"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/killHistory"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_alignLeft="@id/heroImage1"
-                    android:layout_below="@+id/heroImage1"
-                    android:text="Kill Detail"
+                    android:layout_below="@+id/buildingDamage1"
+                    android:layout_marginTop="10dp"
+                    android:text="KILLS DETAIL"
                     android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
                     android:textSize="17sp" />
 
@@ -149,16 +162,16 @@
                     android:layout_alignTop="@id/enemy1"
                     android:layout_toRightOf="@id/enemy1"
                     android:textColor="@color/textColor"
-                    android:textSize="12sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/killEnemy2"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:layout_alignTop="@id/enemy2"
                     android:layout_alignLeft="@id/killEnemy1"
+                    android:layout_alignTop="@id/enemy2"
                     android:textColor="@color/textColor"
-                    android:textSize="12sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/killEnemy3"
@@ -168,10 +181,642 @@
                     android:layout_alignTop="@id/enemy3"
                     android:layout_toRightOf="@id/enemy3"
                     android:textColor="@color/textColor"
-                    android:textSize="12sp" />
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/teamblue">
+
+                <ImageView
+                    android:id="@+id/heroImage2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/userName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@+id/heroImage2"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/heroImage2"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/totalDamage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName2"
+                    android:layout_alignStart="@+id/userName2"
+                    android:layout_below="@+id/userName2"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/buildingDamage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName2"
+                    android:layout_alignStart="@+id/userName2"
+                    android:layout_below="@+id/totalDamage2"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killHistory2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignLeft="@id/heroImage2"
+                    android:layout_below="@+id/buildingDamage2"
+                    android:layout_marginTop="10dp"
+                    android:text="KILLS DETAIL"
+                    android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/enemy12"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory2"
+                    android:layout_below="@id/killHistory2"/>
+
+                <ImageView
+                    android:id="@+id/enemy22"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory2"
+                    android:layout_below="@id/enemy12"/>
+
+                <ImageView
+                    android:id="@+id/enemy32"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory2"
+                    android:layout_below="@id/enemy22"/>
+
+                <TextView
+                    android:id="@+id/killEnemy12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@id/enemy12"
+                    android:layout_toRightOf="@id/enemy12"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy12"
+                    android:layout_alignTop="@id/enemy22"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy12"
+                    android:layout_alignTop="@id/enemy32"
+                    android:layout_toRightOf="@id/enemy32"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout2"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/teamblue">
+
+                <ImageView
+                    android:id="@+id/heroImage3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/userName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@+id/heroImage3"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/heroImage3"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/totalDamage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName3"
+                    android:layout_alignStart="@+id/userName3"
+                    android:layout_below="@+id/userName3"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/buildingDamage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName3"
+                    android:layout_alignStart="@+id/userName3"
+                    android:layout_below="@+id/totalDamage3"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killHistory3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignLeft="@id/heroImage3"
+                    android:layout_below="@+id/buildingDamage3"
+                    android:layout_marginTop="10dp"
+                    android:text="KILLS DETAIL"
+                    android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/enemy13"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory3"
+                    android:layout_below="@id/killHistory3"/>
+
+                <ImageView
+                    android:id="@+id/enemy23"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory3"
+                    android:layout_below="@id/enemy13"/>
+
+                <ImageView
+                    android:id="@+id/enemy33"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory3"
+                    android:layout_below="@id/enemy23"/>
+
+                <TextView
+                    android:id="@+id/killEnemy13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@id/enemy13"
+                    android:layout_toRightOf="@id/enemy13"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy13"
+                    android:layout_alignTop="@id/enemy23"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy13"
+                    android:layout_alignTop="@id/enemy33"
+                    android:layout_toRightOf="@id/enemy33"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/layout3"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/teamred"
+                android:gravity="center_vertical"
+                android:text="TEAM RED"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/textView2"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/teamred">
+
+                <ImageView
+                    android:id="@+id/heroImage4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/userName4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@+id/heroImage4"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/heroImage4"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/totalDamage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName4"
+                    android:layout_alignStart="@+id/userName4"
+                    android:layout_below="@+id/userName4"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/buildingDamage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName4"
+                    android:layout_alignStart="@+id/userName4"
+                    android:layout_below="@+id/totalDamage4"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killHistory4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignLeft="@id/heroImage4"
+                    android:layout_below="@+id/buildingDamage4"
+                    android:layout_marginTop="10dp"
+                    android:text="KILLS DETAIL"
+                    android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/enemy14"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory4"
+                    android:layout_below="@id/killHistory4"/>
+
+                <ImageView
+                    android:id="@+id/enemy24"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory4"
+                    android:layout_below="@id/enemy14"/>
+
+                <ImageView
+                    android:id="@+id/enemy34"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory4"
+                    android:layout_below="@id/enemy24"/>
+
+                <TextView
+                    android:id="@+id/killEnemy14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@id/enemy14"
+                    android:layout_toRightOf="@id/enemy14"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy14"
+                    android:layout_alignTop="@id/enemy24"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy14"
+                    android:layout_alignTop="@id/enemy34"
+                    android:layout_toRightOf="@id/enemy34"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout4"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/teamred">
+
+                <ImageView
+                    android:id="@+id/heroImage5"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/userName5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@+id/heroImage5"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/heroImage5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/totalDamage5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName5"
+                    android:layout_alignStart="@+id/userName5"
+                    android:layout_below="@+id/userName5"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/buildingDamage5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName5"
+                    android:layout_alignStart="@+id/userName5"
+                    android:layout_below="@+id/totalDamage5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killHistory5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignLeft="@id/heroImage5"
+                    android:layout_below="@+id/buildingDamage5"
+                    android:layout_marginTop="10dp"
+                    android:text="KILLS DETAIL"
+                    android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/enemy15"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory5"
+                    android:layout_below="@id/killHistory5"/>
+
+                <ImageView
+                    android:id="@+id/enemy25"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory5"
+                    android:layout_below="@id/enemy15"/>
+
+                <ImageView
+                    android:id="@+id/enemy35"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory5"
+                    android:layout_below="@id/enemy25"/>
+
+                <TextView
+                    android:id="@+id/killEnemy15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@id/enemy15"
+                    android:layout_toRightOf="@id/enemy15"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy15"
+                    android:layout_alignTop="@id/enemy25"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy15"
+                    android:layout_alignTop="@id/enemy35"
+                    android:layout_toRightOf="@id/enemy35"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout5"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/teamred">
+
+                <ImageView
+                    android:id="@+id/heroImage6"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/userName6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@+id/heroImage6"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/heroImage6"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/totalDamage6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName6"
+                    android:layout_alignStart="@+id/userName6"
+                    android:layout_below="@+id/userName6"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/buildingDamage6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@+id/userName6"
+                    android:layout_alignStart="@+id/userName6"
+                    android:layout_below="@+id/totalDamage6"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/killHistory6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignLeft="@id/heroImage6"
+                    android:layout_below="@+id/buildingDamage6"
+                    android:layout_marginTop="10dp"
+                    android:text="KILLS DETAIL"
+                    android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/enemy16"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory6"
+                    android:layout_below="@id/killHistory6"/>
+
+                <ImageView
+                    android:id="@+id/enemy26"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory6"
+                    android:layout_below="@id/enemy16"/>
+
+                <ImageView
+                    android:id="@+id/enemy36"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignLeft="@id/killHistory6"
+                    android:layout_below="@id/enemy26"/>
+
+                <TextView
+                    android:id="@+id/killEnemy16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignTop="@id/enemy16"
+                    android:layout_toRightOf="@id/enemy16"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy16"
+                    android:layout_alignTop="@id/enemy26"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/killEnemy36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignLeft="@id/killEnemy16"
+                    android:layout_alignTop="@id/enemy36"
+                    android:layout_toRightOf="@id/enemy36"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
 
 
             </RelativeLayout>
         </RelativeLayout>
+
+
     </ScrollView>
 </FrameLayout>

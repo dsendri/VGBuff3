@@ -183,9 +183,68 @@ public class TelemetryFragment extends Fragment {
                             ImageView heroImage1 = (ImageView) view.findViewById(R.id.heroImage1);
                             TextView user1 = (TextView) view.findViewById(R.id.userName1);
                             TextView totalDamage1 = (TextView) view.findViewById(R.id.totalDamage1);
+                            TextView totalBuildingDamage1 = (TextView) view.findViewById(R.id.buildingDamage1);
                             ImageView enemy1 = (ImageView) view.findViewById(R.id.enemy1);
                             ImageView enemy2 = (ImageView) view.findViewById(R.id.enemy2);
                             ImageView enemy3 = (ImageView) view.findViewById(R.id.enemy3);
+                            TextView killEnemy1 = (TextView) view.findViewById(R.id.killEnemy1);
+                            TextView killEnemy2 = (TextView) view.findViewById(R.id.killEnemy2);
+                            TextView killEnemy3 = (TextView) view.findViewById(R.id.killEnemy3);
+
+                            ImageView heroImage2 = (ImageView) view.findViewById(R.id.heroImage2);
+                            TextView user2 = (TextView) view.findViewById(R.id.userName2);
+                            TextView totalDamage2 = (TextView) view.findViewById(R.id.totalDamage2);
+                            TextView totalBuildingDamage2 = (TextView) view.findViewById(R.id.buildingDamage2);
+                            ImageView enemy12 = (ImageView) view.findViewById(R.id.enemy12);
+                            ImageView enemy22 = (ImageView) view.findViewById(R.id.enemy22);
+                            ImageView enemy32 = (ImageView) view.findViewById(R.id.enemy32);
+                            TextView killEnemy12 = (TextView) view.findViewById(R.id.killEnemy12);
+                            TextView killEnemy22 = (TextView) view.findViewById(R.id.killEnemy22);
+                            TextView killEnemy32 = (TextView) view.findViewById(R.id.killEnemy32);
+
+                            ImageView heroImage3 = (ImageView) view.findViewById(R.id.heroImage3);
+                            TextView user3 = (TextView) view.findViewById(R.id.userName3);
+                            TextView totalDamage3 = (TextView) view.findViewById(R.id.totalDamage3);
+                            TextView totalBuildingDamage3 = (TextView) view.findViewById(R.id.buildingDamage3);
+                            ImageView enemy13 = (ImageView) view.findViewById(R.id.enemy13);
+                            ImageView enemy23 = (ImageView) view.findViewById(R.id.enemy23);
+                            ImageView enemy33 = (ImageView) view.findViewById(R.id.enemy33);
+                            TextView killEnemy13 = (TextView) view.findViewById(R.id.killEnemy13);
+                            TextView killEnemy23 = (TextView) view.findViewById(R.id.killEnemy23);
+                            TextView killEnemy33 = (TextView) view.findViewById(R.id.killEnemy33);
+
+                            ImageView heroImage4 = (ImageView) view.findViewById(R.id.heroImage4);
+                            TextView user4 = (TextView) view.findViewById(R.id.userName4);
+                            TextView totalDamage4 = (TextView) view.findViewById(R.id.totalDamage4);
+                            TextView totalBuildingDamage4 = (TextView) view.findViewById(R.id.buildingDamage4);
+                            ImageView enemy14 = (ImageView) view.findViewById(R.id.enemy14);
+                            ImageView enemy24 = (ImageView) view.findViewById(R.id.enemy24);
+                            ImageView enemy34 = (ImageView) view.findViewById(R.id.enemy34);
+                            TextView killEnemy14 = (TextView) view.findViewById(R.id.killEnemy14);
+                            TextView killEnemy24 = (TextView) view.findViewById(R.id.killEnemy24);
+                            TextView killEnemy34 = (TextView) view.findViewById(R.id.killEnemy34);
+
+                            ImageView heroImage5 = (ImageView) view.findViewById(R.id.heroImage5);
+                            TextView user5 = (TextView) view.findViewById(R.id.userName5);
+                            TextView totalDamage5 = (TextView) view.findViewById(R.id.totalDamage5);
+                            TextView totalBuildingDamage5 = (TextView) view.findViewById(R.id.buildingDamage5);
+                            ImageView enemy15 = (ImageView) view.findViewById(R.id.enemy15);
+                            ImageView enemy25 = (ImageView) view.findViewById(R.id.enemy25);
+                            ImageView enemy35 = (ImageView) view.findViewById(R.id.enemy35);
+                            TextView killEnemy15 = (TextView) view.findViewById(R.id.killEnemy15);
+                            TextView killEnemy25 = (TextView) view.findViewById(R.id.killEnemy25);
+                            TextView killEnemy35 = (TextView) view.findViewById(R.id.killEnemy35);
+
+                            ImageView heroImage6 = (ImageView) view.findViewById(R.id.heroImage6);
+                            TextView user6 = (TextView) view.findViewById(R.id.userName6);
+                            TextView totalDamage6 = (TextView) view.findViewById(R.id.totalDamage6);
+                            TextView totalBuildingDamage6 = (TextView) view.findViewById(R.id.buildingDamage6);
+                            ImageView enemy16 = (ImageView) view.findViewById(R.id.enemy16);
+                            ImageView enemy26 = (ImageView) view.findViewById(R.id.enemy26);
+                            ImageView enemy36 = (ImageView) view.findViewById(R.id.enemy36);
+                            TextView killEnemy16 = (TextView) view.findViewById(R.id.killEnemy16);
+                            TextView killEnemy26 = (TextView) view.findViewById(R.id.killEnemy26);
+                            TextView killEnemy36 = (TextView) view.findViewById(R.id.killEnemy36);
 
                             String[] heroes = new String[6];
                             Integer[] heroesImage = new Integer[6];
@@ -264,6 +323,71 @@ public class TelemetryFragment extends Fragment {
                             enemy2.setImageResource(heroesImage[4]);
                             enemy3.setImageResource(heroesImage[5]);
                             user1.setText(telemetry.userInfoArrayBlue.get(0).user);
+                            totalDamage1.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).damage));
+                            totalBuildingDamage1.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).towerDamage));
+                            killEnemy1.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[0]));
+                            killEnemy2.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[1]));
+                            killEnemy3.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[2]));
+
+                            // Set team blue hero 2 info
+                            heroImage2.setImageResource(heroesImage[1]);
+                            enemy12.setImageResource(heroesImage[3]);
+                            enemy22.setImageResource(heroesImage[4]);
+                            enemy32.setImageResource(heroesImage[5]);
+                            user2.setText(telemetry.userInfoArrayBlue.get(1).user);
+                            totalDamage2.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).damage));
+                            totalBuildingDamage2.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).towerDamage));
+                            killEnemy12.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[0]));
+                            killEnemy22.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[1]));
+                            killEnemy32.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[2]));
+
+                            // Set team blue hero 3 info
+                            heroImage3.setImageResource(heroesImage[2]);
+                            enemy13.setImageResource(heroesImage[3]);
+                            enemy23.setImageResource(heroesImage[4]);
+                            enemy33.setImageResource(heroesImage[5]);
+                            user3.setText(telemetry.userInfoArrayBlue.get(2).user);
+                            totalDamage3.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).damage));
+                            totalBuildingDamage3.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).towerDamage));
+                            killEnemy13.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[0]));
+                            killEnemy23.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[1]));
+                            killEnemy33.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[2]));
+
+                            // Set team red hero 1 info
+                            heroImage4.setImageResource(heroesImage[3]);
+                            enemy14.setImageResource(heroesImage[0]);
+                            enemy24.setImageResource(heroesImage[1]);
+                            enemy34.setImageResource(heroesImage[2]);
+                            user4.setText(telemetry.userInfoArrayRed.get(0).user);
+                            totalDamage4.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).damage));
+                            totalBuildingDamage4.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
+                            killEnemy14.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[0]));
+                            killEnemy24.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[1]));
+                            killEnemy34.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[2]));
+
+                            // Set team red hero 2 info
+                            heroImage5.setImageResource(heroesImage[4]);
+                            enemy15.setImageResource(heroesImage[0]);
+                            enemy25.setImageResource(heroesImage[1]);
+                            enemy35.setImageResource(heroesImage[2]);
+                            user5.setText(telemetry.userInfoArrayRed.get(1).user);
+                            totalDamage5.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(1).damage));
+                            totalBuildingDamage5.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
+                            killEnemy15.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[0]));
+                            killEnemy25.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[1]));
+                            killEnemy35.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[2]));
+
+                            // Set team red hero 3 info
+                            heroImage6.setImageResource(heroesImage[5]);
+                            enemy16.setImageResource(heroesImage[0]);
+                            enemy26.setImageResource(heroesImage[1]);
+                            enemy36.setImageResource(heroesImage[2]);
+                            user6.setText(telemetry.userInfoArrayRed.get(2).user);
+                            totalDamage6.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(2).damage));
+                            totalBuildingDamage6.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
+                            killEnemy16.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[0]));
+                            killEnemy26.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[1]));
+                            killEnemy36.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[2]));
 
 
 

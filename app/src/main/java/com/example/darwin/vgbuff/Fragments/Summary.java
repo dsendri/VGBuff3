@@ -591,7 +591,7 @@ public class Summary extends Fragment{
                             lifeTimeGoldView.setText(Html.fromHtml("<font color='" + colorFont + "'>WIN PERCENTAGE   </font>   " + df.format((double) winsIn30View/(lossedIn30View+winsIn30View)*100) + "%"));
                             totalXPView.setText(Html.fromHtml("<font color='" + colorFont + "'>ROLE   </font>   " + role));
 
-                            Log.i("Hero Favorite",heroFav);
+                            // Log.i("Hero Favorite",heroFav);
                             mListener.onDataPass(heroFav, vaingloryHeroAndMatches.serverLoc, vaingloryHeroAndMatches.user  ,vaingloryHeroAndMatches.dataRaw);
                             int imageId = getResources().getIdentifier("heroes_" + heroFav.toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
                             heroFavView.setImageResource(imageId);
@@ -1155,7 +1155,7 @@ public class Summary extends Fragment{
                                 lifeTimeGoldView.setText(Html.fromHtml("<font color='" + colorFont + "'>WIN PERCENTAGE   </font>   " + df.format((double) winsIn30View/(lossedIn30View+winsIn30View)*100) + "%"));
                                 totalXPView.setText(Html.fromHtml("<font color='" + colorFont + "'>ROLE   </font>   " + role));
 
-                                Log.i("Hero Favorite",heroFav);
+                                // Log.i("Hero Favorite",heroFav);
                                 mListener.onDataPass(heroFav, vaingloryHeroAndMatches.serverLoc, vaingloryHeroAndMatches.user  ,vaingloryHeroAndMatches.dataRaw);
                                 int imageId = getResources().getIdentifier("heroes_" + heroFav.toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
                                 heroFavView.setImageResource(imageId);
