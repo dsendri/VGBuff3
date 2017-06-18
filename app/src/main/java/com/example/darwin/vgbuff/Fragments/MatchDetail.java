@@ -597,21 +597,21 @@ public class MatchDetail extends Fragment {
 
                                 // set font
                                 Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(),"woodcutternoise.ttf");
-                                teamblueView.setTypeface(titleFont);
-                                teamredView.setTypeface(titleFont);
-                                blueView.setTypeface(titleFont);
-                                redView.setTypeface(titleFont);
+                                //teamblueView.setTypeface(titleFont);
+                                //teamredView.setTypeface(titleFont);
+                                //blueView.setTypeface(titleFont);
+                                //redView.setTypeface(titleFont);
                                 //killsBlueView.setTypeface(titleFont);
                                 //killsRedView.setTypeface(titleFont);
-                                resultBlueView.setTypeface(titleFont);
-                                resultRedView.setTypeface(titleFont);
+                                //resultBlueView.setTypeface(titleFont);
+                                //resultRedView.setTypeface(titleFont);
                                 //krakenBlueView.setTypeface(titleFont);
                                 //krakenRedView.setTypeface(titleFont);
                                 //aceBlueView.setTypeface(titleFont);
                                 //aceRedView.setTypeface(titleFont);
                                 //goldBlueView.setTypeface(titleFont);
                                 //goldRedView.setTypeface(titleFont);
-                                durationView.setTypeface(titleFont);
+                                //durationView.setTypeface(titleFont);
 
                                 // Format duration
                                 String seconds;
@@ -802,7 +802,7 @@ public class MatchDetail extends Fragment {
                                         if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item1[0] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item1[0];
@@ -815,14 +815,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage1[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename0", fileName);
+                                            //Log.i("filename0", fileName);
 
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item2[0] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item2[0];
@@ -835,12 +835,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage2[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename1", fileName);
+                                            //Log.i("filename1", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item3[0] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item3[0];
@@ -853,12 +853,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage3[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename2", fileName);
+                                            //Log.i("filename2", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item4[0] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item4[0];
@@ -871,12 +871,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage4[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename3", fileName);
+                                            //Log.i("filename3", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item5[0] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item5[0];
@@ -895,7 +895,7 @@ public class MatchDetail extends Fragment {
                                         if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item6[0] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item6[0];
@@ -908,14 +908,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage6[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename5", fileName);
+                                            //Log.i("filename5", fileName);
 
                                         }
 
                                         if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item1[1] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item1[1];
@@ -928,14 +928,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage1[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename0", fileName);
+                                            //Log.i("filename0", fileName);
 
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item2[1] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item2[1];
@@ -948,12 +948,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage2[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename1", fileName);
+                                            //Log.i("filename1", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item3[1] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item3[1];
@@ -966,12 +966,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage3[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename2", fileName);
+                                            //Log.i("filename2", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item4[1] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item4[1];
@@ -984,12 +984,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage4[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename3", fileName);
+                                            //Log.i("filename3", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item5[1] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item5[1];
@@ -1002,13 +1002,13 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage5[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename4", fileName);
+                                            //Log.i("filename4", fileName);
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item6[1] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item6[1];
@@ -1021,14 +1021,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage6[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename5", fileName);
+                                            //Log.i("filename5", fileName);
 
                                         }
 
                                         if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item1[2] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item1[2];
@@ -1041,14 +1041,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage1[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename0", fileName);
+                                            //Log.i("filename0", fileName);
 
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item2[2] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item2[2];
@@ -1061,12 +1061,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage2[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename1", fileName);
+                                            //Log.i("filename1", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item3[2] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item3[2];
@@ -1079,12 +1079,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage3[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename2", fileName);
+                                            //Log.i("filename2", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item4[2] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item4[2];
@@ -1097,12 +1097,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage4[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename3", fileName);
+                                            //Log.i("filename3", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item5[2] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item5[2];
@@ -1115,13 +1115,13 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage5[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename4", fileName);
+                                            //Log.i("filename4", fileName);
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item6[2] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item6[2];
@@ -1134,14 +1134,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage6[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename5", fileName);
+                                            //Log.i("filename5", fileName);
 
                                         }
 
                                         if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item1[3] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item1[3];
@@ -1154,14 +1154,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage1[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename0", fileName);
+                                            //Log.i("filename0", fileName);
 
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item2[3] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item2[3];
@@ -1174,12 +1174,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage2[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename1", fileName);
+                                            //Log.i("filename1", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item3[3] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item3[3];
@@ -1192,12 +1192,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage3[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename2", fileName);
+                                            //Log.i("filename2", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item4[3] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item4[3];
@@ -1210,12 +1210,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage4[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename3", fileName);
+                                            //Log.i("filename3", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item5[3] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item5[3];
@@ -1228,13 +1228,13 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage5[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename4", fileName);
+                                            //Log.i("filename4", fileName);
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item6[3] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item6[3];
@@ -1247,14 +1247,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage6[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename5", fileName);
+                                            //Log.i("filename5", fileName);
 
                                         }
 
                                         if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item1[4] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item1[4];
@@ -1267,14 +1267,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage1[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename0", fileName);
+                                            //Log.i("filename0", fileName);
 
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item2[4] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item2[4];
@@ -1287,12 +1287,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage2[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename1", fileName);
+                                            //Log.i("filename1", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item3[4] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item3[4];
@@ -1305,12 +1305,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage3[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename2", fileName);
+                                            //Log.i("filename2", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item4[4] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item4[4];
@@ -1323,12 +1323,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage4[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename3", fileName);
+                                            //Log.i("filename3", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item5[4] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item5[4];
@@ -1341,13 +1341,13 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage5[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename4", fileName);
+                                            //Log.i("filename4", fileName);
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item6[4] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item6[4];
@@ -1360,14 +1360,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage6[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename5", fileName);
+                                            //Log.i("filename5", fileName);
 
                                         }
 
                                         if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item1[5] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item1[5];
@@ -1380,14 +1380,14 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage1[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename0", fileName);
+                                            //Log.i("filename0", fileName);
 
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item2[5] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item2[5];
@@ -1400,12 +1400,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage2[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename1", fileName);
+                                            //Log.i("filename1", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item3[5] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item3[5];
@@ -1418,12 +1418,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage3[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename2", fileName);
+                                            //Log.i("filename2", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item4[5] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item4[5];
@@ -1436,12 +1436,12 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage4[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename3", fileName);
+                                            //Log.i("filename3", fileName);
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item5[5] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item5[5];
@@ -1454,13 +1454,13 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage5[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename4", fileName);
+                                            //Log.i("filename4", fileName);
 
                                         }
                                         if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                                             item6[5] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                                            Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                                             // Create appropriate file call
                                             String itemName = item6[5];
@@ -1473,7 +1473,7 @@ public class MatchDetail extends Fragment {
                                             }
 
                                             itemsImage6[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename5", fileName);
+                                            //Log.i("filename5", fileName);
 
                                         }
 
@@ -1648,8 +1648,8 @@ public class MatchDetail extends Fragment {
                             });
 
                             // Print telemetry
-                            Log.i("Asset ID",vaingloryHeroAndMatches.matches.matchAssetTelemetryID[sortedPos[sortedPos.length-1-matchPos]]);
-                            Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
+                            //Log.i("Asset ID",vaingloryHeroAndMatches.matches.matchAssetTelemetryID[sortedPos[sortedPos.length-1-matchPos]]);
+                            //Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
 
 
                             Button telemetryButton = (Button) view.findViewById(R.id.detailButton);

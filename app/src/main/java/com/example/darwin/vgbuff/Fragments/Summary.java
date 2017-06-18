@@ -187,27 +187,6 @@ public class Summary extends Fragment{
         df.setRoundingMode(RoundingMode.HALF_UP);
     }
 
-/*    // Show Player Summary Function
-
-    void showPlayerSummary( String server, String player){
-
-        //Create default player
-        VaingloryStats vaingloryStats = new VaingloryStats();
-        vaingloryStats.setPlayer(player);
-        vaingloryStats.setServerLoc(server);
-        vaingloryStats.getPlayerStats();
-        vaingloryStats.playerSummary();
-
-        userView.setText(vaingloryStats.user);
-        levelView.setText(Html.fromHtml("<font color='"+colorFont+"'>LEVEL   </font>   "+vaingloryStats.level));
-        totalWinView.setText(Html.fromHtml("<font color='"+colorFont+"'>WINS   </font>   "+vaingloryStats.totalWin));
-        totalgamesView.setText(Html.fromHtml("<font color='"+colorFont+"'>TOTAL GAMES   </font>   "+vaingloryStats.totalgames));
-        lifeTimeGoldView.setText(Html.fromHtml("<font color='"+colorFont+"'>GOLD EARNED   </font>   "+vaingloryStats.lifeTimeGold));
-        winStreakView.setText(Html.fromHtml("<font color='"+colorFont+"'>WINNING STREAK   </font>   "+vaingloryStats.winStreak));
-        totalXPView.setText(Html.fromHtml("<font color='"+colorFont+"'>TOTAL XP   </font>   "+vaingloryStats.totalXP));
-
-    }*/
-
     void showPlayerSummaryMatch( String server, String player){
 
         vaingloryHeroAndMatches.setPlayer(player);
@@ -675,9 +654,9 @@ public class Summary extends Fragment{
 
         // set font
         Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(),"woodcutternoise.ttf");
-        titleView.setTypeface(titleFont);
-        userView.setTypeface(titleFont);
-        levelView.setTypeface(titleFont);
+        //titleView.setTypeface(titleFont);
+        //userView.setTypeface(titleFont);
+        //levelView.setTypeface(titleFont);
         colorFont = "#00eeee"; // Light Blue
 
         // Customize layout for spinner

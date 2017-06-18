@@ -5,32 +5,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.darwin.vgbuff.R;
 import com.example.darwin.vgbuff.Telemetry;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.TimeZone;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +34,7 @@ public class TelemetryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // Variables
+    // Variables used
     View view;
     String url;
     Telemetry telemetry;
@@ -120,6 +108,8 @@ public class TelemetryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_telemetry, container, false);
+
+        // Call the ads to be shown
         mListener.onAdsListener();
 
         // Initialize telemetry
@@ -148,10 +138,14 @@ public class TelemetryFragment extends Fragment {
             new Thread(){
                 public void run() {
 
+                    // Get URL from the previous data match
                     url = dataToDetail.getString("URL");
                     Log.i("url",url);
 
+                    // Download the url data
                     telemetry.getRawTelemetryData(url);
+
+                    // Process the data
                     telemetry.formatRawDataToArrayEvent();
 
                     // Get database
@@ -250,12 +244,12 @@ public class TelemetryFragment extends Fragment {
                             String[] heroes = new String[6];
                             Integer[] heroesImage = new Integer[6];
 
-                            Log.i("hero",telemetry.userInfoArrayBlue.get(0).actor.substring(1,telemetry.userInfoArrayBlue.get(0).actor.length()-1));
-                            Log.i("hero1",telemetry.userInfoArrayBlue.get(1).actor.substring(1,telemetry.userInfoArrayBlue.get(1).actor.length()-1));
-                            Log.i("hero2",telemetry.userInfoArrayBlue.get(2).actor.substring(1,telemetry.userInfoArrayBlue.get(2).actor.length()-1));
-                            Log.i("hero3",telemetry.userInfoArrayRed.get(0).actor.substring(1,telemetry.userInfoArrayRed.get(0).actor.length()-1));
-                            Log.i("hero4",telemetry.userInfoArrayRed.get(1).actor.substring(1,telemetry.userInfoArrayRed.get(1).actor.length()-1));
-                            Log.i("hero5",telemetry.userInfoArrayRed.get(2).actor.substring(1,telemetry.userInfoArrayRed.get(2).actor.length()-1));
+                            //Log.i("hero",telemetry.userInfoArrayBlue.get(0).actor.substring(1,telemetry.userInfoArrayBlue.get(0).actor.length()-1));
+                            //Log.i("hero1",telemetry.userInfoArrayBlue.get(1).actor.substring(1,telemetry.userInfoArrayBlue.get(1).actor.length()-1));
+                            //Log.i("hero2",telemetry.userInfoArrayBlue.get(2).actor.substring(1,telemetry.userInfoArrayBlue.get(2).actor.length()-1));
+                            //Log.i("hero3",telemetry.userInfoArrayRed.get(0).actor.substring(1,telemetry.userInfoArrayRed.get(0).actor.length()-1));
+                            //Log.i("hero4",telemetry.userInfoArrayRed.get(1).actor.substring(1,telemetry.userInfoArrayRed.get(1).actor.length()-1));
+                            //Log.i("hero5",telemetry.userInfoArrayRed.get(2).actor.substring(1,telemetry.userInfoArrayRed.get(2).actor.length()-1));
 
                             try {
 
@@ -326,9 +320,9 @@ public class TelemetryFragment extends Fragment {
                             user1.setText(telemetry.userInfoArrayBlue.get(0).user);
                             totalDamage1.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).damage));
                             totalBuildingDamage1.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).towerDamage));
-                            killEnemy1.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[0]));
-                            killEnemy2.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[1]));
-                            killEnemy3.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[2]));
+                            killEnemy1.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[0]));
+                            killEnemy2.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[1]));
+                            killEnemy3.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(0).killedEnemy[2]));
 
                             // Set team blue hero 2 info
                             heroImage2.setImageResource(heroesImage[1]);
@@ -338,9 +332,9 @@ public class TelemetryFragment extends Fragment {
                             user2.setText(telemetry.userInfoArrayBlue.get(1).user);
                             totalDamage2.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).damage));
                             totalBuildingDamage2.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).towerDamage));
-                            killEnemy12.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[0]));
-                            killEnemy22.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[1]));
-                            killEnemy32.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[2]));
+                            killEnemy12.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[0]));
+                            killEnemy22.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[1]));
+                            killEnemy32.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(1).killedEnemy[2]));
 
                             // Set team blue hero 3 info
                             heroImage3.setImageResource(heroesImage[2]);
@@ -350,9 +344,9 @@ public class TelemetryFragment extends Fragment {
                             user3.setText(telemetry.userInfoArrayBlue.get(2).user);
                             totalDamage3.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).damage));
                             totalBuildingDamage3.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).towerDamage));
-                            killEnemy13.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[0]));
-                            killEnemy23.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[1]));
-                            killEnemy33.setText("Killed: "+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[2]));
+                            killEnemy13.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[0]));
+                            killEnemy23.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[1]));
+                            killEnemy33.setText("x"+String.valueOf(telemetry.userInfoArrayBlue.get(2).killedEnemy[2]));
 
                             // Set team red hero 1 info
                             heroImage4.setImageResource(heroesImage[3]);
@@ -362,9 +356,9 @@ public class TelemetryFragment extends Fragment {
                             user4.setText(telemetry.userInfoArrayRed.get(0).user);
                             totalDamage4.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).damage));
                             totalBuildingDamage4.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
-                            killEnemy14.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[0]));
-                            killEnemy24.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[1]));
-                            killEnemy34.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[2]));
+                            killEnemy14.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[0]));
+                            killEnemy24.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[1]));
+                            killEnemy34.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(0).killedEnemy[2]));
 
                             // Set team red hero 2 info
                             heroImage5.setImageResource(heroesImage[4]);
@@ -374,9 +368,9 @@ public class TelemetryFragment extends Fragment {
                             user5.setText(telemetry.userInfoArrayRed.get(1).user);
                             totalDamage5.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(1).damage));
                             totalBuildingDamage5.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
-                            killEnemy15.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[0]));
-                            killEnemy25.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[1]));
-                            killEnemy35.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[2]));
+                            killEnemy15.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[0]));
+                            killEnemy25.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[1]));
+                            killEnemy35.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[2]));
 
                             // Set team red hero 3 info
                             heroImage6.setImageResource(heroesImage[5]);
@@ -386,11 +380,9 @@ public class TelemetryFragment extends Fragment {
                             user6.setText(telemetry.userInfoArrayRed.get(2).user);
                             totalDamage6.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(2).damage));
                             totalBuildingDamage6.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
-                            killEnemy16.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[0]));
-                            killEnemy26.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[1]));
-                            killEnemy36.setText("Killed: "+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[2]));
-
-
+                            killEnemy16.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[0]));
+                            killEnemy26.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[1]));
+                            killEnemy36.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[2]));
 
                         }
                     });

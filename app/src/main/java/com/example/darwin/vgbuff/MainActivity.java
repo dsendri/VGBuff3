@@ -75,10 +75,12 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // interstitialAd init
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
+        // reload interstitialAd when the ad is closed
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
@@ -102,11 +104,8 @@ public class MainActivity extends AppCompatActivity
         Log.i("name", name);
         Log.i("server", server);
 
-
         vaingloryHeroAndMatches.setPlayer(name);
         vaingloryHeroAndMatches.setServerLoc(server);
-
-
 
         //vaingloryHeroAndMatches.setPlayer("santadoge");
         //vaingloryHeroAndMatches.setServerLoc("sg");
@@ -119,6 +118,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        // Find the navigation view and init
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
         heroFaveView.setImageResource(imageId);
 
         // attach the font
-        userNameNavView.setTypeface(titleFont);
+        //userNameNavView.setTypeface(titleFont);
 
         // Initialize fragments
         summary = new Summary();
@@ -240,6 +240,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    // The ad get called when user tapped more detail button on match history
     @Override
     public void onAdsListener() {
             if (mInterstitialAd.isLoaded()) {

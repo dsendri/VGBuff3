@@ -63,6 +63,7 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginLeft="10dp"
                         android:layout_row="0"
+                        android:fontFamily="sans-serif-condensed"
                         android:gravity="center_vertical"
                         android:text="MATCH DETAIL"
                         android:textAlignment="center"
@@ -293,6 +294,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/teamblue"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center_vertical"
                     android:text="TEAM BLUE"
                     android:textAlignment="center"
@@ -879,12 +881,12 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/teamred"
+                    android:fontFamily="sans-serif-condensed"
                     android:gravity="center_vertical"
                     android:text="TEAM RED"
                     android:textAlignment="center"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <RelativeLayout
                     android:id="@+id/layout4"
