@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -81,6 +83,7 @@ public class RankedHistory extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -200,7 +203,9 @@ public class RankedHistory extends Fragment {
                                         matchDetail.setArguments(dataToMatchDetailPage);
 
                                         // Open Fragment
-                                        fragmentManager.beginTransaction().replace(R.id.content_frame, matchDetail).addToBackStack("tag").commit();
+                                        if (!matchDetail.isAdded()) {
+                                            fragmentManager.beginTransaction().add(R.id.content_frame,matchDetail).addToBackStack(null).commit();
+                                        }
                                     }
                                 });
                             } else {
@@ -246,6 +251,7 @@ public class RankedHistory extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

@@ -94,7 +94,9 @@ public class HeroesStats extends Fragment {
     @Override
     public void onCreateOptionsMenu(
             Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.activity_drawer_heroes_stats, menu);
+
     }
 
     // Read Json Database
@@ -135,23 +137,29 @@ public class HeroesStats extends Fragment {
         if (id == R.id.nav_most_played) {
 
             sortedChoice = 1;;
+            Log.i("Choice","most played");
 
         } else if (id == R.id.nav_most_win) {
 
             sortedChoice = 2;
+            Log.i("Choice","most win");
 
         } else if (id == R.id.nav_general) {
 
             sortedChoice = 0;
+            Log.i("Choice","most alphabet");
 
         } else if (id == R.id.nav_percent) {
 
             sortedChoice = 3;
+            Log.i("Choice","most percent");
 
         } else {
 
             sortedChoice = 0;
         }
+
+
 
         // Create loading animation while data is being processed
         final ProgressDialog dialog = new ProgressDialog(getActivity());

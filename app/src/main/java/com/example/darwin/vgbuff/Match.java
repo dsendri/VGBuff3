@@ -420,7 +420,7 @@ public class Match {
                 endGameReason[i] = matchesArr.getJSONObject(pos.get(i)).getJSONObject("attributes").getJSONObject("stats").getString("endGameReason");
 
                 // Find related Asset URL
-                JSONArray assetArray = new JSONArray(matchesArr.getJSONObject(i).getJSONObject("relationships").getJSONObject("assets").getString("data"));
+                JSONArray assetArray = new JSONArray(matchesArr.getJSONObject(pos.get(i)).getJSONObject("relationships").getJSONObject("assets").getString("data"));
                 matchAssetTelemetryID[i] = assetArray.getJSONObject(0).getString("id");
 
                 for (int j = 0; j < telemetryID.size(); j++){

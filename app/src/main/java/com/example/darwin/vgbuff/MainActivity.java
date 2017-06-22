@@ -161,8 +161,8 @@ public class MainActivity extends AppCompatActivity
 
         // On the first page, open the Account Summary Page
         fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, summary).commit();
 
+        fragmentManager.beginTransaction().replace(R.id.content_frame, summary).commit();
 
     }
 
@@ -171,9 +171,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+
+            getFragmentManager().popBackStack();
+        }else {
             super.onBackPressed();
         }
+        //moveTaskToBack(true);
     }
 
     @Override
@@ -204,29 +208,48 @@ public class MainActivity extends AppCompatActivity
 
             fragmentManager.beginTransaction().replace(R.id.content_frame, summary).commit();
 
+
         } else if (id == R.id.nav_heroes) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, heroes).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, heroes).commit();
+
+            // Open Fragment
+                fragmentManager.beginTransaction().replace(R.id.content_frame,heroes).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_items) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, items).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, items).commit();
+
+            // Open Fragment
+                fragmentManager.beginTransaction().replace(R.id.content_frame,items).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_match) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, history).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, history).commit();
+
+            // Open Fragment
+                fragmentManager.beginTransaction().replace(R.id.content_frame,history).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_news) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, news).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, news).commit();
+
+            // Open Fragment
+                fragmentManager.beginTransaction().replace(R.id.content_frame,news).addToBackStack(null).commit();
 
         }  else if (id == R.id.nav_ranked_match) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, rankedHistory).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, rankedHistory).commit();
+
+            // Open Fragment
+                fragmentManager.beginTransaction().replace(R.id.content_frame,rankedHistory).addToBackStack(null).commit();
 
         }  else if (id == R.id.nav_hero_stats) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, heroesStats).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, heroesStats).commit();
+
+            // Open Fragment
+                fragmentManager.beginTransaction().replace(R.id.content_frame,heroesStats).addToBackStack(null).commit();
 
         }
 
@@ -280,8 +303,6 @@ public class MainActivity extends AppCompatActivity
         datatoSummaryPage.putString("Raw",vaingloryHeroAndMatches.dataRaw);
         datatoSummaryPage.putString("Player",vaingloryHeroAndMatches.user);
         datatoSummaryPage.putString("Server",vaingloryHeroAndMatches.serverLoc);
-
-
 
     }
 

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -97,6 +99,7 @@ public class TelemetryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -109,7 +112,7 @@ public class TelemetryFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_telemetry, container, false);
 
-        // Call the ads to be shown
+        // Show ad
         mListener.onAdsListener();
 
         // Initialize telemetry
@@ -126,6 +129,7 @@ public class TelemetryFragment extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    // Call the ads to be shown
                     dialog.setMessage("Loading...");
                     dialog.setCanceledOnTouchOutside(false);
                     if(!dialog.isShowing()){
@@ -367,7 +371,7 @@ public class TelemetryFragment extends Fragment {
                             enemy35.setImageResource(heroesImage[2]);
                             user5.setText(telemetry.userInfoArrayRed.get(1).user);
                             totalDamage5.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(1).damage));
-                            totalBuildingDamage5.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
+                            totalBuildingDamage5.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(1).towerDamage));
                             killEnemy15.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[0]));
                             killEnemy25.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[1]));
                             killEnemy35.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(1).killedEnemy[2]));
@@ -379,7 +383,7 @@ public class TelemetryFragment extends Fragment {
                             enemy36.setImageResource(heroesImage[2]);
                             user6.setText(telemetry.userInfoArrayRed.get(2).user);
                             totalDamage6.setText("HERO DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(2).damage));
-                            totalBuildingDamage6.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(0).towerDamage));
+                            totalBuildingDamage6.setText("OBJECTIVE DMG: "+String.valueOf(telemetry.userInfoArrayRed.get(2).towerDamage));
                             killEnemy16.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[0]));
                             killEnemy26.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[1]));
                             killEnemy36.setText("x"+String.valueOf(telemetry.userInfoArrayRed.get(2).killedEnemy[2]));
@@ -419,6 +423,7 @@ public class TelemetryFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

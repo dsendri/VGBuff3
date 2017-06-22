@@ -66,6 +66,34 @@ public class Telemetry {
 
     }
 
+    public class HeroSwap {
+
+        //{ "time": "2017-06-19T21:41:33+0000", "type": "HeroSwap", "payload": [{ "Hero": "*Ardan*", "Team": "2", "Player": "36699f56-a830-11e5-8676-06b48b82cd49" }, { "Hero": "*Blackfeather*", "Team": "2", "Player": "010ae428-4458-11e5-8701-06eb725f8a76" }] },
+        public Date time;
+        public String eventType;
+        public String[] hero;
+        public int[] team;
+        public String[] id;
+
+        void formatTime (String rawTime) {
+
+            Date[] datePlayed;
+            DateFormat pf;
+
+            // Set the date
+            TimeZone tz = TimeZone.getTimeZone("UTC");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'+0000'"); // Quoted "Z" to indicate UTC, no timezone offset
+            df.setTimeZone(tz);
+
+            try {
+                time = df.parse(rawTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
     public class UserInfo {
 
         //{ "time": "2017-06-13T12:35:08+0000", "type": "HeroSelect", "payload": { "Hero": "*Ardan*", "Team": "2", "Player": "aa701f3e-7f39-11e6-9681-06eb725f8a76", "Handle": "VATANA2" } }
@@ -159,6 +187,9 @@ public class Telemetry {
     // UserInfoRed
     public ArrayList<UserInfo> userInfoArrayRed;
 
+    // HeroSwap
+    public ArrayList<HeroSwap> heroSwaps;
+
     public void getRawTelemetryData(String url) {
 
         // Initialize background task
@@ -185,6 +216,7 @@ public class Telemetry {
         killedEvents = new ArrayList<KillActor>();
         userInfoArrayBlue = new ArrayList<UserInfo>();
         userInfoArrayRed = new ArrayList<UserInfo>();
+        heroSwaps = new ArrayList<HeroSwap>();
 
         try {
 
@@ -224,13 +256,46 @@ public class Telemetry {
 
                     // print log
                     DateFormat pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    Log.i("time",pf.format(temp.time));
-                    Log.i("Team",temp.team);
-                    Log.i("Actor",temp.actor);
-                    Log.i("Damage dealt",String.valueOf(temp.damageDealt));
+                    //Log.i("time",pf.format(temp.time));
+                    //Log.i("Team",temp.team);
+                    //Log.i("Actor",temp.actor);
+                    //Log.i("Damage dealt",String.valueOf(temp.damageDealt));
 
                     // add to array
                     damageDealtArray.add(temp);
+                }
+
+                // Swap Hero
+                if (eventTelemetry.getJSONObject(i).getString("type").equals("HeroSwap")){
+
+                    HeroSwap temp = new HeroSwap();
+
+                    //{ "time": "2017-06-19T21:41:33+0000", "type": "HeroSwap", "payload": [{ "Hero": "*Ardan*", "Team": "2", "Player": "36699f56-a830-11e5-8676-06b48b82cd49" }, { "Hero": "*Blackfeather*", "Team": "2", "Player": "010ae428-4458-11e5-8701-06eb725f8a76" }] },
+
+                    // save time of event
+                    temp.formatTime(eventTelemetry.getJSONObject(i).getString("time"));
+                    temp.eventType = eventTelemetry.getJSONObject(i).getString("type");
+
+                    temp.hero = new String[2];
+                    temp.team = new int[2];
+                    temp.id = new String[2];
+
+                    // Get 2 swapable ids
+                    JSONArray payload = eventTelemetry.getJSONObject(i).getJSONArray("payload");
+
+                    temp.hero[0] = payload.getJSONObject(0).getString("Hero");
+                    temp.hero[1] = payload.getJSONObject(1).getString("Hero");
+                    temp.id[0] = payload.getJSONObject(0).getString("Player");
+                    temp.id[1] = payload.getJSONObject(1).getString("Player");
+                    temp.team[0] = payload.getJSONObject(0).getInt("Team");
+                    temp.team[1] = payload.getJSONObject(1).getInt("Team");
+
+                    Log.i("hero 0",temp.hero[0]);
+                    Log.i("id 0",temp.id[0]);
+                    Log.i("hero 1",temp.hero[1]);
+                    Log.i("id 1",temp.id[1]);
+
+                    heroSwaps.add(temp);
                 }
 
                 // If type of event is "HeroSelect"
@@ -257,10 +322,10 @@ public class Telemetry {
 
                     // print log
                     DateFormat pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    Log.i("time",pf.format(temp.time));
-                    Log.i("Team",temp.team);
-                    Log.i("Actor",temp.actor);
-                    Log.i("User",temp.user);
+                    //Log.i("time",pf.format(temp.time));
+                    //Log.i("Team",temp.team);
+                    //Log.i("Actor",temp.actor);
+                    //Log.i("User",temp.user);
 
                     // add to array
                     userInfoArray.add(temp);
@@ -291,16 +356,18 @@ public class Telemetry {
 
                     // print log
                     DateFormat pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    Log.i("time",pf.format(temp.time));
-                    Log.i("Team",temp.team);
-                    Log.i("Actor",temp.actor);
-                    Log.i("Target",temp.target);
+                    //Log.i("time",pf.format(temp.time));
+                    //Log.i("Team",temp.team);
+                    //Log.i("Actor",temp.actor);
+                    //Log.i("Target",temp.target);
 
 
                     // add to array
                     killedEvents.add(temp);
 
                 }
+
+
             }
 
             // Set array for total enemy team number
@@ -314,6 +381,9 @@ public class Telemetry {
             // Find the total damage for each player
             for (int i = 0; i < damageDealtArray.size(); i++ ){
 
+                //Log.i("dmg",damageDealtArray.get(i).actor + ","+damageDealtArray.get(i).target+","+String.valueOf(damageDealtArray.get(i).damageDealt));
+
+
                 // Check the team
                 if (damageDealtArray.get(i).team.equals("Left"))
 
@@ -325,11 +395,15 @@ public class Telemetry {
                         //Log.i("target",damageDealtArray.get(i).target);
                         if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && damageDealtArray.get(i).targetIsHero == 1) {
                             userInfoArrayBlue.get(j).damage = userInfoArrayBlue.get(j).damage + damageDealtArray.get(i).damageDealt;
-                        } else if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*"))) {
+                            //Log.i("hero",damageDealtArray.get(i).actor+" = "+ userInfoArrayBlue.get(j).actor);
+                            //Log.i("target",damageDealtArray.get(i).target+" = "+ String.valueOf(damageDealtArray.get(i).damageDealt));
+                            //Log.i("total",String.valueOf(userInfoArrayBlue.get(j).damage));
+                        } else if (damageDealtArray.get(i).actor.equals(userInfoArrayBlue.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*") || damageDealtArray.get(i).target.equals("*VainCrystalAway*") || damageDealtArray.get(i).target.equals("*Turret*")) ) {
                             userInfoArrayBlue.get(j).towerDamage = userInfoArrayBlue.get(j).towerDamage + damageDealtArray.get(i).damageDealt;
+                            //Log.i("hero",damageDealtArray.get(i).actor+" = "+ userInfoArrayBlue.get(j).actor);
+                            //Log.i("target",damageDealtArray.get(i).target+" = "+ String.valueOf(damageDealtArray.get(i).damageDealt));
+                            //Log.i("total build",String.valueOf(userInfoArrayBlue.get(j).damage));
                         }
-
-
                     }
 
                 } else if (damageDealtArray.get(i).team.equals("Right"))
@@ -340,10 +414,15 @@ public class Telemetry {
                         //Log.i("target",damageDealtArray.get(i).target);
                         if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && damageDealtArray.get(i).targetIsHero == 1) {
                             userInfoArrayRed.get(j).damage = userInfoArrayRed.get(j).damage + damageDealtArray.get(i).damageDealt;
-                        } else if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*"))) {
+                            //Log.i("hero",damageDealtArray.get(i).actor+" = "+ userInfoArrayRed.get(j).actor);
+                            //Log.i("target",damageDealtArray.get(i).target+" = "+ String.valueOf(damageDealtArray.get(i).damageDealt));
+                            //Log.i("total",String.valueOf(userInfoArrayRed.get(j).damage));
+                        } else if (damageDealtArray.get(i).actor.equals(userInfoArrayRed.get(j).actor) && (damageDealtArray.get(i).target.equals("*VainCrystalHome*") || damageDealtArray.get(i).target.equals("*VainTurret*") || damageDealtArray.get(i).target.equals("*VainCrystalAway*") || damageDealtArray.get(i).target.equals("*Turret*"))) {
                             userInfoArrayRed.get(j).towerDamage = userInfoArrayRed.get(j).towerDamage + damageDealtArray.get(i).damageDealt;
+                            //Log.i("hero",damageDealtArray.get(i).actor+" = "+ userInfoArrayRed.get(j).actor);
+                            //Log.i("target",damageDealtArray.get(i).target+" = "+ String.valueOf(damageDealtArray.get(i).damageDealt));
+                            //Log.i("total build",String.valueOf(userInfoArrayRed.get(j).damage));
                         }
-
                     }
                 }
 
@@ -402,6 +481,72 @@ public class Telemetry {
             Log.i("damag5",String.valueOf(userInfoArrayRed.get(1).damage));
             Log.i("hero",userInfoArrayRed.get(2).actor);
             Log.i("damag6",String.valueOf(userInfoArrayRed.get(2).damage));
+
+            // Swap hero to their appropriate ID
+            for (int i = 0; i < heroSwaps.size(); i++){
+
+                ArrayList<Integer> posSwap = new ArrayList<Integer>();
+
+                // if team left
+                if (heroSwaps.get(i).team[0] == 1){
+
+                    Log.i("SWAP","1");
+
+                    for (int j = 0; j < userInfoArrayBlue.size(); j++){
+
+                        if (heroSwaps.get(i).id[0].equals(userInfoArrayBlue.get(j).id)) {
+                            posSwap.add(j);
+                        }
+
+                        if (heroSwaps.get(i).id[1].equals(userInfoArrayBlue.get(j).id)) {
+                            posSwap.add(j);
+                        }
+
+                    }
+
+                    // save swap value to temp value
+                    String tempId = userInfoArrayBlue.get(posSwap.get(0)).id;
+                    String tempUser = userInfoArrayBlue.get(posSwap.get(0)).user;
+
+                    // swap first user
+                    userInfoArrayBlue.get(posSwap.get(0)).id = userInfoArrayBlue.get(posSwap.get(1)).id;
+                    userInfoArrayBlue.get(posSwap.get(0)).user = userInfoArrayBlue.get(posSwap.get(1)).user;
+
+                    // swap second user
+                    userInfoArrayBlue.get(posSwap.get(1)).id = tempId;
+                    userInfoArrayBlue.get(posSwap.get(1)).user = tempUser;
+
+                } else if (heroSwaps.get(i).team[0] == 2){ // for team right
+
+                    Log.i("SWAP","2");
+
+                    for (int j = 0; j < userInfoArrayRed.size(); j++){
+
+                        if (heroSwaps.get(i).id[0].equals(userInfoArrayRed.get(j).id)) {
+                            posSwap.add(j);
+                        }
+
+                        if (heroSwaps.get(i).id[1].equals(userInfoArrayRed.get(j).id)) {
+                            posSwap.add(j);
+                        }
+
+                    }
+
+                    // save swap value to temp value
+                    String tempId = userInfoArrayRed.get(posSwap.get(0)).id;
+                    String tempUser = userInfoArrayRed.get(posSwap.get(0)).user;
+
+                    // swap first user
+                    userInfoArrayRed.get(posSwap.get(0)).id = userInfoArrayRed.get(posSwap.get(1)).id;
+                    userInfoArrayRed.get(posSwap.get(0)).user = userInfoArrayRed.get(posSwap.get(1)).user;
+
+                    // swap second user
+                    userInfoArrayRed.get(posSwap.get(1)).id = tempId;
+                    userInfoArrayRed.get(posSwap.get(1)).user = tempUser;
+
+                }
+
+            }
 
 
         } catch (JSONException e) {

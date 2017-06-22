@@ -156,10 +156,15 @@ public class CustomList3 extends ArrayAdapter<String>{
 
         // Set statistics and detail
 
+        Log.i("mode",vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase());
         if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("CASUAL_ARAL")){
             gameModeView.setText("BATTLE ROYALE");
         } else if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("BLITZ_PVP_RANKED")) {
             gameModeView.setText("BLITZ");
+        } else if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("PRIVATE_PARTY_BLITZ_MATCH")) {
+            gameModeView.setText("PRIVATE BLITZ");
+        } else if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("PRIVATE_PARTY_DRAFT_MATCH")) {
+            gameModeView.setText("PRIVATE CASUAL");
         } else {
             gameModeView.setText(vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase());
         }
@@ -228,7 +233,7 @@ public class CustomList3 extends ArrayAdapter<String>{
                 if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                     item1[sortedPos[sortedPos.length-1-position]] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                    Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+                    //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
 
                     // Create appropriate file call
                     String itemName = item1[sortedPos[sortedPos.length-1-position]];
@@ -241,14 +246,14 @@ public class CustomList3 extends ArrayAdapter<String>{
                     }
 
                     itemsImage1[sortedPos[sortedPos.length-1-position]] = context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
-                    Log.i("filename0", fileName);
+                    //Log.i("filename0", fileName);
 
 
                 }
                 if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                     item2[sortedPos[sortedPos.length-1-position]] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                    Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+                    //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
 
                     // Create appropriate file call
                     String itemName = item2[sortedPos[sortedPos.length-1-position]];
@@ -261,12 +266,12 @@ public class CustomList3 extends ArrayAdapter<String>{
                     }
 
                     itemsImage2[sortedPos[sortedPos.length-1-position]] = context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
-                    Log.i("filename1", fileName);
+                    //Log.i("filename1", fileName);
                 }
                 if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                     item3[sortedPos[sortedPos.length-1-position]] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                    Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+                    //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
 
                     // Create appropriate file call
                     String itemName = item3[sortedPos[sortedPos.length-1-position]];
@@ -279,12 +284,12 @@ public class CustomList3 extends ArrayAdapter<String>{
                     }
 
                     itemsImage3[sortedPos[sortedPos.length-1-position]] = context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
-                    Log.i("filename2", fileName);
+                    //Log.i("filename2", fileName);
                 }
                 if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                     item4[sortedPos[sortedPos.length-1-position]] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                    Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+                    //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
 
                     // Create appropriate file call
                     String itemName = item4[sortedPos[sortedPos.length-1-position]];
@@ -297,12 +302,12 @@ public class CustomList3 extends ArrayAdapter<String>{
                     }
 
                     itemsImage4[sortedPos[sortedPos.length-1-position]] = context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
-                    Log.i("filename3", fileName);
+                    //Log.i("filename3", fileName);
                 }
                 if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                     item5[sortedPos[sortedPos.length-1-position]] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                    Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+                    //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
 
                     // Create appropriate file call
                     String itemName = item5[sortedPos[sortedPos.length-1-position]];
@@ -315,13 +320,13 @@ public class CustomList3 extends ArrayAdapter<String>{
                     }
 
                     itemsImage5[sortedPos[sortedPos.length-1-position]] = context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
-                    Log.i("filename4", fileName);
+                    //Log.i("filename4", fileName);
 
                 }
                 if (vg.matches.myParticipant[sortedPos[sortedPos.length-1-position]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
                     item6[sortedPos[sortedPos.length-1-position]] = itemsJsonArr.getJSONObject(i).getString("item");
 
-                    Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+                    //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
 
                     // Create appropriate file call
                     String itemName = item6[sortedPos[sortedPos.length-1-position]];
@@ -334,7 +339,7 @@ public class CustomList3 extends ArrayAdapter<String>{
                     }
 
                     itemsImage6[sortedPos[sortedPos.length-1-position]] = context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
-                    Log.i("filename5", fileName);
+                    //Log.i("filename5", fileName);
 
                 }
 

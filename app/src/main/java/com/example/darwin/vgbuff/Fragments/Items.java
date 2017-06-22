@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -111,6 +113,7 @@ public class Items extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -181,7 +184,10 @@ public class Items extends Fragment {
                 itemPage.setArguments(dataToItemPage);
 
                 // Open Fragment
-                fragmentManager.beginTransaction().replace(R.id.content_frame, itemPage).addToBackStack("tag").commit();
+                if (!itemPage.isAdded()) {
+                    fragmentManager.beginTransaction().add(R.id.content_frame,itemPage).addToBackStack(null).commit();
+                }
+
             }
         });
 

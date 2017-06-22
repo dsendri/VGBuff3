@@ -18,6 +18,8 @@ import android.support.v4.app.FragmentManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -230,7 +232,7 @@ public class MatchDetail extends Fragment {
             else if (skillTier % 3 == 1) colorTier = silver;
             else colorTier = gold;
 
-            ranked = "<font color='" + colorTier + "'VAINGLORIOUS</font>   ";
+            ranked = "<font color='" + colorTier + "'>VAINGLORIOUS</font>   ";
         } else {
 
             final String colorTier;
@@ -294,6 +296,7 @@ public class MatchDetail extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -360,12 +363,13 @@ public class MatchDetail extends Fragment {
         view = inflater.inflate(R.layout.fragment_match_detail, container, false);
         detailView = (ScrollView) view.findViewById(R.id.detail);
 
+        /*
         // Initialize admob
         MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-7644346723158631~1016068907");
 
         AdView mAdView = (AdView) view.findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
         // Create loading animation while data is being processed
         final ProgressDialog dialog = new ProgressDialog(getActivity());
@@ -1652,19 +1656,30 @@ public class MatchDetail extends Fragment {
                             //Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
 
 
-                            Button telemetryButton = (Button) view.findViewById(R.id.detailButton);
+                            final Button telemetryButton = (Button) view.findViewById(R.id.detailButton);
                             telemetryButton.setOnClickListener(new View.OnClickListener() {
 
                                 @Override
                                 public void onClick(View v) {
 
-                                    FragmentManager fragmentManager;
+                                    // Open Fragment HeroesPage and set back button to go to previous fragment
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                                    // Init data for next fragment
                                     Bundle dataToDetail = new Bundle();
                                     dataToDetail.putString("URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
+
+                                    // Init telemetry fragment
                                     TelemetryFragment telemetryFragment = new TelemetryFragment();
                                     telemetryFragment.setArguments(dataToDetail);
-                                    fragmentManager = getActivity().getSupportFragmentManager();
-                                    fragmentManager.beginTransaction().replace(R.id.content_frame, telemetryFragment).commit();
+
+                                    // Open fragment
+                                    if (!telemetryFragment.isAdded()) {
+                                        fragmentManager.beginTransaction().add(R.id.content_frame,telemetryFragment).addToBackStack(null).commit();
+                                    }
+
+                                    //fragmentManager.beginTransaction().replace(R.id.content_frame, telemetryFragment).commit();
+
                                 }
 
                             });
@@ -1703,6 +1718,7 @@ public class MatchDetail extends Fragment {
         mListener = null;
     }
 
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -1716,5 +1732,6 @@ public class MatchDetail extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
     }
 }

@@ -135,6 +135,7 @@ public class Summary extends Fragment{
     @Override
     public void onCreateOptionsMenu(
             Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.activity_drawer_summary, menu);
     }
 
@@ -165,6 +166,7 @@ public class Summary extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -631,8 +633,6 @@ public class Summary extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_summary, container, false);
-
-        setHasOptionsMenu(true);
 
         // Initialize admob
         MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-7644346723158631~1016068907");
