@@ -233,7 +233,7 @@
     },
     {
       "hero": "Grace",
-      "hero_stats": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "hero_stats": [748,64,0,0,268,35,0,0,79,7.18,100,3.27,30,5.09,30,5.09,2.7,3.7],
       "ability1": "Retribution",
       "ability1_desc": "Grace chains her normal basic attack into a ground slam, dealing bonus weapon damage and slowing enemies in a wide area. If enemies are hit by the ground slam, her ability cooldowns are reduced.",
       "ability2": "Benediction",
