@@ -109,13 +109,13 @@ public class Player {
                                 heroPlayed[10]++;
                                 break;
                             case "*Grace*":
-                                heroPlayed[12]++;
+                                heroPlayed[11]++;
                                 break;
                             case "*Grumpjaw*":
-                                heroPlayed[13]++;
+                                heroPlayed[12]++;
                                 break;
                             case "*Gwen*":
-                                heroPlayed[14]++;
+                                heroPlayed[13]++;
                                 break;
                             case "*Idris*":
                                 heroPlayed[14]++;
