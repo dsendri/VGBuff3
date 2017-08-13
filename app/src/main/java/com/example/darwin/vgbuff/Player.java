@@ -150,29 +150,32 @@ public class Player {
                             case "*Reim*":
                                 heroPlayed[24]++;
                                 break;
-                            case "*Ringo*":
+                            case "*Reza*":
                                 heroPlayed[25]++;
                                 break;
-                            case "*Rona*":
+                            case "*Ringo*":
                                 heroPlayed[26]++;
                                 break;
-                            case "*Samuel*":
+                            case "*Rona*":
                                 heroPlayed[27]++;
                                 break;
-                            case "*SAW*":
+                            case "*Samuel*":
                                 heroPlayed[28]++;
                                 break;
-                            case "*Skaarf*":
+                            case "*SAW*":
                                 heroPlayed[29]++;
                                 break;
-                            case "*Skye*":
+                            case "*Skaarf*":
                                 heroPlayed[30]++;
                                 break;
-                            case "*Taka*":
+                            case "*Skye*":
                                 heroPlayed[31]++;
                                 break;
-                            default:
+                            case "*Taka*":
                                 heroPlayed[32]++;
+                                break;
+                            default:
+                                heroPlayed[33]++;
                                 break;
                         }
 

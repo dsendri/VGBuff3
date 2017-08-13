@@ -383,44 +383,49 @@ public class HeroesStats extends Fragment {
                                     location = 24;
 
                                     break;
-                                case "*Ringo*":
+                                case "*Reza*":
 
                                     location = 25;
 
                                     break;
-                                case "*Rona*":
+                                case "*Ringo*":
 
                                     location = 26;
 
                                     break;
-                                case "*Samuel*":
+                                case "*Rona*":
 
                                     location = 27;
 
                                     break;
-                                case "*SAW*":
+                                case "*Samuel*":
 
                                     location = 28;
 
                                     break;
-                                case "*Skaarf*":
+                                case "*SAW*":
 
                                     location = 29;
 
                                     break;
-                                case "*Skye*":
+                                case "*Skaarf*":
 
                                     location = 30;
 
                                     break;
-                                case "*Taka*":
+                                case "*Skye*":
 
                                     location = 31;
 
                                     break;
-                                default:
+                                case "*Taka*":
 
                                     location = 32;
+
+                                    break;
+                                default:
+
+                                    location = 33;
 
                                     break;
                             }
@@ -736,44 +741,49 @@ public class HeroesStats extends Fragment {
                                     location = 24;
 
                                     break;
-                                case "*Ringo*":
+                                case "*Reza*":
 
                                     location = 25;
 
                                     break;
-                                case "*Rona*":
+                                case "*Ringo*":
 
                                     location = 26;
 
                                     break;
-                                case "*Samuel*":
+                                case "*Rona*":
 
                                     location = 27;
 
                                     break;
-                                case "*SAW*":
+                                case "*Samuel*":
 
                                     location = 28;
 
                                     break;
-                                case "*Skaarf*":
+                                case "*SAW*":
 
                                     location = 29;
 
                                     break;
-                                case "*Skye*":
+                                case "*Skaarf*":
 
                                     location = 30;
 
                                     break;
-                                case "*Taka*":
+                                case "*Skye*":
 
                                     location = 31;
 
                                     break;
-                                default:
+                                case "*Taka*":
 
                                     location = 32;
+
+                                    break;
+                                default:
+
+                                    location = 33;
 
                                     break;
                             }

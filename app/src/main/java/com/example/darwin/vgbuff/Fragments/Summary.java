@@ -180,7 +180,7 @@ public class Summary extends Fragment{
 
         // Initialize Roles
         Captains = new String[] {"*adagio*","*ardan*","*catherine*","*flicker*","*fortress*","*lance*","*lyra*","*phinn*","*grace*"};
-        Junglers = new String[] {"*baptiste*","*grumpjaw*","*alpha*","*glaive*","*joule*","*koshka*","*krul*","*ozo*","*petal*","*reim*","*rona*","*taka*"};
+        Junglers = new String[] {"*baptiste*","*grumpjaw*","*alpha*","*glaive*","*joule*","*koshka*","*krul*","*ozo*","*petal*","*reim*","*rona*","*taka*","*reza*"};
         Carries = new String[] {"*baron*","*blackfeather*","*celeste*","*gwen*","*idris*","*kestrel*","*ringo*","*samuel*","*saw*","*skaarf*","*skye*","*vox*"};
 
         df = DecimalFormat.getInstance();
@@ -522,30 +522,34 @@ public class Summary extends Fragment{
 
                         break;
                     case 25:
-                        heroFav = "Ringo";
+                        heroFav = "Reza";
 
                         break;
                     case 26:
-                        heroFav = "Rona";
+                        heroFav = "Ringo";
 
                         break;
                     case 27:
-                        heroFav = "Samuel";
+                        heroFav = "Rona";
 
                         break;
                     case 28:
-                        heroFav = "SAW";
+                        heroFav = "Samuel";
 
                         break;
                     case 29:
-                        heroFav = "Skaarf";
+                        heroFav = "SAW";
 
                         break;
                     case 30:
-                        heroFav = "Skye";
+                        heroFav = "Skaarf";
 
                         break;
                     case 31:
+                        heroFav = "Skye";
+
+                        break;
+                    case 32:
                         heroFav = "Taka";
 
                         break;
@@ -1084,30 +1088,34 @@ public class Summary extends Fragment{
 
                             break;
                         case 25:
-                            heroFav = "Ringo";
+                            heroFav = "Reza";
 
                             break;
                         case 26:
-                            heroFav = "Rona";
+                            heroFav = "Ringo";
 
                             break;
                         case 27:
-                            heroFav = "Samuel";
+                            heroFav = "Rona";
 
                             break;
                         case 28:
-                            heroFav = "SAW";
+                            heroFav = "Samuel";
 
                             break;
                         case 29:
-                            heroFav = "Skaarf";
+                            heroFav = "SAW";
 
                             break;
                         case 30:
-                            heroFav = "Skye";
+                            heroFav = "Skaarf";
 
                             break;
                         case 31:
+                            heroFav = "Skye";
+
+                            break;
+                        case 32:
                             heroFav = "Taka";
 
                             break;

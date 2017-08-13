@@ -88,7 +88,7 @@
       "hero": "Baron",
       "hero_stats": [814,78,3.29,0.42,270,45,6.67,1.03,71,3.4,100,2,30,5.1,30,5.1,5.4,2.6],
       "ability1": "Rocket Launcher",
-      "ability1_desc": "Baron’s basic attacks deal 125% weapon damage to the target and surrounding enemies. These explosions deal reduced damage to lane minions.",
+      "ability1_desc": "Baron’s basic attacks deal 120% weapon damage to the target and surrounding enemies. These explosions deal reduced damage to lane minions.",
       "ability2": "Porcupine Mortar",
       "ability2_desc": "Baron launches artillery toward the target location, damaging enemies on impact. Enemies caught by the explosion are also slowed for a short period of time. Weapon power strengthens the slow while crystal power increases the range of the ability.\n\nThe double attack after using this ability is now automatic upon acquiring a target.",
       "ability2_detail": "DETAILS:\nRange:8/8/8/8/8 (1.5% Crystal Ratio)\nDamage to Minions: 40/100/160/220/280 (20% Crystal Ratio) (20% Weapon Ratio)\nDamage: 40/120/200/280/360 (190% Crystal Ratio) (70% Weapon Ratio)",
@@ -133,7 +133,7 @@
       "ability1_desc": "Catherine gains 2 armor & shield every time she stuns or silences an enemy hero with her abilities.",
       "ability2": "Merciless Pursuit",
       "ability2_desc": "Catherine gains a burst of move speed for 1.5 seconds. Her next basic attack is replaced by a powerful stun attack. Resets basic attack cooldown on activation.",
-      "ability2_detail": "DETAILS:\nBonus Damage: 35/70/105/140/175 (100% Crystal Ratio)\nStun Duration: 1/1/1/1/1.2",
+      "ability2_detail": "DETAILS:\nBonus Damage: 35/60/85/110/135 (100% Crystal Ratio)\nStun Duration: 1/1/1/1/1.2",
       "ability2_cd": [14,13.5,13,12.5,12],
       "ability2_mana": [40,50,60,70,90],
       "ability3": "Stormguard",
@@ -170,7 +170,7 @@
     },
     {
       "hero": "Flicker",
-      "hero_stats": [807,77,3.85,0,295,42,1.94,0.25,77,7.1,100,3.3,25,5.5,25,5.5,1.5,3.5],
+      "hero_stats": [807,86,3.85,0,295,42,1.94,0.25,77,7.1,100,3.3,25,5.5,25,5.5,1.5,3.5],
       "ability1": "Willow Whisper",
       "ability1_desc": "Flicker gains stealth and a move speed bonus when in brush. Flicker can then leave the brush and remain stealthed for a time. Taking damage from enemy heroes or using abilities removes stealth.",
       "ability2": "Binding Light",
@@ -233,7 +233,7 @@
     },
     {
       "hero": "Grace",
-      "hero_stats": [748,64,0,0,268,35,0,0,79,7.18,100,3.27,30,5.09,30,5.09,2.7,3.7],
+      "hero_stats": [748,64,0,0,268,35,0,0,79,7.18,100,3.27,30,5.09,30,5.09,2.7,3.5],
       "ability1": "Retribution",
       "ability1_desc": "Grace chains her normal basic attack into a ground slam, dealing bonus weapon damage and slowing enemies in a wide area. If enemies are hit by the ground slam, her ability cooldowns are reduced.",
       "ability2": "Benediction",
@@ -248,7 +248,7 @@
       "ability3_mana": [125,125,125,125,125],
       "ability4": "Divine Intervention",
       "ability4_desc": "Grace instantly surrounds herself and her target with a full holy shield and begins channeling after which Grace’s target receives a massive heal.",
-      "ability4_detail": "DETAILS:\nHealing Strength: 400/600/800 (150% Crystal Ratio)",
+      "ability4_detail": "DETAILS:\nHealing Strength: 400/500/600 (200% Crystal Ratio)",
       "ability4_cd": [60,45,30],
       "ability4_mana": [0,0,0]
     },
@@ -259,12 +259,12 @@
       "ability1_desc": "Grumpjaw's hardened carapace grants him increased defenses. Every few seconds and every time he basic attacks, he gains a stack of Living Armor, up to a maximum of 5 stacks. Each stack grants bonus Armor and Shield. Enemies can remove stacks of Living Armor by dealing damage to Grumpjaw. He loses one stack per 0.7 second while taking damage from basic attacks and abilities.\nDETAILS:\n+ 6% damage reduction per stack",
       "ability2": "Grumpy",
       "ability2_desc": "Grumpjaw charges to a target location, dealing crystal damage and slowing enemies in an area upon reaching his destination. Grumpjaw deals bonus damage for each stack of Living Armor.",
-      "ability2_detail": "DETAILS:\nRange: 10/10/10/10/10\nDamage: 75/125/175/225/325 (50% Crystal Ratio)\nStack: 20/35/50/65/95 (10% Crystal Ratio)\nSlow: 55%/55%/55%/55%/55%",
+      "ability2_detail": "DETAILS:\nRange: 10/10/10/10/10\nDamage: 75/125/175/225/325 (50% Crystal Ratio)\nStack: 10/25/40/55/85 (10% Crystal Ratio)\nSlow: 55%/55%/55%/55%/55%",
       "ability2_cd": [12,11,10,9,8],
       "ability2_mana": [50,60,70,80,90],
       "ability3": "Hangry",
       "ability3_desc": "Grumpjaw leaps toward his target and attacks them. Afterward, he gains bonus weapon damage and attack speed for several seconds.",
-      "ability3_detail": "DETAILS:\nBonus Speed Duration: 4/4/4/4/5\nDamage: 20/40/60/80/100 (80% Crystal Ratio)\nAttack Speed: 20%/30%/40%/50%/60%",
+      "ability3_detail": "DETAILS:\nBonus Speed Duration: 4/4/4/4/5\nDamage: 20/40/60/80/100 (80% Crystal Ratio)\nAttack Speed: 10%/20%/30%/40%/50%",
       "ability3_cd":[9,9,9,9,9],
       "ability3_mana": [30,40,50,60,70],
       "ability4": "Stuffed",
@@ -306,7 +306,7 @@
       "ability2_mana": [0,0,0,0,0],
       "ability3": "Chakram",
       "ability3_desc": "Idris throws a chakram that returns to him, damaging enemies each time it passes over them. Hitting enemy heroes, miners, or kraken recovers stamina. Idris can use his Shroudstep and Shimmer Strike abilities to avoid catching returning chakrams, giving him additional opportunities to strike enemies.",
-      "ability3_detail": "DETAILS:\nStamina Cost: 30/30/30/30/30\nDamage: 75/125/175/225/275 (130% Crystal Ratio) (100% Weapon Ratio)\nDmg to Minions: 75/100/125/150/175(25% Crystal Ratio) (25% Weapon Ratio)",
+      "ability3_detail": "DETAILS:\nStamina Cost: 30/30/30/30/30\nDamage: 75/125/175/225/275 (130% Crystal Ratio) (90% Weapon Ratio)\nDmg to Minions: 75/100/125/150/175(25% Crystal Ratio) (25% Weapon Ratio)",
       "ability3_cd":[8,7.5,7,6.5,5],
       "ability3_mana": [0,0,0,0,0],
       "ability4": "Shimmer Strike",
@@ -386,7 +386,7 @@
       "ability2": "Dead Man's Rush",
       "ability2_desc": "Krul dashes to the target, deals damage and applies basic-attack effects. Activating Dead Man's Rush grants Krul a health barrier for 2.5 seconds.",
       "ability2_detail": "DETAILS:\nBasic Attack Damage: 160%/160%/160%/160%/160%\nCrystal Damage: 0%/0%/0%/0%/0% (70% Crystal Ratio)\nBarrier: 100/180/260/340/420 (125% Crystal Ratio)\nDuration: 3/3/3/3/3",
-      "ability2_cd": [9,9,9,9,8],
+      "ability2_cd": [8,8,8,8,7],
       "ability2_mana": [45,50,55,60,65],
       "ability3": "Spectral Smite",
       "ability3_desc": "Passive: Basic attacks & abilities apply Weakness for 4 seconds (up to 8 stacks) with a 0.5% crystal ratio. Each stack reduces the target's damage by 6.2% and increases Krul's lifesteal against the weakened target.\n\nActivate: Detonate the stacks to deal damage and regain health based on the number of stacks consumed.",
@@ -526,6 +526,27 @@
       "ability4_mana": [100,100,100]
     },
     {
+      "hero": "Reza",
+      "hero_stats": [672,72,0,0,380,32,0,0,84,6.36,100,2.27,20,6,20,6,3,3.5],
+      "ability1": "Firestarter",
+      "ability1_desc": "Scorcher and Netherform Detonator apply Firestarter to enemy targets.\nReza's basic attacks consume Firestarter, dealing crystal damage.\nCrystal Damage: 20-185 (level 1-12) (+120% crystal power)",
+      "ability2": "Scorcher",
+      "ability2_desc": "Reza smashes the ground, creating a fiery shockwave in front of him. This deals damage to anything it passes through and collides with the first enemy hero or jungle monster hit.\nScorcher applies Firestarter on impact.",
+      "ability2_detail": "DETAILS:\nRange: 7/7/7/7/9\nDamage: 70/110/150/190/270 (70% Crystal Ratio)",
+      "ability2_cd": [6,5.5,5,4.5,4],
+      "ability2_mana": [30,40,50,60,70],
+      "ability3": "Troublemaker",
+      "ability3_desc": "Reza dashes to the target location, dealing damage to enemies he passes through.\nReza's next basic attack deals bonus crystal damage.\nThis ability has 2 charges.",
+      "ability3_detail": "DETAILS:\nCharge Time: 17s/16s/15s/14s/12s\nBonus Damage: 25/50/75/100/125 (80% Crystal Ratio)\nDamage: 70/100/130/160/190 (60% Crystal Ratio)",
+      "ability3_cd":[2,2,2,2,2],
+      "ability3_mana": [40,50,60,70,80],
+      "ability4": "Netherform Detonator",
+      "ability4_desc": "Reza vanishes, then reappears at the target location in empowered demon form.\nUpon reappearing, he unleashes a blazing explosion, damaging enemies and consuming Firestarter within the target radius.\nReza then applies Firestarter to all enemies nearby.\nEach basic attack now applies Firestarter on enemies without Firestarter on them.",
+      "ability4_detail": "DETAILS:\nDamage: 250/350/450 (50% Crystal Ratio)\nDuration: 4s/5s/6s\nFortified Health: 75/125/175 (10% Crystal Ratio)",
+      "ability4_cd": [50,45,40],
+      "ability4_mana": [100,120,140]
+    },
+    {
       "hero": "Ringo",
       "hero_stats": [646,69,2.15,0.23,163,21.45,1.2,0.15,66,5.9,100,3.3,20,6,20,6,6,3.1],
       "ability1": "Double Down",
@@ -553,7 +574,7 @@
       "ability1_desc": "Rona attacks 40% faster than most heroes, but she deals 80% damage with each attack.\n\nAdditionally, Rona's abilities use Bloodrage instead of energy, a unique resource that is generated from basic attacks, abilities and taking damage from enemies. This caps at 100 and decays when Rona leaves combat.\n\nThe ability also grants Rona 85% Weapon ratio.",
       "ability2": "Into the Fray",
       "ability2_desc": "Rona leaps into battle, gaining 20 bloodrage from colliding with each enemy hero. She also gains fortified health for 3 seconds based on the number of enemy heroes she hits. After a short delay, the ground ruptures for 3 seconds, slowing enemies who pass over it for 35%.",
-      "ability2_detail": "DETAILS:\nImpact Damage: 50/70/90/110/150 (100% Crystal Ratio)\nRupture Damage: 100/140/180/220/300 (200% Crystal Ratio)\nFortified Health: 30/40/50/60/80",
+      "ability2_detail": "DETAILS:\nImpact Damage: 50/70/90/110/150 (100% Crystal Ratio)\nRupture Damage: 100/140/180/220/300 (200% Crystal Ratio)\nFortified Health: 30/45/60/75/105",
       "ability2_cd": [13,12,11,10,9],
       "ability2_mana": [0,0,0,0,0],
       "ability3": "Foesplitter",
@@ -637,7 +658,7 @@
       "ability1_desc": "Skye locks onto and reveals the target she most recently basic attacked. Basic attacks and Forward Barrage on that locked target grant her up to 2 move speed for 1.2 seconds. This speed bonus is dramatically reduced while moving backward. Target Lock is lost if the target moves more than 8.5 meters away from Skye or if she doesn't attack her target for 3 seconds.",
       "ability2": "Forward Barrage",
       "ability2_desc": "Skye fires a continuous stream of bullets while strafing in a selected direction. Reactivate this ability to stop firing.\n\nThe duration increases with Skye's crystal power up to a max of 3 seconds. Weapon damage can critically strike with bonus critical damage. Deals bonus damage to locked targets. Deals 60% damage to structures & bosses.",
-      "ability2_detail": "DETAILS:\nDamage/sec: 160/200/240/280/360 (210% Crystal Ratio) (70% Weapon Ratio)\nBonus Crit Damage: 100%/100%/100%/100%/150%\nLock-On Damage Bonus: 10%/10%/10%/10%/10% (10% Crystal Ratio)\nSlow: 0%/0%/0%/0%/0% (20% Weapon Ratio)",
+      "ability2_detail": "DETAILS:\nDamage/sec: 160/200/240/280/360 (120% Crystal Ratio) (70% Weapon Ratio)\nBonus Crit Damage: 100%/100%/100%/100%/150%\nLock-On Damage Bonus: 33.3%/33.3%/33.3%/33.3%/33.3% (10% Crystal Ratio)\nSlow: 0%/0%/0%/0%/0% (20% Weapon Ratio)",
       "ability2_cd": [6,6,6,6,5],
       "ability2_mana": [60,70,80,90,100],
       "ability3": "Suri Strike",
@@ -680,7 +701,7 @@
       "ability2": "Sonic Zoom",
       "ability2_desc": "Vox dashes in the targeted direction, throwing two basic attacks to the nearest enemy marked by Resonance (prioritizing heroes).",
       "ability2_detail": "DETAILS:\nBasic Attack Damage: 50%/50%/50%/50%/60%",
-      "ability2_cd": [5,4.5,4,3.5,3],
+      "ability2_cd": [6,5.5,5,4.5,4],
       "ability2_mana": [40,40,40,40,40],
       "ability3": "Pulse",
       "ability3_desc": "Vox emits a sonic pulse that echoes off nearby enemies and applies Resonance. The pulse applies a slow that is significantly stronger near its center and lasts 1.2 seconds. Each upgrade to Pulse increases the damage of Vox's bouncing attacks to enemy heroes.",
@@ -814,7 +835,7 @@
       "item": "Echo",
       "category": "Ability",
       "cost": "2200",
-      "desc": "ACTIVATE\n\nThe last ability to be put on cooldown is refreshed (115% of the ability’s cooldown + 25s cooldown)\nSTATS\n\n300 Max Energy\n4 Energy Recharge\nBUILD PATH\n\nVoid Battery (700) + 1500 = 2200\nSells for 1100 gold"
+      "desc": "ACTIVATE\n\nThe last ability to be put on cooldown is refreshed (115% of the ability’s cooldown + 10s cooldown)\nSTATS\n\n300 Max Energy\n4 Energy Recharge\nBUILD PATH\n\nVoid Battery (700) + 1500 = 2200\nSells for 1100 gold"
     },
     {
       "item": "Eclipse Prism",
@@ -957,7 +978,7 @@
     {
       "item": "Nullwave Gauntlet",
       "category": "Utility",
-      "cost": "2400",
+      "cost": "2200",
       "desc": "ACTIVATE\n\nFire a blast at a targeted enemy hero, item silencing for 4s and dealing 50-100 + 15% max health in crystal damage (35s cooldown).\nSTATS\n\n400 Health\n25% Cooldown Speed\n4 Energy Recharge\nBUILD PATH\n\nDragonheart (650) + Chronograph (800) + 950 = 2400\nSells for 1200 gold"
     },
     {
@@ -982,7 +1003,7 @@
       "item": "Poisoned Shiv",
       "category": "Weapon",
       "cost": "2250",
-      "desc": "PASSIVES\n\nEvery 3 basic attacks will apply a mortal wound for 2s.\nBarbed Needle\n\nSTATS\n\n35 Weapon Power\n30% Attack Speed\n10% Lifesteal\n\nBUILD PATH\n\nBlazing Salvo (700) + Barbed Needle (800) + 750 = 2250\nSells for 1125 gold"
+      "desc": "PASSIVES\n\nEvery 3 basic attacks will apply a mortal wound for 2s.\nBarbed Needle\n\nSTATS\n\n30 Weapon Power\n30% Attack Speed\n10% Lifesteal\n\nBUILD PATH\n\nBlazing Salvo (700) + Barbed Needle (800) + 750 = 2250\nSells for 1125 gold"
     },
     {
       "item": "Pot of Gold",
@@ -1024,7 +1045,7 @@
       "item": "Shiversteel",
       "category": "Utility",
       "cost": "1450",
-      "desc": "Activate: For the next 4 (6 if you are melee) seconds, your basic attacks slow the target by 40% for 1.2 seconds. (18s cooldown)\n\n+500 Max Health\n\n\n(Use this to slow fleeing enemies.)"
+      "desc": "Activate: For the next 4 (6 if you are melee) seconds, your basic attacks slow the target by 40% for 1.4 seconds. (15s cooldown)\n\n+500 Max Health\n\n\n(Use this to slow fleeing enemies.)"
     },
     {
       "item": "Six Sins",
@@ -1072,7 +1093,7 @@
       "item": "Tension Bow",
       "category": "Weapon",
       "cost": "2300",
-      "desc": "+12% Armor Pierce\n+45 Weapon Power\n\nPassive: Every 6 seconds, your next basic attack will deal 180 bonus damage.\n\n(Ann effective way to surprise enemies with a sudden burst of damage.)"
+      "desc": "+10% Armor Pierce\n+45 Weapon Power\n\nPassive: Every 6 seconds, your next basic attack will deal 180 bonus damage.\n\n(Ann effective way to surprise enemies with a sudden burst of damage.)"
     },
     {
       "item": "Tornado Trigger",
