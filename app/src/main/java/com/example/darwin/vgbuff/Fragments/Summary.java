@@ -224,7 +224,14 @@ public class Summary extends Fragment{
 
                 String tempRole = "CARRY";
 
-                if (vaingloryHeroAndMatches.playerToBeSearched.level != null) {
+                if (vaingloryHeroAndMatches.playerToBeSearched.level != null &&
+                        vaingloryHeroAndMatches.playerToBeSearched.playerName != null &&
+                        vaingloryHeroAndMatches.serverLoc != null &&
+                        vaingloryHeroAndMatches.user != null &&
+                        vaingloryHeroAndMatches.dataRaw != null &&
+                        vaingloryHeroAndMatches.playerToBeSearched != null &&
+                        vaingloryHeroAndMatches.playerToBeSearched.playerID != null
+                        ) {
 
 
                     // Set the date
@@ -566,7 +573,12 @@ public class Summary extends Fragment{
                         // remove loading animation
                         dialog.dismiss();
 
-                        if (vaingloryHeroAndMatches.playerToBeSearched.level != null) {
+                        if (vaingloryHeroAndMatches.playerToBeSearched.level != null &&
+                                vaingloryHeroAndMatches.playerToBeSearched.playerName != null &&
+                                vaingloryHeroAndMatches.serverLoc != null &&
+                                vaingloryHeroAndMatches.user != null &&
+                                vaingloryHeroAndMatches.dataRaw != null
+                                ) {
                             // set View, does not need another thread
                             userView.setText(vaingloryHeroAndMatches.playerToBeSearched.playerName);
                             totalWinView.setText(Html.fromHtml("<font color='" + colorFont + "'>LEVEL   </font>   " + vaingloryHeroAndMatches.playerToBeSearched.level));
@@ -790,7 +802,14 @@ public class Summary extends Fragment{
 
                     String tempRole = "CARRY";
 
-                    if (vaingloryHeroAndMatches.playerToBeSearched.level != null) {
+                    if (vaingloryHeroAndMatches.playerToBeSearched.level != null &&
+                            vaingloryHeroAndMatches.playerToBeSearched.playerName != null &&
+                            vaingloryHeroAndMatches.serverLoc != null &&
+                            vaingloryHeroAndMatches.user != null &&
+                            vaingloryHeroAndMatches.dataRaw != null &&
+                            vaingloryHeroAndMatches.playerToBeSearched != null &&
+                            vaingloryHeroAndMatches.playerToBeSearched.playerID != null
+                            ) {
 
 
                         // Set the date
@@ -1132,7 +1151,12 @@ public class Summary extends Fragment{
                             // remove loading animation
                             dialog.dismiss();
 
-                            if (vaingloryHeroAndMatches.playerToBeSearched.level != null) {
+                            if (vaingloryHeroAndMatches.playerToBeSearched.level != null &&
+                                    vaingloryHeroAndMatches.playerToBeSearched.playerName != null &&
+                                    vaingloryHeroAndMatches.serverLoc != null &&
+                                    vaingloryHeroAndMatches.user != null &&
+                                    vaingloryHeroAndMatches.dataRaw != null
+                                    ) {
                                 // set View, does not need another thread
                                 userView.setText(vaingloryHeroAndMatches.playerToBeSearched.playerName);
                                 totalWinView.setText(Html.fromHtml("<font color='" + colorFont + "'>LEVEL   </font>   " + vaingloryHeroAndMatches.playerToBeSearched.level));

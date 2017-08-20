@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,8 +17,6 @@ import android.support.v4.app.FragmentManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,9 +27,6 @@ import android.widget.Toast;
 
 import com.example.darwin.vgbuff.R;
 import com.example.darwin.vgbuff.VaingloryHeroAndMatches;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,7 +95,6 @@ public class MatchDetail extends Fragment {
                     Log.e("Permission", "Denied");
                     Toast.makeText(getActivity().getApplicationContext(),"Access Denied",Toast.LENGTH_LONG).show();
                 }
-                return;
             }
         }
     }
@@ -269,7 +262,7 @@ public class MatchDetail extends Fragment {
 
     // Read Json Database
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try {
 
             InputStream is = getActivity().getAssets().open("vainglory_database.json");
@@ -323,9 +316,6 @@ public class MatchDetail extends Fragment {
 
         final String tempUser = user;
         final String tempServer = server;
-        final String dataRawSend;
-        final String userSend;
-        final String serverLocSend;
         final Summary summary = new Summary();
 
         new Thread (){
@@ -335,7 +325,7 @@ public class MatchDetail extends Fragment {
                 final VaingloryHeroAndMatches vaingloryHeroAndMatches = new VaingloryHeroAndMatches();
                 vaingloryHeroAndMatches.setPlayer(tempUser);
                 vaingloryHeroAndMatches.setServerLoc(tempServer);
-                vaingloryHeroAndMatches.getRawData();;
+                vaingloryHeroAndMatches.getRawData();
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -530,1161 +520,1163 @@ public class MatchDetail extends Fragment {
 
                     String mode = dataToMatchDetailPage.getString("mode");
 
-                    if (mode.equals("ALL"))
-                        vaingloryHeroAndMatches.getMatchesHistory();
-                    else if (mode.equals("RANKED"))
-                        vaingloryHeroAndMatches.getMatchesHistoryRanked();
+                    if (mode != null){
+                        if (mode.equals("ALL"))
+                            vaingloryHeroAndMatches.getMatchesHistory();
+                        else if (mode.equals("RANKED"))
+                            vaingloryHeroAndMatches.getMatchesHistoryRanked();
 
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
 
-                            if (vaingloryHeroAndMatches.matches.matchID != null) {
+                                if (vaingloryHeroAndMatches.matches.matchID != null) {
 
-                                // remove loading animation
-                                dialog.dismiss();
-                                Log.i("user name",dataToMatchDetailPage.getString("player"));
+                                    // remove loading animation
+                                    dialog.dismiss();
+                                    Log.i("user name",dataToMatchDetailPage.getString("player"));
 
-                                // sharebutton onclick listener
-                                shareButton.setOnClickListener(new View.OnClickListener() {
+                                    // sharebutton onclick listener
+                                    shareButton.setOnClickListener(new View.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                if (!Settings.System.canWrite(getContext())) {
+                                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                            Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
+                                                }
+                                            }
+                                        }
+                                    });
+
+
+                                    Date[] datePlayed;
+                                    DateFormat pf;
+
+                                    // Set the date
+                                    TimeZone tz = TimeZone.getTimeZone("UTC");
+                                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+                                    df.setTimeZone(tz);
+
+                                    // Sort the date
+                                    sortedPos = new Integer[vaingloryHeroAndMatches.matches.matchID.length];
+                                    datePlayed = new Date[vaingloryHeroAndMatches.matches.matchID.length];
+
+                                    // Parse the string date to date variable type
+                                    for (int j = 0; j<vaingloryHeroAndMatches.matches.matchID.length; j++){
+
+                                        sortedPos[j] = j;
+
+                                        try {
+                                            datePlayed[j] = df.parse(vaingloryHeroAndMatches.matches.rawCreatedAt[j]);
+                                            //Log.i("date",datePlayed[j].toString());
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+
+                                    //for (int z = 0; z < sortedPos.length ; z++ ) Log.i("unsorted", sortedPos[z].toString());
+
+                                    // Sort the date and get the indices
+                                    ArrayIndexComparator comparator = new ArrayIndexComparator(datePlayed);
+                                    sortedPos = comparator.createIndexArray();
+                                    Arrays.sort(sortedPos,comparator);
+
+                                    //for (int z = 0; z < sortedPos.length ; z++ ) Log.i("sorted", sortedPos[z].toString());
+
+                                    pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+                                    // set font
+                                    //Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(),"woodcutternoise.ttf");
+                                    //teamblueView.setTypeface(titleFont);
+                                    //teamredView.setTypeface(titleFont);
+                                    //blueView.setTypeface(titleFont);
+                                    //redView.setTypeface(titleFont);
+                                    //killsBlueView.setTypeface(titleFont);
+                                    //killsRedView.setTypeface(titleFont);
+                                    //resultBlueView.setTypeface(titleFont);
+                                    //resultRedView.setTypeface(titleFont);
+                                    //krakenBlueView.setTypeface(titleFont);
+                                    //krakenRedView.setTypeface(titleFont);
+                                    //aceBlueView.setTypeface(titleFont);
+                                    //aceRedView.setTypeface(titleFont);
+                                    //goldBlueView.setTypeface(titleFont);
+                                    //goldRedView.setTypeface(titleFont);
+                                    //durationView.setTypeface(titleFont);
+
+                                    // Format duration
+                                    String seconds;
+                                    if ( vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]]%60 < 10)
+                                        seconds = "0" + String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])%60);
+                                    else
+                                        seconds = String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])%60);
+
+                                    // set summary
+                                    blueView.setText("TEAM BLUE");
+                                    redView.setText("TEAM RED");
+                                    durationView.setText("MATCH DETAIL\n"+String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])/60)+":"+seconds);
+                                    killsBlueView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills1[sortedPos[sortedPos.length-1-matchPos]]));
+                                    killsRedView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills2[sortedPos[sortedPos.length-1-matchPos]]));
+                                    krakenBlueView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken1[sortedPos[sortedPos.length-1-matchPos]]));
+                                    krakenRedView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken2[sortedPos[sortedPos.length-1-matchPos]]));
+                                    aceBlueView.setText("ACES: "+String.valueOf(vaingloryHeroAndMatches.matches.ace1[sortedPos[sortedPos.length-1-matchPos]]));
+                                    aceRedView.setText("ACES: "+String.valueOf(vaingloryHeroAndMatches.matches.ace2[sortedPos[sortedPos.length-1-matchPos]]));
+                                    goldBlueView.setText("GOLD: "+String.valueOf(vaingloryHeroAndMatches.matches.gold1[sortedPos[sortedPos.length-1-matchPos]]));
+                                    goldRedView.setText("GOLD: "+String.valueOf(vaingloryHeroAndMatches.matches.gold2[sortedPos[sortedPos.length-1-matchPos]]));
+
+                                    // set user name 1
+                                    userView.setText(vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    dateView.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
+                                    kdaView.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].assists));
+
+                                    // Get the ranked level
+                                    resultView.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
+
+                                    if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].win) {
+                                        teamblueView.setText("TEAM BLUE: VICTORY");
+                                        resultBlueView.setText("VICTORY");
+                                    } else {
+                                        teamblueView.setText("TEAM BLUE: DEFEAT");
+                                        resultBlueView.setText("DEFEAT");
+                                    }
+                                    minionsView.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].minionKills));
+                                    krakenView.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].kraken));
+                                    turretView.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].turret));
+
+                                    // set user name 2
+                                    userView2.setText(vaingloryHeroAndMatches.matches.player12[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    dateView2.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
+                                    kdaView2.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].assists));
+
+                                    // Get the ranked level
+                                    resultView2.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
+
+                                    minionsView2.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].minionKills));
+                                    krakenView2.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].kraken));
+                                    turretView2.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].turret));
+
+                                    // set user name 3
+                                    userView3.setText(vaingloryHeroAndMatches.matches.player13[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    dateView3.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
+                                    kdaView3.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].assists));
+
+                                    // Get the ranked level
+                                    resultView3.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
+
+                                    minionsView3.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].minionKills));
+                                    krakenView3.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].kraken));
+                                    turretView3.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].turret));
+
+                                    // set user name 4
+                                    userView4.setText(vaingloryHeroAndMatches.matches.player21[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    dateView4.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
+                                    kdaView4.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].assists));
+
+                                    // Get the ranked level
+                                    resultView4.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
+
+                                    if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].win) {
+                                        teamredView.setText("TEAM RED: VICTORY");
+                                        resultRedView.setText("VICTORY");
+                                    } else {
+                                        teamredView.setText("TEAM RED: DEFEAT");
+                                        resultRedView.setText("DEFEAT");
+                                    }
+                                    minionsView4.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].minionKills));
+                                    krakenView4.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].kraken));
+                                    turretView4.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].turret));
+
+                                    // set user name 5
+                                    userView5.setText(vaingloryHeroAndMatches.matches.player22[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    dateView5.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
+                                    kdaView5.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].assists));
+
+                                    // Get the ranked level
+                                    resultView5.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
+
+                                    minionsView5.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].minionKills));
+                                    krakenView5.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].kraken));
+                                    turretView5.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].turret));
+
+                                    // set user name 6
+                                    userView6.setText(vaingloryHeroAndMatches.matches.player23[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    dateView6.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
+                                    kdaView6.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].assists));
+
+                                    // Get the ranked level
+                                    resultView6.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
+
+                                    minionsView6.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].minionKills));
+                                    krakenView6.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].kraken));
+                                    turretView6.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].turret));
+
+
+                                    // Item images dan hero images
+                                    String[] item1 = new String[6];
+                                    String[] item2 = new String[6];
+                                    String[] item3 = new String[6];
+                                    String[] item4 = new String[6];
+                                    String[] item5 = new String[6];
+                                    String[] item6 = new String[6];
+
+                                    Integer[] itemsImage1 = new Integer[6];
+                                    Integer[] itemsImage2 = new Integer[6];
+                                    Integer[] itemsImage3 = new Integer[6];
+                                    Integer[] itemsImage4 = new Integer[6];
+                                    Integer[] itemsImage5 = new Integer[6];
+                                    Integer[] itemsImage6 = new Integer[6];
+
+                                    String[] heroes = new String[6];
+                                    Integer[] heroesImage = new Integer[6];
+
+                                    JSONArray itemsJsonArr;
+                                    JSONObject vgDatabase;
+
+                                    // Set Images
+                                    try {
+
+
+                                        vgDatabase = new JSONObject(heroesDatabase);
+                                        itemsJsonArr = new JSONArray(vgDatabase.getString("items"));
+
+                                        // Get heroes data and create JSON array of it
+                                        JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
+
+                                        // Get id of the hero's image thumbnail
+                                        for (int i = 0; i<heroesJsonArr.length();i++){
+
+                                            // Find hero
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
+                                                heroes[0] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                                heroesImage[0] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
+                                                heroes[1] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                                heroesImage[1] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
+                                                heroes[2] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                                heroesImage[2] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
+                                                heroes[3] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                                heroesImage[3] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
+                                                heroes[4] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                                heroesImage[4] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
+                                                heroes[5] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                                heroesImage[5] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
+                                            }
+
+
+                                            //Log.i("hero",heroesJsonArr.getJSONObject(i).getString("hero"));
+
+                                        }
+
+
+                                        for (int i = 0; i < itemsJsonArr.length(); i++) {
+
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item1[0] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item1[0];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage1[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename0", fileName);
+
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item2[0] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item2[0];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage2[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename1", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item3[0] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item3[0];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage3[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename2", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item4[0] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item4[0];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage4[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename3", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item5[0] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item5[0];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage5[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                Log.i("filename4", fileName);
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item6[0] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item6[0];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage6[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename5", fileName);
+
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item1[1] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item1[1];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage1[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename0", fileName);
+
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item2[1] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item2[1];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage2[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename1", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item3[1] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item3[1];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage3[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename2", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item4[1] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item4[1];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage4[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename3", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item5[1] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item5[1];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage5[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename4", fileName);
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item6[1] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item6[1];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage6[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename5", fileName);
+
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item1[2] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item1[2];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage1[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename0", fileName);
+
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item2[2] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item2[2];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage2[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename1", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item3[2] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item3[2];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage3[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename2", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item4[2] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item4[2];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage4[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename3", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item5[2] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item5[2];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage5[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename4", fileName);
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item6[2] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item6[2];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage6[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename5", fileName);
+
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item1[3] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item1[3];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage1[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename0", fileName);
+
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item2[3] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item2[3];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage2[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename1", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item3[3] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item3[3];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage3[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename2", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item4[3] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item4[3];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage4[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename3", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item5[3] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item5[3];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage5[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename4", fileName);
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item6[3] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item6[3];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage6[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename5", fileName);
+
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item1[4] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item1[4];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage1[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename0", fileName);
+
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item2[4] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item2[4];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage2[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename1", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item3[4] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item3[4];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage3[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename2", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item4[4] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item4[4];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage4[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename3", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item5[4] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item5[4];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage5[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename4", fileName);
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item6[4] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item6[4];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage6[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename5", fileName);
+
+                                            }
+
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item1[5] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item1[5];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage1[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename0", fileName);
+
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item2[5] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item2[5];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage2[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename1", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item3[5] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item3[5];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage3[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename2", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item4[5] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item4[5];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage4[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename3", fileName);
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item5[5] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item5[5];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage5[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename4", fileName);
+
+                                            }
+                                            if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
+                                                item6[5] = itemsJsonArr.getJSONObject(i).getString("item");
+
+                                                //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
+
+                                                // Create appropriate file call
+                                                String itemName = item6[5];
+                                                String[] arr = itemName.split(" ");
+                                                String fileName = "item";
+
+                                                //Concatenate file name with underscore
+                                                for (String ss : arr) {
+                                                    fileName = fileName + "_" + ss.toLowerCase();
+                                                }
+
+                                                itemsImage6[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
+                                                //Log.i("filename5", fileName);
+
+                                            }
+
+                                        }
+                                    } catch (JSONException e) {
+
+                                        e.printStackTrace();
+
+                                    }
+
+                                    // Set Hero and Item Images
+                                    heroView.setImageResource(heroesImage[0]);
+                                    heroView2.setImageResource(heroesImage[1]);
+                                    heroView3.setImageResource(heroesImage[2]);
+                                    heroView4.setImageResource(heroesImage[3]);
+                                    heroView5.setImageResource(heroesImage[4]);
+                                    heroView6.setImageResource(heroesImage[5]);
+
+                                    if (itemsImage1[0]!= null)
+                                        item1View.setImageResource(itemsImage1[0]);
+                                    if (itemsImage2[0]!= null)
+                                        item2View.setImageResource(itemsImage2[0]);
+                                    if (itemsImage3[0]!= null)
+                                        item3View.setImageResource(itemsImage3[0]);
+                                    if (itemsImage4[0]!= null)
+                                        item4View.setImageResource(itemsImage4[0]);
+                                    if (itemsImage5[0]!= null)
+                                        item5View.setImageResource(itemsImage5[0]);
+                                    if (itemsImage6[0]!= null)
+                                        item6View.setImageResource(itemsImage6[0]);
+
+                                    if (itemsImage1[1]!= null)
+                                        item1View2.setImageResource(itemsImage1[1]);
+                                    if (itemsImage2[1]!= null)
+                                        item2View2.setImageResource(itemsImage2[1]);
+                                    if (itemsImage3[1]!= null)
+                                        item3View2.setImageResource(itemsImage3[1]);
+                                    if (itemsImage4[1]!= null)
+                                        item4View2.setImageResource(itemsImage4[1]);
+                                    if (itemsImage5[1]!= null)
+                                        item5View2.setImageResource(itemsImage5[1]);
+                                    if (itemsImage6[1]!= null)
+                                        item6View2.setImageResource(itemsImage6[1]);
+
+                                    if (itemsImage1[2]!= null)
+                                        item1View3.setImageResource(itemsImage1[2]);
+                                    if (itemsImage2[2]!= null)
+                                        item2View3.setImageResource(itemsImage2[2]);
+                                    if (itemsImage3[2]!= null)
+                                        item3View3.setImageResource(itemsImage3[2]);
+                                    if (itemsImage4[2]!= null)
+                                        item4View3.setImageResource(itemsImage4[2]);
+                                    if (itemsImage5[2]!= null)
+                                        item5View3.setImageResource(itemsImage5[2]);
+                                    if (itemsImage6[2]!= null)
+                                        item6View3.setImageResource(itemsImage6[2]);
+
+                                    if (itemsImage1[3]!= null)
+                                        item1View4.setImageResource(itemsImage1[3]);
+                                    if (itemsImage2[3]!= null)
+                                        item2View4.setImageResource(itemsImage2[3]);
+                                    if (itemsImage3[3]!= null)
+                                        item3View4.setImageResource(itemsImage3[3]);
+                                    if (itemsImage4[3]!= null)
+                                        item4View4.setImageResource(itemsImage4[3]);
+                                    if (itemsImage5[3]!= null)
+                                        item5View4.setImageResource(itemsImage5[3]);
+                                    if (itemsImage6[3]!= null)
+                                        item6View4.setImageResource(itemsImage6[3]);
+
+                                    if (itemsImage1[4]!= null)
+                                        item1View5.setImageResource(itemsImage1[4]);
+                                    if (itemsImage2[4]!= null)
+                                        item2View5.setImageResource(itemsImage2[4]);
+                                    if (itemsImage3[4]!= null)
+                                        item3View5.setImageResource(itemsImage3[4]);
+                                    if (itemsImage4[4]!= null)
+                                        item4View5.setImageResource(itemsImage4[4]);
+                                    if (itemsImage5[4]!= null)
+                                        item5View5.setImageResource(itemsImage5[4]);
+                                    if (itemsImage6[4]!= null)
+                                        item6View5.setImageResource(itemsImage6[4]);
+
+                                    if (itemsImage1[5]!= null)
+                                        item1View6.setImageResource(itemsImage1[5]);
+                                    if (itemsImage2[5]!= null)
+                                        item2View6.setImageResource(itemsImage2[5]);
+                                    if (itemsImage3[5]!= null)
+                                        item3View6.setImageResource(itemsImage3[5]);
+                                    if (itemsImage4[5]!= null)
+                                        item4View6.setImageResource(itemsImage4[5]);
+                                    if (itemsImage5[5]!= null)
+                                        item5View6.setImageResource(itemsImage5[5]);
+                                    if (itemsImage6[5]!= null)
+                                        item6View6.setImageResource(itemsImage6[5]);
+
+                                } else {
+
+                                    // remove loading animation
+                                    dialog.dismiss();
+
+                                    Log.i("Not found","Not found");
+                                    Toast.makeText(getActivity().getApplicationContext(),"Player not found",Toast.LENGTH_LONG).show();
+                                }
+
+                                // User On Click Action
+
+                                Button searchButton = (Button) view.findViewById(R.id.searchButton);
+                                Button searchButton2 = (Button) view.findViewById(R.id.searchButton2);
+                                Button searchButton3 = (Button) view.findViewById(R.id.searchButton3);
+                                Button searchButton4 = (Button) view.findViewById(R.id.searchButton4);
+                                Button searchButton5 = (Button) view.findViewById(R.id.searchButton5);
+                                Button searchButton6 = (Button) view.findViewById(R.id.searchButton6);
+
+                                searchButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    }
+                                });
+
+                                // User On Click Action
+                                searchButton2.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player12[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    }
+                                });
+
+                                // User On Click Action
+                                searchButton3.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player13[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    }
+                                });
+
+                                // User On Click Action
+                                searchButton4.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player21[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    }
+                                });
+
+                                // User On Click Action
+                                searchButton5.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player22[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    }
+                                });
+
+                                // User On Click Action
+                                searchButton6.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player23[sortedPos[sortedPos.length-1-matchPos]].userName);
+
+                                    }
+                                });
+
+                                // Print telemetry
+                                //Log.i("Asset ID",vaingloryHeroAndMatches.matches.matchAssetTelemetryID[sortedPos[sortedPos.length-1-matchPos]]);
+                                //Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
+
+
+                                final Button telemetryButton = (Button) view.findViewById(R.id.detailButton);
+                                telemetryButton.setOnClickListener(new View.OnClickListener() {
 
                                     @Override
                                     public void onClick(View v) {
 
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                            if (!Settings.System.canWrite(getContext())) {
-                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                                        Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
-                                            }
+                                        // Open Fragment HeroesPage and set back button to go to previous fragment
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                                        // Init data for next fragment
+                                        Bundle dataToDetail = new Bundle();
+                                        dataToDetail.putString("URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
+
+                                        // Init telemetry fragment
+                                        TelemetryFragment telemetryFragment = new TelemetryFragment();
+                                        telemetryFragment.setArguments(dataToDetail);
+
+                                        // Open fragment
+                                        if (!telemetryFragment.isAdded()) {
+                                            fragmentManager.beginTransaction().add(R.id.content_frame,telemetryFragment).addToBackStack(null).commit();
                                         }
+
+                                        //fragmentManager.beginTransaction().replace(R.id.content_frame, telemetryFragment).commit();
+
                                     }
+
                                 });
-
-
-                                Date[] datePlayed;
-                                DateFormat pf;
-
-                                // Set the date
-                                TimeZone tz = TimeZone.getTimeZone("UTC");
-                                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
-                                df.setTimeZone(tz);
-
-                                // Sort the date
-                                sortedPos = new Integer[vaingloryHeroAndMatches.matches.matchID.length];
-                                datePlayed = new Date[vaingloryHeroAndMatches.matches.matchID.length];
-
-                                // Parse the string date to date variable type
-                                for (int j = 0; j<vaingloryHeroAndMatches.matches.matchID.length; j++){
-
-                                    sortedPos[j] = j;
-
-                                    try {
-                                        datePlayed[j] = df.parse(vaingloryHeroAndMatches.matches.rawCreatedAt[j]);
-                                        //Log.i("date",datePlayed[j].toString());
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-                                //for (int z = 0; z < sortedPos.length ; z++ ) Log.i("unsorted", sortedPos[z].toString());
-
-                                // Sort the date and get the indices
-                                ArrayIndexComparator comparator = new ArrayIndexComparator(datePlayed);
-                                sortedPos = comparator.createIndexArray();
-                                Arrays.sort(sortedPos,comparator);
-
-                                //for (int z = 0; z < sortedPos.length ; z++ ) Log.i("sorted", sortedPos[z].toString());
-
-                                pf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-                                // set font
-                                Typeface titleFont = Typeface.createFromAsset(getActivity().getAssets(),"woodcutternoise.ttf");
-                                //teamblueView.setTypeface(titleFont);
-                                //teamredView.setTypeface(titleFont);
-                                //blueView.setTypeface(titleFont);
-                                //redView.setTypeface(titleFont);
-                                //killsBlueView.setTypeface(titleFont);
-                                //killsRedView.setTypeface(titleFont);
-                                //resultBlueView.setTypeface(titleFont);
-                                //resultRedView.setTypeface(titleFont);
-                                //krakenBlueView.setTypeface(titleFont);
-                                //krakenRedView.setTypeface(titleFont);
-                                //aceBlueView.setTypeface(titleFont);
-                                //aceRedView.setTypeface(titleFont);
-                                //goldBlueView.setTypeface(titleFont);
-                                //goldRedView.setTypeface(titleFont);
-                                //durationView.setTypeface(titleFont);
-
-                                // Format duration
-                                String seconds;
-                                if ( vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]]%60 < 10)
-                                    seconds = "0" + String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])%60);
-                                else
-                                    seconds = String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])%60);
-
-                                                    // set summary
-                                blueView.setText("TEAM BLUE");
-                                redView.setText("TEAM RED");
-                                durationView.setText("MATCH DETAIL\n"+String.valueOf((vaingloryHeroAndMatches.matches.duration[sortedPos[sortedPos.length-1-matchPos]])/60)+":"+seconds);
-                                killsBlueView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills1[sortedPos[sortedPos.length-1-matchPos]]));
-                                killsRedView.setText("KILLS: "+String.valueOf(vaingloryHeroAndMatches.matches.heroKills2[sortedPos[sortedPos.length-1-matchPos]]));
-                                krakenBlueView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken1[sortedPos[sortedPos.length-1-matchPos]]));
-                                krakenRedView.setText("KRAKENS: "+String.valueOf(vaingloryHeroAndMatches.matches.kraken2[sortedPos[sortedPos.length-1-matchPos]]));
-                                aceBlueView.setText("ACES: "+String.valueOf(vaingloryHeroAndMatches.matches.ace1[sortedPos[sortedPos.length-1-matchPos]]));
-                                aceRedView.setText("ACES: "+String.valueOf(vaingloryHeroAndMatches.matches.ace2[sortedPos[sortedPos.length-1-matchPos]]));
-                                goldBlueView.setText("GOLD: "+String.valueOf(vaingloryHeroAndMatches.matches.gold1[sortedPos[sortedPos.length-1-matchPos]]));
-                                goldRedView.setText("GOLD: "+String.valueOf(vaingloryHeroAndMatches.matches.gold2[sortedPos[sortedPos.length-1-matchPos]]));
-
-                                // set user name 1
-                                userView.setText(vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                dateView.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
-                                kdaView.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].assists));
-
-                                // Get the ranked level
-                                resultView.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
-
-                                if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].win) {
-                                    teamblueView.setText("TEAM BLUE: VICTORY");
-                                    resultBlueView.setText("VICTORY");
-                                } else {
-                                    teamblueView.setText("TEAM BLUE: DEFEAT");
-                                    resultBlueView.setText("DEFEAT");
-                                }
-                                minionsView.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].minionKills));
-                                krakenView.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].kraken));
-                                turretView.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].turret));
-
-                                // set user name 2
-                                userView2.setText(vaingloryHeroAndMatches.matches.player12[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                dateView2.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
-                                kdaView2.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].assists));
-
-                                // Get the ranked level
-                                resultView2.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
-
-                                minionsView2.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].minionKills));
-                                krakenView2.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].kraken));
-                                turretView2.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].turret));
-
-                                // set user name 3
-                                userView3.setText(vaingloryHeroAndMatches.matches.player13[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                dateView3.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
-                                kdaView3.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].assists));
-
-                                // Get the ranked level
-                                resultView3.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
-
-                                minionsView3.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].minionKills));
-                                krakenView3.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].kraken));
-                                turretView3.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].turret));
-
-                                // set user name 4
-                                userView4.setText(vaingloryHeroAndMatches.matches.player21[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                dateView4.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
-                                kdaView4.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].assists));
-
-                                // Get the ranked level
-                                resultView4.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
-
-                                if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].win) {
-                                    teamredView.setText("TEAM RED: VICTORY");
-                                    resultRedView.setText("VICTORY");
-                                } else {
-                                    teamredView.setText("TEAM RED: DEFEAT");
-                                    resultRedView.setText("DEFEAT");
-                                }
-                                minionsView4.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].minionKills));
-                                krakenView4.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].kraken));
-                                turretView4.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].turret));
-
-                                // set user name 5
-                                userView5.setText(vaingloryHeroAndMatches.matches.player22[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                dateView5.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
-                                kdaView5.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].assists));
-
-                                // Get the ranked level
-                                resultView5.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
-
-                                minionsView5.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].minionKills));
-                                krakenView5.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].kraken));
-                                turretView5.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].turret));
-
-                                // set user name 6
-                                userView6.setText(vaingloryHeroAndMatches.matches.player23[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                dateView6.setText(pf.format(datePlayed[sortedPos[sortedPos.length-1-matchPos]]));
-                                kdaView6.setText("K/D/A: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].kills) +" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].deaths)+" / "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].assists));
-
-                                // Get the ranked level
-                                resultView6.setText(Html.fromHtml(getSkillTier(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].skillTier)));
-
-                                minionsView6.setText("Minions: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].minionKills));
-                                krakenView6.setText("Krakens: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].kraken));
-                                turretView6.setText("Turrets: "+String.valueOf(vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].turret));
-
-
-                                // Item images dan hero images
-                                String[] item1 = new String[6];
-                                String[] item2 = new String[6];
-                                String[] item3 = new String[6];
-                                String[] item4 = new String[6];
-                                String[] item5 = new String[6];
-                                String[] item6 = new String[6];
-
-                                Integer[] itemsImage1 = new Integer[6];
-                                Integer[] itemsImage2 = new Integer[6];
-                                Integer[] itemsImage3 = new Integer[6];
-                                Integer[] itemsImage4 = new Integer[6];
-                                Integer[] itemsImage5 = new Integer[6];
-                                Integer[] itemsImage6 = new Integer[6];
-
-                                String[] heroes = new String[6];
-                                Integer[] heroesImage = new Integer[6];
-
-                                JSONArray itemsJsonArr;
-                                JSONObject vgDatabase;
-
-                                // Set Images
-                                try {
-
-
-                                    vgDatabase = new JSONObject(heroesDatabase);
-                                    itemsJsonArr = new JSONArray(vgDatabase.getString("items"));
-
-                                    // Get heroes data and create JSON array of it
-                                    JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
-
-                                                                        // Get id of the hero's image thumbnail
-                                    for (int i = 0; i<heroesJsonArr.length();i++){
-
-                                        // Find hero
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
-                                            heroes[0] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                            heroesImage[0] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
-                                            heroes[1] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                            heroesImage[1] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
-                                            heroes[2] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                            heroesImage[2] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
-                                            heroes[3] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                            heroesImage[3] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
-                                            heroes[4] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                            heroesImage[4] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].actor.substring(1,vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].actor.length()-1).equals(heroesJsonArr.getJSONObject(i).getString("hero"))) {
-                                            heroes[5] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                            heroesImage[5] = getActivity().getResources().getIdentifier("heroes_"+(heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase()+"_thumb","drawable",getActivity().getPackageName());
-                                        }
-
-
-                                        //Log.i("hero",heroesJsonArr.getJSONObject(i).getString("hero"));
-
-                                    }
-
-
-                                    for (int i = 0; i < itemsJsonArr.length(); i++) {
-
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item1[0] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item1[0];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage1[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename0", fileName);
-
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item2[0] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item2[0];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage2[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename1", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item3[0] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item3[0];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage3[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename2", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item4[0] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item4[0];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage4[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename3", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item5[0] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item5[0];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage5[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            Log.i("filename4", fileName);
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti11[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item6[0] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item6[0];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage6[0] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename5", fileName);
-
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item1[1] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item1[1];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage1[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename0", fileName);
-
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item2[1] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item2[1];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage2[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename1", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item3[1] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item3[1];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage3[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename2", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item4[1] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item4[1];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage4[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename3", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item5[1] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item5[1];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage5[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename4", fileName);
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti12[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item6[1] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item6[1];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage6[1] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename5", fileName);
-
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item1[2] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item1[2];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage1[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename0", fileName);
-
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item2[2] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item2[2];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage2[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename1", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item3[2] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item3[2];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage3[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename2", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item4[2] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item4[2];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage4[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename3", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item5[2] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item5[2];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage5[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename4", fileName);
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti13[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item6[2] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item6[2];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage6[2] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename5", fileName);
-
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item1[3] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item1[3];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage1[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename0", fileName);
-
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item2[3] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item2[3];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage2[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename1", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item3[3] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item3[3];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage3[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename2", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item4[3] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item4[3];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage4[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename3", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item5[3] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item5[3];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage5[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename4", fileName);
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti21[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item6[3] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item6[3];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage6[3] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename5", fileName);
-
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item1[4] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item1[4];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage1[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename0", fileName);
-
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item2[4] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item2[4];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage2[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename1", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item3[4] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item3[4];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage3[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename2", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item4[4] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item4[4];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage4[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename3", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item5[4] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item5[4];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage5[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename4", fileName);
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti22[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item6[4] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item6[4];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage6[4] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename5", fileName);
-
-                                        }
-
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[0].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item1[5] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item0", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item1[5];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage1[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename0", fileName);
-
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[1].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item2[5] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item1", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item2[5];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage2[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename1", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[2].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item3[5] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item2", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item3[5];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage3[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename2", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[3].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item4[5] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item3", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item4[5];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage4[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename3", fileName);
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[4].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item5[5] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item4", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item5[5];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage5[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename4", fileName);
-
-                                        }
-                                        if (vaingloryHeroAndMatches.matches.parti23[sortedPos[sortedPos.length-1-matchPos]].items[5].equals(itemsJsonArr.getJSONObject(i).getString("item"))) {
-                                            item6[5] = itemsJsonArr.getJSONObject(i).getString("item");
-
-                                            //Log.i("item5", itemsJsonArr.getJSONObject(i).getString("item"));
-
-                                            // Create appropriate file call
-                                            String itemName = item6[5];
-                                            String[] arr = itemName.split(" ");
-                                            String fileName = "item";
-
-                                            //Concatenate file name with underscore
-                                            for (String ss : arr) {
-                                                fileName = fileName + "_" + ss.toLowerCase();
-                                            }
-
-                                            itemsImage6[5] = getActivity().getResources().getIdentifier(fileName, "drawable", getActivity().getPackageName());
-                                            //Log.i("filename5", fileName);
-
-                                        }
-
-                                    }
-                                } catch (JSONException e) {
-
-                                    e.printStackTrace();
-
-                                }
-
-                                // Set Hero and Item Images
-                                heroView.setImageResource(heroesImage[0]);
-                                heroView2.setImageResource(heroesImage[1]);
-                                heroView3.setImageResource(heroesImage[2]);
-                                heroView4.setImageResource(heroesImage[3]);
-                                heroView5.setImageResource(heroesImage[4]);
-                                heroView6.setImageResource(heroesImage[5]);
-
-                                if (itemsImage1[0]!= null)
-                                    item1View.setImageResource(itemsImage1[0]);
-                                if (itemsImage2[0]!= null)
-                                    item2View.setImageResource(itemsImage2[0]);
-                                if (itemsImage3[0]!= null)
-                                    item3View.setImageResource(itemsImage3[0]);
-                                if (itemsImage4[0]!= null)
-                                    item4View.setImageResource(itemsImage4[0]);
-                                if (itemsImage5[0]!= null)
-                                    item5View.setImageResource(itemsImage5[0]);
-                                if (itemsImage6[0]!= null)
-                                    item6View.setImageResource(itemsImage6[0]);
-
-                                if (itemsImage1[1]!= null)
-                                    item1View2.setImageResource(itemsImage1[1]);
-                                if (itemsImage2[1]!= null)
-                                    item2View2.setImageResource(itemsImage2[1]);
-                                if (itemsImage3[1]!= null)
-                                    item3View2.setImageResource(itemsImage3[1]);
-                                if (itemsImage4[1]!= null)
-                                    item4View2.setImageResource(itemsImage4[1]);
-                                if (itemsImage5[1]!= null)
-                                    item5View2.setImageResource(itemsImage5[1]);
-                                if (itemsImage6[1]!= null)
-                                    item6View2.setImageResource(itemsImage6[1]);
-
-                                if (itemsImage1[2]!= null)
-                                    item1View3.setImageResource(itemsImage1[2]);
-                                if (itemsImage2[2]!= null)
-                                    item2View3.setImageResource(itemsImage2[2]);
-                                if (itemsImage3[2]!= null)
-                                    item3View3.setImageResource(itemsImage3[2]);
-                                if (itemsImage4[2]!= null)
-                                    item4View3.setImageResource(itemsImage4[2]);
-                                if (itemsImage5[2]!= null)
-                                    item5View3.setImageResource(itemsImage5[2]);
-                                if (itemsImage6[2]!= null)
-                                    item6View3.setImageResource(itemsImage6[2]);
-
-                                if (itemsImage1[3]!= null)
-                                    item1View4.setImageResource(itemsImage1[3]);
-                                if (itemsImage2[3]!= null)
-                                    item2View4.setImageResource(itemsImage2[3]);
-                                if (itemsImage3[3]!= null)
-                                    item3View4.setImageResource(itemsImage3[3]);
-                                if (itemsImage4[3]!= null)
-                                    item4View4.setImageResource(itemsImage4[3]);
-                                if (itemsImage5[3]!= null)
-                                    item5View4.setImageResource(itemsImage5[3]);
-                                if (itemsImage6[3]!= null)
-                                    item6View4.setImageResource(itemsImage6[3]);
-
-                                if (itemsImage1[4]!= null)
-                                    item1View5.setImageResource(itemsImage1[4]);
-                                if (itemsImage2[4]!= null)
-                                    item2View5.setImageResource(itemsImage2[4]);
-                                if (itemsImage3[4]!= null)
-                                    item3View5.setImageResource(itemsImage3[4]);
-                                if (itemsImage4[4]!= null)
-                                    item4View5.setImageResource(itemsImage4[4]);
-                                if (itemsImage5[4]!= null)
-                                    item5View5.setImageResource(itemsImage5[4]);
-                                if (itemsImage6[4]!= null)
-                                    item6View5.setImageResource(itemsImage6[4]);
-
-                                if (itemsImage1[5]!= null)
-                                    item1View6.setImageResource(itemsImage1[5]);
-                                if (itemsImage2[5]!= null)
-                                    item2View6.setImageResource(itemsImage2[5]);
-                                if (itemsImage3[5]!= null)
-                                    item3View6.setImageResource(itemsImage3[5]);
-                                if (itemsImage4[5]!= null)
-                                    item4View6.setImageResource(itemsImage4[5]);
-                                if (itemsImage5[5]!= null)
-                                    item5View6.setImageResource(itemsImage5[5]);
-                                if (itemsImage6[5]!= null)
-                                    item6View6.setImageResource(itemsImage6[5]);
-
-                            } else {
-
-                                // remove loading animation
-                                dialog.dismiss();
-
-                                Log.i("Not found","Not found");
-                                Toast.makeText(getActivity().getApplicationContext(),"Player not found",Toast.LENGTH_LONG).show();
                             }
-
-                            // User On Click Action
-
-                            Button searchButton = (Button) view.findViewById(R.id.searchButton);
-                            Button searchButton2 = (Button) view.findViewById(R.id.searchButton2);
-                            Button searchButton3 = (Button) view.findViewById(R.id.searchButton3);
-                            Button searchButton4 = (Button) view.findViewById(R.id.searchButton4);
-                            Button searchButton5 = (Button) view.findViewById(R.id.searchButton5);
-                            Button searchButton6 = (Button) view.findViewById(R.id.searchButton6);
-
-                            searchButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player11[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                }
-                            });
-
-                            // User On Click Action
-                            searchButton2.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player12[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                }
-                            });
-
-                            // User On Click Action
-                            searchButton3.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player13[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                }
-                            });
-
-                            // User On Click Action
-                            searchButton4.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player21[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                }
-                            });
-
-                            // User On Click Action
-                            searchButton5.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player22[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                }
-                            });
-
-                            // User On Click Action
-                            searchButton6.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    sendDataToSummary(vaingloryHeroAndMatches.serverLoc,vaingloryHeroAndMatches.matches.player23[sortedPos[sortedPos.length-1-matchPos]].userName);
-
-                                }
-                            });
-
-                            // Print telemetry
-                            //Log.i("Asset ID",vaingloryHeroAndMatches.matches.matchAssetTelemetryID[sortedPos[sortedPos.length-1-matchPos]]);
-                            //Log.i("Asset URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
-
-
-                            final Button telemetryButton = (Button) view.findViewById(R.id.detailButton);
-                            telemetryButton.setOnClickListener(new View.OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-
-                                    // Open Fragment HeroesPage and set back button to go to previous fragment
-                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
-                                    // Init data for next fragment
-                                    Bundle dataToDetail = new Bundle();
-                                    dataToDetail.putString("URL",vaingloryHeroAndMatches.matches.matchAssetTelemetryURL[sortedPos[sortedPos.length-1-matchPos]]);
-
-                                    // Init telemetry fragment
-                                    TelemetryFragment telemetryFragment = new TelemetryFragment();
-                                    telemetryFragment.setArguments(dataToDetail);
-
-                                    // Open fragment
-                                    if (!telemetryFragment.isAdded()) {
-                                        fragmentManager.beginTransaction().add(R.id.content_frame,telemetryFragment).addToBackStack(null).commit();
-                                    }
-
-                                    //fragmentManager.beginTransaction().replace(R.id.content_frame, telemetryFragment).commit();
-
-                                }
-
-                            });
-                        }
-                    });
+                        });
+                    }
                 }
             }.start();
 

@@ -25,7 +25,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -101,7 +100,7 @@ public class HeroesStats extends Fragment {
 
     // Read Json Database
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try {
 
             InputStream is = getActivity().getAssets().open("vainglory_database.json");
@@ -133,10 +132,10 @@ public class HeroesStats extends Fragment {
         // handle item selection to choose the sorted technic
         int id = item.getItemId();
 
-        // Open a coresponding fragment whenever a menu is tapped
+        // Open a corresponding fragment whenever a menu is tapped
         if (id == R.id.nav_most_played) {
 
-            sortedChoice = 1;;
+            sortedChoice = 1;
             Log.i("Choice","most played");
 
         } else if (id == R.id.nav_most_win) {
@@ -189,7 +188,8 @@ public class HeroesStats extends Fragment {
         //Data to be passed on
 
         // Open hero data base
-        JSONObject vgDatabaseTemp = null;
+        JSONObject vgDatabaseTemp;
+
         JSONArray heroesJsonArrTemp = null;
         try {
 
@@ -198,316 +198,318 @@ public class HeroesStats extends Fragment {
             // Get heroes data and create JSON array of it
             heroesJsonArrTemp = new JSONArray(vgDatabaseTemp.getString("heroes"));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            // Initialize array and set it to 0
+            final Integer[] totalGamesHeroes = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalWinsHeroes = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalKills = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalDeaths = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalAssists = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostKills = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostDeaths = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostAssists = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostKillsTemp = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostDeathsTemp = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostAssistsTemp = new Integer[heroesJsonArrTemp.length()];
 
-        // Initiliaze array and set it to 0
-        final Integer[] totalGamesHeroes = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalWinsHeroes = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalKills = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalDeaths = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalAssists = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostKills = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostDeaths = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostAssists = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostKillsTemp = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostDeathsTemp = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostAssistsTemp = new Integer[heroesJsonArrTemp.length()];
+            Arrays.fill(totalGamesHeroes,0);
+            Arrays.fill(totalWinsHeroes,0);
+            Arrays.fill(totalKills,0);
+            Arrays.fill(totalDeaths,0);
+            Arrays.fill(totalAssists,0);
+            Arrays.fill(mostKills,0);
+            Arrays.fill(mostDeaths,0);
+            Arrays.fill(mostAssists,0);
+            Arrays.fill(mostKillsTemp,0);
+            Arrays.fill(mostDeathsTemp,0);
+            Arrays.fill(mostAssistsTemp,0);
 
-        Arrays.fill(totalGamesHeroes,0);
-        Arrays.fill(totalWinsHeroes,0);
-        Arrays.fill(totalKills,0);
-        Arrays.fill(totalDeaths,0);
-        Arrays.fill(totalAssists,0);
-        Arrays.fill(mostKills,0);
-        Arrays.fill(mostDeaths,0);
-        Arrays.fill(mostAssists,0);
-        Arrays.fill(mostKillsTemp,0);
-        Arrays.fill(mostDeathsTemp,0);
-        Arrays.fill(mostAssistsTemp,0);
+            // Check if there is data, and get the position of the hero inside the JSON file
+            if (datatoSummaryPage != null) {
 
-        // Check if there is data, and get the position of the hero inside the JSON file
-        if (datatoSummaryPage != null) {
+                new Thread() {
 
-            new Thread() {
+                    public void run() {
 
-                public void run() {
+                        // Get data from the main activity
+                        vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
+                        Log.i("DataFromMain", vaingloryHeroAndMatches.dataRaw);
+                        Log.i("data received", datatoSummaryPage.getString("Player"));
 
-                    // Get data from the main activity
-                    vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
-                    Log.i("DataFromMain", vaingloryHeroAndMatches.dataRaw);
-                    Log.i("data received", datatoSummaryPage.getString("Player"));
+                        //Create default player
+                        vaingloryHeroAndMatches.setPlayer(datatoSummaryPage.getString("Player"));
+                        vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
+                        vaingloryHeroAndMatches.getMatchesHistory();
 
-                    //Create default player
-                    vaingloryHeroAndMatches.setPlayer(datatoSummaryPage.getString("Player"));
-                    vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
-                    vaingloryHeroAndMatches.getMatchesHistory();
+                        if (vaingloryHeroAndMatches.matches.matchID != null) {
 
-                    if (vaingloryHeroAndMatches.matches.matchID != null) {
+                            // Find the total games played for the last 30 days capped for 150 games
+                            final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
 
-                        // Find the total games played for the last 30 days capped for 150 games
-                        final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
+                            // Check record for each hero stats
+                            for (int i = 0; i < totalgames; i++) {
 
-                        // Check record for each hero stats
-                        for (int i = 0; i < totalgames; i++) {
+                                String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
+                                //Log.i("actor", actor);
 
-                            String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
-                            //Log.i("actor", actor);
+                                int location;
 
-                            int location;
+                                switch (actor) {
 
-                            switch (actor) {
+                                    case "*Adagio*":
 
-                                case "*Adagio*":
+                                        location = 0;
 
-                                    location = 0;
+                                        break;
+                                    case "*Alpha*":
 
-                                    break;
-                                case "*Alpha*":
+                                        location = 1;
 
-                                    location = 1;
+                                        break;
+                                    case "*Ardan*":
 
-                                    break;
-                                case "*Ardan*":
+                                        location = 2;
 
-                                    location = 2;
+                                        break;
+                                    case "*Baptiste":
 
-                                    break;
-                                case "*Baptiste":
+                                        location = 3;
 
-                                    location = 3;
+                                        break;
+                                    case "*Baron*":
 
-                                    break;
-                                case "*Baron*":
+                                        location = 4;
 
-                                    location = 4;
+                                        break;
+                                    case "*Blackfeather*":
 
-                                    break;
-                                case "*Blackfeather*":
+                                        location = 5;
 
-                                    location = 5;
+                                        break;
+                                    case "*Catherine*":
 
-                                    break;
-                                case "*Catherine*":
+                                        location = 6;
 
-                                    location = 6;
+                                        break;
+                                    case "*Celeste*":
 
-                                    break;
-                                case "*Celeste*":
+                                        location = 7;
 
-                                    location = 7;
+                                        break;
+                                    case "*Flicker*":
 
-                                    break;
-                                case "*Flicker*":
+                                        location = 8;
 
-                                    location = 8;
+                                        break;
+                                    case "*Fortress*":
 
-                                    break;
-                                case "*Fortress*":
+                                        location = 9;
 
-                                    location = 9;
+                                        break;
+                                    case "*Glaive*":
 
-                                    break;
-                                case "*Glaive*":
+                                        location = 10;
 
-                                    location = 10;
+                                        break;
+                                    case "*Grace*":
 
-                                    break;
-                                case "*Grace*":
+                                        location = 11;
+                                        break;
+                                    case "*Grumpjaw*":
 
-                                    location = 11;
-                                    break;
-                                case "*Grumpjaw*":
+                                        location = 12;
 
-                                    location = 12;
+                                        break;
+                                    case "*Gwen*":
 
-                                    break;
-                                case "*Gwen*":
+                                        location = 13;
 
-                                    location = 13;
+                                        break;
+                                    case "*Idris*":
 
-                                    break;
-                                case "*Idris*":
+                                        location = 14;
 
-                                    location = 14;
+                                        break;
+                                    case "*Joule*":
 
-                                    break;
-                                case "*Joule*":
+                                        location = 15;
 
-                                    location = 15;
+                                        break;
+                                    case "*Kestrel*":
 
-                                    break;
-                                case "*Kestrel*":
+                                        location = 16;
 
-                                    location = 16;
+                                        break;
+                                    case "*Koshka*":
 
-                                    break;
-                                case "*Koshka*":
+                                        location = 17;
 
-                                    location = 17;
+                                        break;
+                                    case "*Krul*":
 
-                                    break;
-                                case "*Krul*":
+                                        location = 18;
 
-                                    location = 18;
+                                        break;
+                                    case "*Lance*":
 
-                                    break;
-                                case "*Lance*":
+                                        location = 19;
 
-                                    location = 19;
+                                        break;
+                                    case "*Lyra*":
 
-                                    break;
-                                case "*Lyra*":
+                                        location = 20;
 
-                                    location = 20;
+                                        break;
+                                    case "*Ozo*":
 
-                                    break;
-                                case "*Ozo*":
+                                        location = 21;
 
-                                    location = 21;
+                                        break;
+                                    case "*Petal*":
 
-                                    break;
-                                case "*Petal*":
+                                        location = 22;
 
-                                    location = 22;
+                                        break;
+                                    case "*Phinn*":
 
-                                    break;
-                                case "*Phinn*":
+                                        location = 23;
 
-                                    location = 23;
+                                        break;
+                                    case "*Reim*":
 
-                                    break;
-                                case "*Reim*":
+                                        location = 24;
 
-                                    location = 24;
+                                        break;
+                                    case "*Reza*":
 
-                                    break;
-                                case "*Reza*":
+                                        location = 25;
 
-                                    location = 25;
+                                        break;
+                                    case "*Ringo*":
 
-                                    break;
-                                case "*Ringo*":
+                                        location = 26;
 
-                                    location = 26;
+                                        break;
+                                    case "*Rona*":
 
-                                    break;
-                                case "*Rona*":
+                                        location = 27;
 
-                                    location = 27;
+                                        break;
+                                    case "*Samuel*":
 
-                                    break;
-                                case "*Samuel*":
+                                        location = 28;
 
-                                    location = 28;
+                                        break;
+                                    case "*SAW*":
 
-                                    break;
-                                case "*SAW*":
+                                        location = 29;
 
-                                    location = 29;
+                                        break;
+                                    case "*Skaarf*":
 
-                                    break;
-                                case "*Skaarf*":
+                                        location = 30;
 
-                                    location = 30;
+                                        break;
+                                    case "*Skye*":
 
-                                    break;
-                                case "*Skye*":
+                                        location = 31;
 
-                                    location = 31;
+                                        break;
+                                    case "*Taka*":
 
-                                    break;
-                                case "*Taka*":
+                                        location = 32;
 
-                                    location = 32;
+                                        break;
+                                    default:
 
-                                    break;
-                                default:
+                                        location = 33;
 
-                                    location = 33;
-
-                                    break;
-                            }
-
-                            // Get the total wins for each hero
-                            if (vaingloryHeroAndMatches.matches.myParticipant[i].win)
-                                totalWinsHeroes[location]++;
-
-                            // Get total KDA for each hero to calculate avg
-                            totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
-                            totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
-                            totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
-
-                            // Find the max of KDA
-                            mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
-                            if (mostKillsTemp[location] >= mostKills[location])
-                                mostKills[location] = mostKillsTemp[location];
-
-                            mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
-                            if (mostDeathsTemp[location] >= mostDeaths[location])
-                                mostDeaths[location] = mostDeathsTemp[location];
-
-                            mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
-                            if (mostAssistsTemp[location] >= mostAssists[location])
-                                mostAssists[location] = mostAssistsTemp[location];
-
-                            // Find the total games played for each hero
-                            totalGamesHeroes[location]++;
-
-                        }
-                    }
-
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (vaingloryHeroAndMatches.matches.matchID != null) {
-
-                                // remove loading animation
-                                dialog.dismiss();
-
-                                try {
-
-                                    // Open hero data base
-                                    JSONObject vgDatabase = new JSONObject(heroesDatabase);
-
-                                    // Get heroes data and create JSON array of it
-                                    JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
-                                    heroes = new String[heroesJsonArr.length()];
-                                    heroesImage = new Integer[heroesJsonArr.length()];
-
-                                    // Get id of the hero's image thumbnail
-                                    for (int i = 0; i < heroesJsonArr.length(); i++) {
-                                        heroes[i] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                        Log.i("hero", heroesJsonArr.getJSONObject(i).getString("hero"));
-                                        heroesImage[i] = getResources().getIdentifier("heroes_" + (heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
-                                    }
-
-                                    // Create custom list layout for the listView
-                                    CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists,sortedChoice);
-
-                                    // Attach the custom list layout to the listview
-                                    heroesStatsListView.setAdapter(adapter);
-
-                                } catch (JSONException e) {
-
-                                    e.printStackTrace();
-
+                                        break;
                                 }
 
+                                // Get the total wins for each hero
+                                if (vaingloryHeroAndMatches.matches.myParticipant[i].win)
+                                    totalWinsHeroes[location]++;
 
-                            } else {
+                                // Get total KDA for each hero to calculate avg
+                                totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                                totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                                totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
 
-                                // remove loading animation
-                                dialog.dismiss();
+                                // Find the max of KDA
+                                mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                                if (mostKillsTemp[location] >= mostKills[location])
+                                    mostKills[location] = mostKillsTemp[location];
 
-                                Log.i("Not found", "Not found");
-                                Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
+                                mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+                                if (mostDeathsTemp[location] >= mostDeaths[location])
+                                    mostDeaths[location] = mostDeathsTemp[location];
+
+                                mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                                if (mostAssistsTemp[location] >= mostAssists[location])
+                                    mostAssists[location] = mostAssistsTemp[location];
+
+                                // Find the total games played for each hero
+                                totalGamesHeroes[location]++;
+
                             }
                         }
-                    });
-                }
-            }.start();
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (vaingloryHeroAndMatches.matches.matchID != null && vaingloryHeroAndMatches.matches != null) {
+
+                                    // remove loading animation
+                                    dialog.dismiss();
+
+                                    try {
+
+                                        // Open hero data base
+                                        JSONObject vgDatabase = new JSONObject(heroesDatabase);
+
+                                        // Get heroes data and create JSON array of it
+                                        JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
+                                        heroes = new String[heroesJsonArr.length()];
+                                        heroesImage = new Integer[heroesJsonArr.length()];
+
+                                        // Get id of the hero's image thumbnail
+                                        for (int i = 0; i < heroesJsonArr.length(); i++) {
+                                            heroes[i] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                            Log.i("hero", heroesJsonArr.getJSONObject(i).getString("hero"));
+                                            heroesImage[i] = getResources().getIdentifier("heroes_" + (heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
+                                        }
+
+                                        // Create custom list layout for the listView
+                                        CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists,sortedChoice);
+
+                                        // Attach the custom list layout to the listview
+                                        heroesStatsListView.setAdapter(adapter);
+
+                                    } catch (JSONException e) {
+
+                                        e.printStackTrace();
+
+                                    }
+
+
+                                } else {
+
+                                    // remove loading animation
+                                    dialog.dismiss();
+
+                                    Log.i("Not found", "Not found");
+                                    Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                }.start();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("Not found", "Not found");
+            Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
         }
 
         return true;
@@ -547,7 +549,8 @@ public class HeroesStats extends Fragment {
         //Data to be passed on
 
         // Open hero data base
-        JSONObject vgDatabaseTemp = null;
+        JSONObject vgDatabaseTemp;
+
         JSONArray heroesJsonArrTemp = null;
         try {
 
@@ -555,318 +558,321 @@ public class HeroesStats extends Fragment {
 
             // Get heroes data and create JSON array of it
             heroesJsonArrTemp = new JSONArray(vgDatabaseTemp.getString("heroes"));
+            // Initiliaze array and set it to 0
+            final Integer[] totalGamesHeroes = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalWinsHeroes = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalKills = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalDeaths = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] totalAssists = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostKills = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostDeaths = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostAssists = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostKillsTemp = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostDeathsTemp = new Integer[heroesJsonArrTemp.length()];
+            final Integer[] mostAssistsTemp = new Integer[heroesJsonArrTemp.length()];
+
+            Arrays.fill(totalGamesHeroes,0);
+            Arrays.fill(totalWinsHeroes,0);
+            Arrays.fill(totalKills,0);
+            Arrays.fill(totalDeaths,0);
+            Arrays.fill(totalAssists,0);
+            Arrays.fill(mostKills,0);
+            Arrays.fill(mostDeaths,0);
+            Arrays.fill(mostAssists,0);
+            Arrays.fill(mostKillsTemp,0);
+            Arrays.fill(mostDeathsTemp,0);
+            Arrays.fill(mostAssistsTemp,0);
+
+            // Check if there is data, and get the position of the hero inside the JSON file
+            if (datatoSummaryPage != null) {
+
+                new Thread() {
+
+                    public void run() {
+
+                        // Get data from the main activity
+                        vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
+                        Log.i("DataFromMain", vaingloryHeroAndMatches.dataRaw);
+                        Log.i("data received", datatoSummaryPage.getString("Player"));
+
+                        //Create default player
+                        vaingloryHeroAndMatches.setPlayer(datatoSummaryPage.getString("Player"));
+                        vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
+                        vaingloryHeroAndMatches.getMatchesHistory();
+
+                        if (vaingloryHeroAndMatches.matches.matchID != null) {
+
+                            // Find the total games played for the last 30 days capped for 150 games
+                            final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
+
+                            // Check record for each hero stats
+                            for (int i = 0; i < totalgames; i++) {
+
+                                String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
+                                //Log.i("actor", actor);
+
+                                int location;
+
+                                switch (actor) {
+
+                                    case "*Adagio*":
+
+                                        location = 0;
+
+                                        break;
+                                    case "*Alpha*":
+
+                                        location = 1;
+
+                                        break;
+                                    case "*Ardan*":
+
+                                        location = 2;
+
+                                        break;
+                                    case "*Baptiste":
+
+                                        location = 3;
+
+                                        break;
+                                    case "*Baron*":
+
+                                        location = 4;
+
+                                        break;
+                                    case "*Blackfeather*":
+
+                                        location = 5;
+
+                                        break;
+                                    case "*Catherine*":
+
+                                        location = 6;
+
+                                        break;
+                                    case "*Celeste*":
+
+                                        location = 7;
+
+                                        break;
+                                    case "*Flicker*":
+
+                                        location = 8;
+
+                                        break;
+                                    case "*Fortress*":
+
+                                        location = 9;
+
+                                        break;
+                                    case "*Glaive*":
+
+                                        location = 10;
+
+                                        break;
+                                    case "*Grace*":
+
+                                        location = 11;
+                                        break;
+                                    case "*Grumpjaw*":
+
+                                        location = 12;
+
+                                        break;
+                                    case "*Gwen*":
+
+                                        location = 13;
+
+                                        break;
+                                    case "*Idris*":
+
+                                        location = 14;
+
+                                        break;
+                                    case "*Joule*":
+
+                                        location = 15;
+
+                                        break;
+                                    case "*Kestrel*":
+
+                                        location = 16;
+
+                                        break;
+                                    case "*Koshka*":
+
+                                        location = 17;
+
+                                        break;
+                                    case "*Krul*":
+
+                                        location = 18;
+
+                                        break;
+                                    case "*Lance*":
+
+                                        location = 19;
+
+                                        break;
+                                    case "*Lyra*":
+
+                                        location = 20;
+
+                                        break;
+                                    case "*Ozo*":
+
+                                        location = 21;
+
+                                        break;
+                                    case "*Petal*":
+
+                                        location = 22;
+
+                                        break;
+                                    case "*Phinn*":
+
+                                        location = 23;
+
+                                        break;
+                                    case "*Reim*":
+
+                                        location = 24;
+
+                                        break;
+                                    case "*Reza*":
+
+                                        location = 25;
+
+                                        break;
+                                    case "*Ringo*":
+
+                                        location = 26;
+
+                                        break;
+                                    case "*Rona*":
+
+                                        location = 27;
+
+                                        break;
+                                    case "*Samuel*":
+
+                                        location = 28;
+
+                                        break;
+                                    case "*SAW*":
+
+                                        location = 29;
+
+                                        break;
+                                    case "*Skaarf*":
+
+                                        location = 30;
+
+                                        break;
+                                    case "*Skye*":
+
+                                        location = 31;
+
+                                        break;
+                                    case "*Taka*":
+
+                                        location = 32;
+
+                                        break;
+                                    default:
+
+                                        location = 33;
+
+                                        break;
+                                }
+
+                                // Get the total wins for each hero
+                                if (vaingloryHeroAndMatches.matches.myParticipant[i].win)
+                                    totalWinsHeroes[location]++;
+
+                                // Get total KDA for each hero to calculate avg
+                                totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                                totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                                totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+
+                                // Find the max of KDA
+                                mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
+                                if (mostKillsTemp[location] >= mostKills[location])
+                                    mostKills[location] = mostKillsTemp[location];
+
+                                mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
+                                if (mostDeathsTemp[location] >= mostDeaths[location])
+                                    mostDeaths[location] = mostDeathsTemp[location];
+
+                                mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
+                                if (mostAssistsTemp[location] >= mostAssists[location])
+                                    mostAssists[location] = mostAssistsTemp[location];
+
+                                // Find the total games played for each hero
+                                totalGamesHeroes[location]++;
+
+                            }
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (vaingloryHeroAndMatches.matches.matchID != null && vaingloryHeroAndMatches.matches != null) {
+
+                                    // remove loading animation
+                                    dialog.dismiss();
+
+                                    try {
+
+                                        // Open hero data base
+                                        JSONObject vgDatabase = new JSONObject(heroesDatabase);
+
+                                        // Get heroes data and create JSON array of it
+                                        JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
+                                        heroes = new String[heroesJsonArr.length()];
+                                        heroesImage = new Integer[heroesJsonArr.length()];
+
+                                        // Get id of the hero's image thumbnail
+                                        for (int i = 0; i < heroesJsonArr.length(); i++) {
+                                            heroes[i] = heroesJsonArr.getJSONObject(i).getString("hero");
+                                            Log.i("hero", heroesJsonArr.getJSONObject(i).getString("hero"));
+                                            heroesImage[i] = getResources().getIdentifier("heroes_" + (heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
+                                        }
+
+                                        // Create custom list layout for the listView
+                                        CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists,0);
+
+                                        // Attach the custom list layout to the listview
+                                        heroesStatsListView.setAdapter(adapter);
+
+                                    } catch (JSONException e) {
+
+                                        e.printStackTrace();
+
+                                    }
+
+
+                                } else {
+
+                                    // remove loading animation
+                                    dialog.dismiss();
+
+                                    Log.i("Not found", "Not found");
+                                    Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                }.start();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.i("Not found", "Not found");
+            Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
         }
 
-        // Initiliaze array and set it to 0
-        final Integer[] totalGamesHeroes = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalWinsHeroes = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalKills = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalDeaths = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] totalAssists = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostKills = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostDeaths = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostAssists = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostKillsTemp = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostDeathsTemp = new Integer[heroesJsonArrTemp.length()];
-        final Integer[] mostAssistsTemp = new Integer[heroesJsonArrTemp.length()];
 
-        Arrays.fill(totalGamesHeroes,0);
-        Arrays.fill(totalWinsHeroes,0);
-        Arrays.fill(totalKills,0);
-        Arrays.fill(totalDeaths,0);
-        Arrays.fill(totalAssists,0);
-        Arrays.fill(mostKills,0);
-        Arrays.fill(mostDeaths,0);
-        Arrays.fill(mostAssists,0);
-        Arrays.fill(mostKillsTemp,0);
-        Arrays.fill(mostDeathsTemp,0);
-        Arrays.fill(mostAssistsTemp,0);
-
-        // Check if there is data, and get the position of the hero inside the JSON file
-        if (datatoSummaryPage != null) {
-
-            new Thread() {
-
-                public void run() {
-
-                    // Get data from the main activity
-                    vaingloryHeroAndMatches.dataRaw = datatoSummaryPage.getString("Raw");
-                    Log.i("DataFromMain", vaingloryHeroAndMatches.dataRaw);
-                    Log.i("data received", datatoSummaryPage.getString("Player"));
-
-                    //Create default player
-                    vaingloryHeroAndMatches.setPlayer(datatoSummaryPage.getString("Player"));
-                    vaingloryHeroAndMatches.setServerLoc(datatoSummaryPage.getString("Server"));
-                    vaingloryHeroAndMatches.getMatchesHistory();
-
-                    if (vaingloryHeroAndMatches.matches.matchID != null) {
-
-                        // Find the total games played for the last 30 days capped for 150 games
-                        final int totalgames = vaingloryHeroAndMatches.matches.myParticipant.length;
-
-                        // Check record for each hero stats
-                        for (int i = 0; i < totalgames; i++) {
-
-                            String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
-                            //Log.i("actor", actor);
-
-                            int location;
-
-                            switch (actor) {
-
-                                case "*Adagio*":
-
-                                    location = 0;
-
-                                    break;
-                                case "*Alpha*":
-
-                                    location = 1;
-
-                                    break;
-                                case "*Ardan*":
-
-                                    location = 2;
-
-                                    break;
-                                case "*Baptiste":
-
-                                    location = 3;
-
-                                    break;
-                                case "*Baron*":
-
-                                    location = 4;
-
-                                    break;
-                                case "*Blackfeather*":
-
-                                    location = 5;
-
-                                    break;
-                                case "*Catherine*":
-
-                                    location = 6;
-
-                                    break;
-                                case "*Celeste*":
-
-                                    location = 7;
-
-                                    break;
-                                case "*Flicker*":
-
-                                    location = 8;
-
-                                    break;
-                                case "*Fortress*":
-
-                                    location = 9;
-
-                                    break;
-                                case "*Glaive*":
-
-                                    location = 10;
-
-                                    break;
-                                case "*Grace*":
-
-                                    location = 11;
-                                    break;
-                                case "*Grumpjaw*":
-
-                                    location = 12;
-
-                                    break;
-                                case "*Gwen*":
-
-                                    location = 13;
-
-                                    break;
-                                case "*Idris*":
-
-                                    location = 14;
-
-                                    break;
-                                case "*Joule*":
-
-                                    location = 15;
-
-                                    break;
-                                case "*Kestrel*":
-
-                                    location = 16;
-
-                                    break;
-                                case "*Koshka*":
-
-                                    location = 17;
-
-                                    break;
-                                case "*Krul*":
-
-                                    location = 18;
-
-                                    break;
-                                case "*Lance*":
-
-                                    location = 19;
-
-                                    break;
-                                case "*Lyra*":
-
-                                    location = 20;
-
-                                    break;
-                                case "*Ozo*":
-
-                                    location = 21;
-
-                                    break;
-                                case "*Petal*":
-
-                                    location = 22;
-
-                                    break;
-                                case "*Phinn*":
-
-                                    location = 23;
-
-                                    break;
-                                case "*Reim*":
-
-                                    location = 24;
-
-                                    break;
-                                case "*Reza*":
-
-                                    location = 25;
-
-                                    break;
-                                case "*Ringo*":
-
-                                    location = 26;
-
-                                    break;
-                                case "*Rona*":
-
-                                    location = 27;
-
-                                    break;
-                                case "*Samuel*":
-
-                                    location = 28;
-
-                                    break;
-                                case "*SAW*":
-
-                                    location = 29;
-
-                                    break;
-                                case "*Skaarf*":
-
-                                    location = 30;
-
-                                    break;
-                                case "*Skye*":
-
-                                    location = 31;
-
-                                    break;
-                                case "*Taka*":
-
-                                    location = 32;
-
-                                    break;
-                                default:
-
-                                    location = 33;
-
-                                    break;
-                            }
-
-                            // Get the total wins for each hero
-                            if (vaingloryHeroAndMatches.matches.myParticipant[i].win)
-                                totalWinsHeroes[location]++;
-
-                            // Get total KDA for each hero to calculate avg
-                            totalKills[location] = totalKills[location] + vaingloryHeroAndMatches.matches.myParticipant[i].kills;
-                            totalAssists[location] = totalAssists[location] + vaingloryHeroAndMatches.matches.myParticipant[i].assists;
-                            totalDeaths[location] = totalDeaths[location] + vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
-
-                            // Find the max of KDA
-                            mostKillsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].kills;
-                            if (mostKillsTemp[location] >= mostKills[location])
-                                mostKills[location] = mostKillsTemp[location];
-
-                            mostDeathsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].deaths;
-                            if (mostDeathsTemp[location] >= mostDeaths[location])
-                                mostDeaths[location] = mostDeathsTemp[location];
-
-                            mostAssistsTemp[location] = vaingloryHeroAndMatches.matches.myParticipant[i].assists;
-                            if (mostAssistsTemp[location] >= mostAssists[location])
-                                mostAssists[location] = mostAssistsTemp[location];
-
-                            // Find the total games played for each hero
-                            totalGamesHeroes[location]++;
-
-                        }
-                    }
-
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (vaingloryHeroAndMatches.matches.matchID != null) {
-
-                                // remove loading animation
-                                dialog.dismiss();
-
-                                try {
-
-                                    // Open hero data base
-                                    JSONObject vgDatabase = new JSONObject(heroesDatabase);
-
-                                    // Get heroes data and create JSON array of it
-                                    JSONArray heroesJsonArr = new JSONArray(vgDatabase.getString("heroes"));
-                                    heroes = new String[heroesJsonArr.length()];
-                                    heroesImage = new Integer[heroesJsonArr.length()];
-
-                                    // Get id of the hero's image thumbnail
-                                    for (int i = 0; i < heroesJsonArr.length(); i++) {
-                                        heroes[i] = heroesJsonArr.getJSONObject(i).getString("hero");
-                                        Log.i("hero", heroesJsonArr.getJSONObject(i).getString("hero"));
-                                        heroesImage[i] = getResources().getIdentifier("heroes_" + (heroesJsonArr.getJSONObject(i).getString("hero")).toLowerCase() + "_thumb", "drawable", getActivity().getPackageName());
-                                    }
-
-                                    // Create custom list layout for the listView
-                                    CustomList5 adapter = new CustomList5(getActivity(), heroes, heroesImage,totalGamesHeroes,totalWinsHeroes,totalKills,totalDeaths,totalAssists,mostKills,mostDeaths,mostAssists,0);
-
-                                    // Attach the custom list layout to the listview
-                                    heroesStatsListView.setAdapter(adapter);
-
-                                } catch (JSONException e) {
-
-                                    e.printStackTrace();
-
-                                }
-
-
-                            } else {
-
-                                // remove loading animation
-                                dialog.dismiss();
-
-                                Log.i("Not found", "Not found");
-                                Toast.makeText(getActivity().getApplicationContext(), "Player not found", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }
-            }.start();
-        }
 
         return view;
     }

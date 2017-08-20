@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -50,13 +48,7 @@ public class MatchesHistory extends Fragment {
     ListView matchListView;
     FragmentManager fragmentManager;
 
-    // Hero fav
-    String heroFav;
     VaingloryHeroAndMatches vaingloryHeroAndMatches;
-    Summary summary;
-    Heroes heroes;
-    Items items;
-    MatchesHistory history;
 
     public MatchesHistory() {
         // Required empty public constructor
@@ -166,7 +158,11 @@ public class MatchesHistory extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (vaingloryHeroAndMatches.matches.matchID != null) {
+                            if (vaingloryHeroAndMatches.matches.matchID != null &&
+                                    vaingloryHeroAndMatches.matches != null &&
+                                    vaingloryHeroAndMatches.matches.matchID.length != 0 &&
+                                    vaingloryHeroAndMatches != null
+                                    ) {
 
                                 // remove loading animation
                                 dialog.dismiss();

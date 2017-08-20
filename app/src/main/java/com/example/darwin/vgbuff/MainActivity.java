@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity
         // Open a coresponding fragment whenever a menu is tapped
         if (id == R.id.nav_summary) {
 
-            fragmentManager.beginTransaction().replace(R.id.content_frame, summary).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, summary).addToBackStack(null).commit();
 
 
         } else if (id == R.id.nav_heroes) {
