@@ -4,11 +4,11 @@
       "hero": "Adagio",
       "hero_stats": [719,85,2.18,0.26,400,35,2.67,0.23,75,3.9,100,1.45,20,6,20,6,6.6,3.2],
       "ability1": "Arcane Renewal",
-      "ability1_desc": "Whenever enemies burning with Arcane Fire take damage from any source, Adagio regenerates 35% of that damage as energy.",
+      "ability1_desc": "Whenever enemies burning with Arcane Fire take damage from any source, Adagio regenerates 25% of that damage as energy.",
       "ability2": "Gift of Fire",
       "ability2_desc": "Adagio heals a target ally and splashes Arcane Fire onto nearby enemies, dealing damage every second. If Adagio heals himself, he'll also slow nearby enemies by 70% for 0.7 seconds. Gift of Fire's burst heal has an 10% bonus health ratio.",
       "ability2_detail": "DETAILS:\nHeal/sec: 15/20/25/30/35 (10% Crystal Ratio)\nFire Duration: 5/5.5/6/6.5/7\nFire Damage: 20/30/40/50/70 (20% Crystal Ratio)\nHeal Duration: 3/3/3/3/3\nBurst Heal: 40/60/80/100/140 (30% Crystal Ratio)\n",
-      "ability2_cd": [8,8,8,8,8],
+      "ability2_cd": [10,9.5,9,8.5,8],
       "ability2_mana": [120,135,150,165,180],
       "ability3": "Agent of Wrath",
       "ability3_desc": "Temporarily increases target ally's basic attack power for 6 seconds. Deals additional damage if the target is burning with Arcane Fire, and if Adagio casts this spell on himself.",
@@ -18,7 +18,7 @@
       "ability4": "Verse of Judgement",
       "ability4_desc": "Adagio channels for 2 seconds then deals heavy damage to all enemies in a wide, rune-marked ring around him. Enemies burning with Arcane Fire are also stunned. While channeling, Adagio temporarily gains fortified health during channeling.",
       "ability4_detail": "DETAILS: \nDamage: 500/900/1300 (100% Crystal Ratio) \nStun Duration: 2.2/2.2/2.2 \nRange: 9/9/9 \nFortified Health: 100/175/250",
-      "ability4_cd": [110,90,70],
+      "ability4_cd": [100,90,60],
       "ability4_mana": [140,190,240]
     },
     {
@@ -33,7 +33,7 @@
       "ability2_mana": [0,0,0,0,0],
       "ability3": "Core Charge",
       "ability3_desc": "Alpha lunges forward, landing a basic attack on her target and fracturing the ground for additional crystal damage in a small area. Each time she uses this ability, she spends 2.5% of her current health and gains Core Overload for 5.5 seconds, stacking up to 3 times.\n\n- Alpha’s basic attack is put on a 50% cooldown after using Core Charge.\n\nCore Overload: The health cost of Core Charge goes up by 2.5%, but also increases the damage of subsequent Core Charges and causes her basic attacks to heal her. Basic attacks refresh the duration.",
-      "ability3_detail": "DETAILS:\nDamage: 20/35/50/65/80 (100% Crystal Ratio) (100% Weapon Ratio)\nCooldown Reduction: 1/1/1/1/1.2\nHeal/stack: 5/6/7/8/10 (2% Weapon Ratio)\nDamage/stack: 10%/10%/10%/10%/15%",
+      "ability3_detail": "DETAILS:\nDamage: 20/35/50/65/80 (100% Crystal Ratio) (110% Weapon Ratio)\nCooldown Reduction: 1/1/1/1/1.2\nHeal/stack: 5/6/7/8/10 (2% Weapon Ratio)\nDamage/stack: 10%/10%/10%/10%/15%",
       "ability3_cd":[6,5.5,5,4.5,4],
       "ability3_mana": [0,0,0,0,0],
       "ability4": "Termination Protocol",
@@ -60,17 +60,17 @@
       "ability4": "Gauntlet",
       "ability4_desc": "Ardan throws down the gauntlet, projecting a perimeter around the target area and gaining full vengeance. Enemies who cross the perimeter are stunned and take crystal damage. Successfully stunning an enemy grants Ardan vengeance. If Ardan leaves the perimeter it is immediately destroyed.",
       "ability4_detail": "DETAILS:\nDamage: 250/375/500 (350% Crystal Ratio)\nStun Duration: 1/1/1\nDuration: 4/6/8",
-      "ability4_cd": [110,100,90],
+      "ability4_cd": [100,90,80],
       "ability4_mana": [0,0,0]
     },
     {
       "hero": "Baptiste",
       "hero_stats": [746,75,0,0,273,33,0,0,78,8.1,100,3.3,30,5.1,30,5.1,2.8,3.4],
       "ability1": "Reap",
-      "ability1_desc": "Baptiste steals soul fragments through combat and is healed for each soul fragment acquired.\nUpon reaching 4 soul fragments, Baptiste is empowered for 4 seconds and deals increased damage but generates no additional soul fragments.\nBasic attacks generate one soul fragment\nAbilities generate one soul fragment for each enemy hero hit.\n\nDETAILS: \nHeal per Soul Fragment: 15 - 70 (level 1-12) (+ 20% of crystal power)\nEmpowered Effects: +25% basic-attack damage and +100% ability damange",
+      "ability1_desc": "Baptiste steals soul fragments through combat and is healed for each soul fragment acquired.\nUpon reaching 4 soul fragments, Baptiste is empowered for 4 seconds and deals increased damage but generates no additional soul fragments.\nBasic attacks generate one soul fragment\nAbilities generate one soul fragment for each enemy hero hit.\n\nDETAILS: \nHeal per Soul Fragment: 15 - 70 (level 1-12) (+ 20% of crystal power)\nEmpowered Effects: +35% basic-attack damage and +100% ability damange",
       "ability2": "Bad Mojo",
       "ability2_desc": "Baptiste pulls a vial of liquid from his vest and throws it. The vial explodes upon reaching its target or when colliding with an enemy. Enemies near the explosion take damage and are slowed.",
-      "ability2_detail": "DETAILS:\nDamage: 80/120/160/200/280 (110% Crystal Ratio)\nSplash Damage: 40/60/80/100/140 (55% Crystal Ratio)\nSlow: 60%/60%/60%/60%/60%\nSlow Duration: 0.8/0.8/0.8/0.8/1.2",
+      "ability2_detail": "DETAILS:\nDamage: 80/120/160/200/280 (105% Crystal Ratio)\nSplash Damage: 40/60/80/100/140 (55% Crystal Ratio)\nSlow: 60%/60%/60%/60%/60%\nSlow Duration: 0.8/0.8/0.8/0.8/1.2",
       "ability2_cd": [4,3.8,3.6,3.4,3],
       "ability2_mana": [40,45,50,55,60],
       "ability3": "Ordained",
@@ -135,7 +135,7 @@
       "ability2_desc": "Catherine gains a burst of move speed for 1.5 seconds. Her next basic attack is replaced by a powerful stun attack. Resets basic attack cooldown on activation.",
       "ability2_detail": "DETAILS:\nBonus Damage: 35/60/85/110/135 (100% Crystal Ratio)\nStun Duration: 1/1/1/1/1.2",
       "ability2_cd": [14,13.5,13,12.5,12],
-      "ability2_mana": [40,50,60,70,90],
+      "ability2_mana": [50,60,70,80,100],
       "ability3": "Stormguard",
       "ability3_desc": "Activates a pulsating bubble that burns nearby enemies and deflects damage above 77 (+7 per level) to nearby enemies. Each deflection reduces the shield duration by 0.5 second.",
       "ability3_detail": "DETAILS:\nDuration: 4/4/4/4/4\nDamage/sec: 40/60/80/100/120 (50% Crystal Ratio)\nDeflected Damage: 0/5/10/15/25%",
@@ -144,7 +144,7 @@
       "ability4": "Blast Tremor",
       "ability4_desc": "Catherine slams the ground, damaging & silencing enemies in a large cone in front of her.",
       "ability4_detail": "DETAILS:\nDamage: 350/500/650 (130% Crystal Ratio)\nSilence Duration: 2.2/2.5/2.8\nRange: 11/11/11",
-      "ability4_cd": [80,70,60],
+      "ability4_cd": [100,85,70],
       "ability4_mana": [120,140,160]
     },
     {
@@ -154,7 +154,7 @@
       "ability1_desc": "Celeste's basic attacks have a spell component, dealing 65-115 (level 1-12) crystal damage with a 75% crystal ratio. Celeste's basic attacks also reveal enemy heroes for 1.5 seconds - even after the target leaves vision range.",
       "ability2": "Heliogenesis",
       "ability2_desc": "Celeste forms a small star at a target location, dealing crystal damage to nearby enemies. The star will briefly linger on the field. If Celeste uses this ability on an existing star, the star will go supernova, dealing more crystal damage in a larger area. Deals reduced damage to minions. Deals reduced damage to turrets if out of range.",
-      "ability2_detail": "DETAILS:\nDamage: 100/150/200/250/300 (90% Crystal Ratio)\nNova Damage: 150/200/250/300/350 (220% Crystal Ratio)\nRange: 7/7/7/7/9\nDamage to Minions: 100/135/170/205/240 (20% Crystal Ratio)",
+      "ability2_detail": "DETAILS:\nDamage: 80/135/190/245/300 (90% Crystal Ratio)\nNova Damage: 130/185/240/295/350 (220% Crystal Ratio)\nRange: 7/7/7/7/9\nDamage to Minions: 100/135/170/205/240 (20% Crystal Ratio)",
       "ability2_cd": [2.8,2.4,2,1.6,1.2],
       "ability2_mana": [50,50,50,50,50],
       "ability3": "Core Collapse",
@@ -233,7 +233,7 @@
     },
     {
       "hero": "Grace",
-      "hero_stats": [748,64,0,0,268,35,0,0,79,7.18,100,3.27,30,5.09,30,5.09,2.7,3.5],
+      "hero_stats": [748,64,0,0,268,35,0,0,73,7.2,100,3.27,30,5.09,30,5.09,2.7,3.5],
       "ability1": "Retribution",
       "ability1_desc": "Grace chains her normal basic attack into a ground slam, dealing bonus weapon damage and slowing enemies in a wide area. If enemies are hit by the ground slam, her ability cooldowns are reduced.",
       "ability2": "Benediction",
@@ -249,7 +249,7 @@
       "ability4": "Divine Intervention",
       "ability4_desc": "Grace instantly surrounds herself and her target with a full holy shield and begins channeling after which Grace’s target receives a massive heal.",
       "ability4_detail": "DETAILS:\nHealing Strength: 400/500/600 (200% Crystal Ratio)",
-      "ability4_cd": [60,45,30],
+      "ability4_cd": [70,60,50],
       "ability4_mana": [0,0,0]
     },
     {
@@ -264,7 +264,7 @@
       "ability2_mana": [50,60,70,80,90],
       "ability3": "Hangry",
       "ability3_desc": "Grumpjaw leaps toward his target and attacks them. Afterward, he gains bonus weapon damage and attack speed for several seconds.",
-      "ability3_detail": "DETAILS:\nBonus Speed Duration: 4/4/4/4/5\nDamage: 20/40/60/80/100 (80% Crystal Ratio)\nAttack Speed: 10%/20%/30%/40%/50%",
+      "ability3_detail": "DETAILS:\nBonus Speed Duration: 5/5/5/5/6\nDamage: 30/50/70/90/110 (80% Crystal Ratio)\nAttack Speed: 10%/20%/30%/40%/50%",
       "ability3_cd":[9,9,9,9,9],
       "ability3_mana": [30,40,50,60,70],
       "ability4": "Stuffed",
@@ -306,7 +306,7 @@
       "ability2_mana": [0,0,0,0,0],
       "ability3": "Chakram",
       "ability3_desc": "Idris throws a chakram that returns to him, damaging enemies each time it passes over them. Hitting enemy heroes, miners, or kraken recovers stamina. Idris can use his Shroudstep and Shimmer Strike abilities to avoid catching returning chakrams, giving him additional opportunities to strike enemies.",
-      "ability3_detail": "DETAILS:\nStamina Cost: 30/30/30/30/30\nDamage: 75/125/175/225/275 (130% Crystal Ratio) (90% Weapon Ratio)\nDmg to Minions: 75/100/125/150/175(25% Crystal Ratio) (25% Weapon Ratio)",
+      "ability3_detail": "DETAILS:\nStamina Cost: 30/30/30/30/30\nDamage: 60/110/160/210/260 (130% Crystal Ratio) (90% Weapon Ratio)\nDmg to Minions: 75/100/125/150/175(25% Crystal Ratio) (25% Weapon Ratio)",
       "ability3_cd":[8,7.5,7,6.5,5],
       "ability3_mana": [0,0,0,0,0],
       "ability4": "Shimmer Strike",
@@ -343,7 +343,7 @@
       "ability1_desc": "Whenever Kestrel lands a basic attack, she gains 5% attack speed and reduces the cost of her abilities by 10%.",
       "ability2": "Glimmershot",
       "ability2_desc": "Kestrel fires an arrow, landing an armor-piercing basic attack on the first target in its path. The arrow then pierces through, dealing crystal damage to the target and other enemies behind it.\n\nKestrel can keep several arrows in reserve. After 2.7 seconds without using her bow, these arrows are automatically reloaded. Reload time is decreased based on attack speed.",
-      "ability2_detail": "DETAILS:\nMax Arrows: 4/4/4/4/4\nBasic Attack Damage: 100%/105%/110%/115%/130%Crystal Damage: 30/60/90/120/150 color=#73dfff](160% Crystal Ratio)[/color]\nSplash Damage: 35/70/105/140/175 (170% Crystal Ratio)\nDmg to Minions: 30/60/90/120/150 (30% Crystal Ratio)",
+      "ability2_detail": "DETAILS:\nMax Arrows: 4/4/4/4/4\nBasic Attack Damage: 100%/105%/110%/115%/130%Crystal Damage: 30/60/90/120/150 color=#73dfff](140% Crystal Ratio)[/color]\nSplash Damage: 35/70/105/140/175 (170% Crystal Ratio)\nDmg to Minions: 30/60/90/120/150 (30% Crystal Ratio)",
       "ability2_cd": [0,0,0,0,0],
       "ability2_mana": [60,60,60,60,60],
       "ability3": "Active Camo",
@@ -385,7 +385,7 @@
       "ability1_desc": "Krul is empowered by the shadows after standing still in brush for 1.5 seconds. Once empowered, Krul briefly gains 2 move speed and his next basic attack will slow the target by 40% for 2.5 seconds.",
       "ability2": "Dead Man's Rush",
       "ability2_desc": "Krul dashes to the target, deals damage and applies basic-attack effects. Activating Dead Man's Rush grants Krul a health barrier for 2.5 seconds.",
-      "ability2_detail": "DETAILS:\nBasic Attack Damage: 160%/160%/160%/160%/160%\nCrystal Damage: 0%/0%/0%/0%/0% (70% Crystal Ratio)\nBarrier: 100/180/260/340/420 (125% Crystal Ratio)\nDuration: 3/3/3/3/3",
+      "ability2_detail": "DETAILS:\nBasic Attack Damage: 160%/160%/160%/160%/160%\nCrystal Damage: 0%/0%/0%/0%/0% (70% Crystal Ratio)\nBarrier: 80/160/240/320/400 (125% Crystal Ratio)\nDuration: 3/3/3/3/3",
       "ability2_cd": [8,8,8,8,7],
       "ability2_mana": [45,50,55,60,65],
       "ability3": "Spectral Smite",
@@ -428,7 +428,7 @@
       "ability2": "Imperial Sigil",
       "ability2_desc": "Lyra forms a sigil at the target location, revealing surrounding enemies. While this sigil remains active, it heals nearby allied heroes and damages nearby enemy heroes, with its own life diminishing more quickly for each affected target.\n\nLyra can reactivate this ability at any time to detonate the sigil, dealing heavy damage to surrounding enemies while providing a burst of healing and a moderate move speed boost (2.0) to nearby allies.\n\nThe healing per second is increased by 10% of Lyra's bonus health, while the burst heal is increased by 8% of Lyra's bonus health.\nWhen reactivated, will immediately consume the remaining duration to heal at 60% effectiveness.",
       "ability2_detail": "DETAILS:\nRange: 10/10/10/10/12\nDamage/sec: 60/100/140/180/260 (80% Crystal Ratio)\nHeal/sec: 40/60/80/100/140+ 12% Bonus Health\nDetonate Damage: 75/125/175/225/325 (120% Crystal Ratio)\nDmg to Minions: 75/125/175/225/325 (100% Crystal Ratio)\nDetonate Heal: 50/70/90/110/150",
-      "ability2_cd": [10,9.5,9,8.5,8],
+      "ability2_cd": [14,12.5,11,9.5,8],
       "ability2_mana": [60,70,80,90,100],
       "ability3": "Bright Bulwark",
       "ability3_desc": "After a brief delay, Lyra releases a pulse of magical energy, damaging and applying an 20% flat slow to surrounding enemies. The affected area then becomes a walled zone of protection that deals the same damage and slow to enemies attempting to cross its borders.\n\nEnemies inside the zone are snared, allowing them to move normally but preventing them from using movement abilities. Enemies attempting to dash into the area are interrupted upon crossing the walls.\n\nEnemies inside the zone cannot use Lyra’s portals for the entire duration inside.",
@@ -495,7 +495,7 @@
       "ability2_mana": [45,50,55,60,65],
       "ability3": "Polite Company",
       "ability3_desc": "Phinn stomps the earth, dealing crystal damage to all enemies in a wide area and launching them toward him. The effect reverberates around allies, granting them fortified health (increased by 6% of Phinn's bonus health and 20% of Phinn's bonus armor/shield) for the next 3 seconds.",
-      "ability3_detail": "\nDETAILS:\nDamage: 60/120/180/240/360 (120% Crystal Ratio)\nFortified Health: 120/150/180/210/270",
+      "ability3_detail": "\nDETAILS:\nDamage: 60/120/180/240/360 (120% Crystal Ratio)\nFortified Health: 140/170/200/230/290",
       "ability3_cd":[10,10,10,10,10],
       "ability3_mana": [30,30,30,30,30],
       "ability4": "Forced Accord",
@@ -527,7 +527,7 @@
     },
     {
       "hero": "Reza",
-      "hero_stats": [672,72,0,0,380,32,0,0,84,6.36,100,2.27,20,6,20,6,3,3.5],
+      "hero_stats": [722,72,0,0,380,32,0,0,84,6.36,100,2.27,20,6,20,6,3,3.5],
       "ability1": "Firestarter",
       "ability1_desc": "Scorcher and Netherform Detonator apply Firestarter to enemy targets.\nReza's basic attacks consume Firestarter, dealing crystal damage.\nCrystal Damage: 20-185 (level 1-12) (+120% crystal power)",
       "ability2": "Scorcher",
@@ -634,15 +634,15 @@
       "hero": "Skaarf",
       "hero_stats": [632,78,3.55,0.35,200,24,1.33,0.16,80,6.8,100,2,20,6,20,6,5.5,3.3],
       "ability1": "Fan the Flames",
-      "ability1_desc": "Skaarf's fire-based abilities burn targets for 10 damage per second for 4 seconds. Basic attacks against burning targets deal 3% (+3% of crystal power) of the target's max health as crystal damage. This damage can crit for 2x. Deals reduced damage to Kraken and structures.",
+      "ability1_desc": "Skaarf's fire-based abilities burn targets for 8 damage per second for 4 seconds. Basic attacks against burning targets deal 3% (+3% of crystal power) of the target's max health as crystal damage. This damage can crit for 2x. Deals reduced damage to Kraken and structures.",
       "ability2": "Spitfire",
       "ability2_desc": "Skaarf spits a fireball that burns and damages anything in its path and collides with the first hero, structure, or boss monster it hits. Each target the fireball passthrough reduces its damage by 85%. Deals reduced damage to turrets if out of range.",
-      "ability2_detail": "DETAILS:\nDamage: 75/135/195/255/315 (150% Crystal Ratio)\nFireball Speed: 9/9.5/10/10.5/11\nDmg to Minions: 75/125/175/225/325 (35% Crystal Ratio)",
-      "ability2_cd": [6,5.5,5,4.5,3],
+      "ability2_detail": "DETAILS:\nDamage: 75/135/195/255/315 (130% Crystal Ratio)\nFireball Speed: 9/9.5/10/10.5/11\nDmg to Minions: 75/125/175/225/325 (35% Crystal Ratio)",
+      "ability2_cd": [5,4.5,4,3.5,3],
       "ability2_mana": [35,35,35,35,35],
       "ability3": "Goop",
       "ability3_desc": "Skaarf hurls goop onto the target location. Enemies walking through the sticky substance are slowed. Any of Skaarf's flames will ignite the puddle, dealing burst damage and burning enemies over time.However, a flaming puddle does not slow enemies as much as a goop puddle. Deals half damage to minions & Kraken.",
-      "ability3_detail": "DETAILS:\nIgnite Damage: 40/60/80/100/120 (70% Crystal Ratio)\nDamage/sec: 60/100/140/180/220 (140% Crystal Ratio)\nDuration: 8/8/8/8/10\nDuration on Fire: 4/4/4/4/6",
+      "ability3_detail": "DETAILS:\nIgnite Damage: 40/60/80/100/120 (70% Crystal Ratio)\nDamage/sec: 40/85/130/175/220 (140% Crystal Ratio)\nDuration: 8/8/8/8/10\nDuration on Fire: 4/4/4/4/6",
       "ability3_cd":[10,10,10,10,8],
       "ability3_mana": [75,90,105,120,135],
       "ability4": "Dragon's Breath",
@@ -658,7 +658,7 @@
       "ability1_desc": "Skye locks onto and reveals the target she most recently basic attacked. Basic attacks and Forward Barrage on that locked target grant her up to 2 move speed for 1.2 seconds. This speed bonus is dramatically reduced while moving backward. Target Lock is lost if the target moves more than 8.5 meters away from Skye or if she doesn't attack her target for 3 seconds.",
       "ability2": "Forward Barrage",
       "ability2_desc": "Skye fires a continuous stream of bullets while strafing in a selected direction. Reactivate this ability to stop firing.\n\nThe duration increases with Skye's crystal power up to a max of 3 seconds. Weapon damage can critically strike with bonus critical damage. Deals bonus damage to locked targets. Deals 60% damage to structures & bosses.",
-      "ability2_detail": "DETAILS:\nDamage/sec: 160/200/240/280/360 (120% Crystal Ratio) (70% Weapon Ratio)\nBonus Crit Damage: 100%/100%/100%/100%/150%\nLock-On Damage Bonus: 33.3%/33.3%/33.3%/33.3%/33.3% (10% Crystal Ratio)\nSlow: 0%/0%/0%/0%/0% (20% Weapon Ratio)",
+      "ability2_detail": "DETAILS:\nDamage/sec: 160/200/240/280/360 (120% Crystal Ratio) (70% Weapon Ratio)\nBonus Crit Damage: 100%/100%/100%/100%/150%\nLock-On Damage Bonus:35%/35%/35%/35%/35% (10% Crystal Ratio)\nSlow: 0%/0%/0%/0%/0% (20% Weapon Ratio)",
       "ability2_cd": [6,6,6,6,5],
       "ability2_mana": [60,70,80,90,100],
       "ability3": "Suri Strike",
@@ -676,7 +676,7 @@
       "hero": "Taka",
       "hero_stats": [741,74,3.51,0.35,180,22,1.33,0.16,68,5.8,100,3.27,20,6,20,6,2,3.4],
       "ability1": "House Kamuha",
-      "ability1_desc": "Every 5 seconds, Taka's next basic attack is replaced with a Mortal Strike. Mortal Strikes deal 40 (+35% weapon ratio) bonus damage and grant Taka a burst of move speed. Whenever Taka Mortal Strikes or uses an ability, he gains a stack of Ki, which speeds up his Mortal Strike timer by 0.9 secs and grants 20% cooldown speed. (5 Ki stacks max.) Ki stacks last 12 seconds before they are reset.",
+      "ability1_desc": "Every 5 seconds, Taka's next basic attack is replaced with a Mortal Strike. Mortal Strikes deal 40 (+35% weapon ratio) bonus damage and grant Taka a burst of move speed. Whenever Taka Mortal Strikes or uses an ability, he gains a stack of Ki, which speeds up his Mortal Strike timer by 0.9 secs and grants 25% cooldown speed. (5 Ki stacks max.) Ki stacks last 12 seconds before they are reset.",
       "ability2": "Kaiten",
       "ability2_desc": "Taka flips over his target, cutting it with his switchblade. Taka is invulnerable to damage & debuffs while in mid-air.",
       "ability2_detail": "DETAILS:\nDamage: 100/165/230/295/360 (80% Crystal Ratio)",
@@ -822,7 +822,7 @@
     {
       "item": "Dragonblood Contract",
       "category": "Consumable",
-      "cost": "300",
+      "cost": "250",
       "desc": "Consume: Temporarily gain 20-60 crystal power, 10-25% cooldown acceleration, and 10-30 armor & shield based on your level. Lasts 2.5 minutes.\n\n(Gain a powerful temporary advantage in your abilities.)"
     },
     {
@@ -835,7 +835,7 @@
       "item": "Echo",
       "category": "Ability",
       "cost": "2200",
-      "desc": "ACTIVATE\n\nThe last ability to be put on cooldown is refreshed (115% of the ability’s cooldown + 10s cooldown)\nSTATS\n\n300 Max Energy\n4 Energy Recharge\nBUILD PATH\n\nVoid Battery (700) + 1500 = 2200\nSells for 1100 gold"
+      "desc": "ACTIVATE\n\nThe last ability to be put on cooldown is refreshed (115% of the ability’s cooldown + 15s cooldown)\nSTATS\n\n300 Max Energy\n4 Energy Recharge\nBUILD PATH\n\nVoid Battery (700) + 1500 = 2200\nSells for 1100 gold"
     },
     {
       "item": "Eclipse Prism",
@@ -886,10 +886,10 @@
       "desc": "Passive: +0.5 move speed. (Does not stack with other boots.)\n\n\nActivate: Sprint for 3 seconds (50s cooldown).\n\n+200 Health\n+15% Cooldown Speed\n+250 Energy\n+4 Energy Recharge\n\n(Allows you to chase down enemy targets and use abilities more frequently...or to escape trouble!)"
     },
     {
-      "item": "Halcyon Potion",
+      "item": "Healing Flask",
       "category": "Consumable",
-      "cost": "25",
-      "desc": "Consume: Restore 80 health and 40 energy instantly, then 200 health & 65 energy over 25 seconds.\n\n(Also restores energy! And the instant heal can save your life in close battles.)"
+      "cost": "300",
+      "desc": "Activate: Block 115-500 (level 1-12) damage and recover 30% health and energy over the next 5s. (120 cooldown)."
     },
     {
       "item": "Heavy Prism",
@@ -912,7 +912,7 @@
     {
       "item": "Ironguard Contract",
       "category": "Consumable",
-      "cost": "300",
+      "cost": "250",
       "desc": "Passive: When a nearby ally kills a jungle monster or large lane minion, it heals you and your ally by 75 health each and 10 energy each.\n\nRange: 14m\n\n(Use this to be battle ready coming out of the jungle. Be sure to sell this item when you are durable enough to survive the jungle.)"
     },
     {
@@ -1014,7 +1014,7 @@
     {
       "item": "Protector Contract",
       "category": "Consumable",
-      "cost": "300",
+      "cost": "250",
       "desc": "Activate: Grants a 120 health barrier to all nearby allied heroes for 2 seconds. 5s cooldown. 2 max charges, 15s per charge.\n\nRange: 8m\n\n(Purchase this if you expect heavy aggression coming from the enemy team or want early teamfights.)"
     },
     {
@@ -1064,6 +1064,12 @@
       "category": "Weapon",
       "cost": "3100",
       "desc": "+150 Weapon Power\n\n(Weapon power increase the strength of basic attacks.)"
+    },
+    {
+      "item": "Spellsword",
+      "category": "Weapon",
+      "cost": "2600",
+      "desc": "+90 Weapon Power\n+35% Cooldown Speed\n+2.5 Energy Recharge\nPassive: Every basic attack grants you 3 energy (9 on heroes)."
     },
     {
       "item": "Sprint Boots",
