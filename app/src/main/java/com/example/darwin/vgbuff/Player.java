@@ -40,7 +40,7 @@ public class Player {
     JSONObject playerStats;
 
     // HeroPlayed
-    public int[] heroPlayed = new int[33];
+    public int[] heroPlayed = new int[37];
 
     // Get number of hero played in the last 30 days
     void getNumberOfHeroPlayed(){
@@ -174,8 +174,17 @@ public class Player {
                             case "*Taka*":
                                 heroPlayed[32]++;
                                 break;
-                            default:
+                            case "*Churnwalker*":
                                 heroPlayed[33]++;
+                                break;
+                            case "*Lorelai*":
+                                heroPlayed[34]++;
+                                break;
+                            case "*Varya*":
+                                heroPlayed[35]++;
+                                break;
+                            default:
+                                heroPlayed[36]++;
                                 break;
                         }
 
@@ -212,7 +221,7 @@ public class Player {
 
         resultRaw = playerResultRaw;
 
-        //Log.i("Result Raw", playerResultRaw);
+        Log.i("Result Raw", playerResultRaw);
 
         try {
 

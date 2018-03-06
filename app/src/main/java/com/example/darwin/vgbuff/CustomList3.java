@@ -165,6 +165,8 @@ public class CustomList3 extends ArrayAdapter<String>{
             gameModeView.setText("PRIVATE BLITZ");
         } else if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("PRIVATE_PARTY_DRAFT_MATCH")) {
             gameModeView.setText("PRIVATE CASUAL");
+        } else if (vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase().equals("5V5_PVP_CASUAL")) {
+            gameModeView.setText("5V5 CASUAL");
         } else {
             gameModeView.setText(vg.matches.rawGameMode[sortedPos[sortedPos.length-1-position]].toUpperCase());
         }

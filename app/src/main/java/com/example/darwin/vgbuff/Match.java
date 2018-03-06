@@ -341,9 +341,9 @@ public class Match {
 
                         JSONArray itemsPlayerHas = new JSONArray(tempStat.getString("items"));
 
-                        for (int itemcount = 0; itemcount < itemsPlayerHas.length() ; itemcount++){
+                        for (int itemcount = 2; itemcount < itemsPlayerHas.length() ; itemcount++){
 
-                            temp.items[itemcount] = itemsPlayerHas.getString(itemcount);
+                            temp.items[itemcount-2] = itemsPlayerHas.getString(itemcount);
 
                         }
 
@@ -754,9 +754,9 @@ public class Match {
 
                         JSONArray itemsPlayerHas = new JSONArray(tempStat.getString("items"));
 
-                        for (int itemcount = 0; itemcount < itemsPlayerHas.length() ; itemcount++){
+                        for (int itemcount = 2; itemcount < itemsPlayerHas.length() ; itemcount++){
 
-                            temp.items[itemcount] = itemsPlayerHas.getString(itemcount);
+                            temp.items[itemcount-2] = itemsPlayerHas.getString(itemcount);
 
                         }
 

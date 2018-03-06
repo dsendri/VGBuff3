@@ -128,8 +128,8 @@ public class CustomList5 extends ArrayAdapter<String>{
 
         // Initialize Roles
         String[] Captains = new String[] {"adagio","ardan","catherine","flicker","fortress","lance","lyra","phinn","grace"};
-        String[] Junglers = new String[] {"baptiste","grumpjaw","alpha","glaive","joule","koshka","krul","ozo","petal","reim","rona","taka","reza"};
-        String[] Carries = new String[] {"baron","blackfeather","celeste","gwen","idris","kestrel","ringo","samuel","saw","skaarf","skye","vox"};
+        String[] Junglers = new String[] {"baptiste","grumpjaw","alpha","glaive","joule","koshka","krul","ozo","petal","reim","rona","taka","reza","lorelai","churnwalker"};
+        String[] Carries = new String[] {"baron","blackfeather","celeste","gwen","idris","kestrel","ringo","samuel","saw","skaarf","skye","vox","varya"};
 
         // Initialze Views
         TextView txtTitle = (TextView) rowView.findViewById(R.id.userName1);

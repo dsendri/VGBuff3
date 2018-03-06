@@ -179,9 +179,9 @@ public class Summary extends Fragment{
         vaingloryHeroAndMatches = new VaingloryHeroAndMatches();
 
         // Initialize Roles
-        Captains = new String[] {"*adagio*","*ardan*","*catherine*","*flicker*","*fortress*","*lance*","*lyra*","*phinn*","*grace*"};
-        Junglers = new String[] {"*baptiste*","*grumpjaw*","*alpha*","*glaive*","*joule*","*koshka*","*krul*","*ozo*","*petal*","*reim*","*rona*","*taka*","*reza*"};
-        Carries = new String[] {"*baron*","*blackfeather*","*celeste*","*gwen*","*idris*","*kestrel*","*ringo*","*samuel*","*saw*","*skaarf*","*skye*","*vox*"};
+        Captains = new String[] {"adagio","ardan","catherine","flicker","fortress","lance","lyra","phinn","grace"};
+        Junglers = new String[] {"baptiste","grumpjaw","alpha","glaive","joule","koshka","krul","ozo","petal","reim","rona","taka","reza","lorelai","churnwalker"};
+        Carries = new String[] {"baron","blackfeather","celeste","gwen","idris","kestrel","ringo","samuel","saw","skaarf","skye","vox","varya"};
 
         df = DecimalFormat.getInstance();
         df.setMinimumFractionDigits(2);
@@ -558,6 +558,18 @@ public class Summary extends Fragment{
                         break;
                     case 32:
                         heroFav = "Taka";
+
+                        break;
+                    case 33:
+                        heroFav = "Churnwalker";
+
+                        break;
+                    case 34:
+                        heroFav = "Lorelai";
+
+                        break;
+                    case 35:
+                        heroFav = "Varya";
 
                         break;
                     default:
@@ -1136,6 +1148,18 @@ public class Summary extends Fragment{
                             break;
                         case 32:
                             heroFav = "Taka";
+
+                            break;
+                        case 33:
+                            heroFav = "Churnwalker";
+
+                            break;
+                        case 34:
+                            heroFav = "Lorelai";
+
+                            break;
+                        case 35:
+                            heroFav = "Varya";
 
                             break;
                         default:

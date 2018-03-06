@@ -419,9 +419,24 @@ public class HeroesStats extends Fragment {
                                         location = 32;
 
                                         break;
-                                    default:
+                                    case "*Churnwalker*":
 
                                         location = 33;
+
+                                        break;
+                                    case "*Lorelai*":
+
+                                        location = 34;
+
+                                        break;
+                                    case "*Varya*":
+
+                                        location = 35;
+
+                                        break;
+                                    default:
+
+                                        location = 36;
 
                                         break;
                                 }
@@ -609,7 +624,7 @@ public class HeroesStats extends Fragment {
                             for (int i = 0; i < totalgames; i++) {
 
                                 String actor = vaingloryHeroAndMatches.matches.myParticipant[i].actor;
-                                //Log.i("actor", actor);
+                                Log.i("actor", actor);
 
                                 int location;
 
@@ -779,9 +794,24 @@ public class HeroesStats extends Fragment {
                                         location = 32;
 
                                         break;
-                                    default:
+                                    case "*Churnwalker*":
 
                                         location = 33;
+
+                                        break;
+                                    case "*Lorelai*":
+
+                                        location = 34;
+
+                                        break;
+                                    case "*Varya*":
+
+                                        location = 35;
+
+                                        break;
+                                    default:
+
+                                        location = 36;
 
                                         break;
                                 }
